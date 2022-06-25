@@ -162,8 +162,11 @@ document.querySelector(".modalSearch").onclick = function () {
 };
 document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
-  document.querySelector("#table_item").innerHTML = `
-
+  document.querySelector("#table_item_hh").innerHTML = ` <tr>
+  <td><button onclick="countUp()">+</button></td>
+  <td></td><input type="text" id="txt_invoer" value="1"></td>
+  <td><button onclick="countDown()">-</button></td>
+  </tr>
   `;
 };
 // modal
@@ -214,4 +217,23 @@ function getData(x) {
   let tr = x.parentElement.parentElement;
   let namehh = tr.children[1].innerText;
   console.log(namehh);
+  function load() {
+    let ListStudent = localStorage.getItem("product")
+      ? JSON.parse(localStorage.getItem("product"))
+      : [];
+    let product = `
+              <option value="">Danh Sách Sản Phẩm</option>
+             `;
+    ListStudent.map((value, index) => {
+      product += `
+              <option value='${index}'>
+                  <span class="stt">STT:${index + 1}</span>
+                  <br/>
+                  <span>${value.name}</span>
+                  <br/>
+              </option>
+              `;
+    });
+    document.getElementById("tableContent").innerHTML = product;
+  }
 }
