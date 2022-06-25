@@ -85,10 +85,13 @@ function load() {
   });
   document.getElementById("tableContent").innerHTML = product;
 }
+// xử lý xoá sản phẩm
 function Delete(x) {
-  var tr = x.parentElement.parentElement;
-  var nameItem = tr.children[1].innerText;
+  // xoá html
+  let tr = x.parentElement.parentElement;
+  let nameItem = tr.children[1].innerText;
   tr.remove();
+  // xoá array
   for (let i = 0; i < arrTable.length; i++) {
     if (arrTable[i].name == nameItem) {
       arrTable.splice(i, 1);
@@ -115,7 +118,7 @@ function renderTable() {
   for (var i = 0; i < arrTable.length; i++) {
     tt = arrTable[i].price * 1;
     addtr.innerHTML = ` <tr>
-            <td style='width:110px'><button class="delete" onclick="Delete(this)">xoá</button></td> 
+            <td style='width:110px'><button onclick="Delete(this)">xoá</button></td> 
             <td style='text-align:start'> 
             <span class='name'>${arrTable[i].name}</span>
             <td style='width:110px;text-align:end'><input type='number' value='1' min='1' class='inputvalue' style='width:150px'></td>
@@ -159,7 +162,9 @@ document.querySelector(".modalSearch").onclick = function () {
 };
 document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
-  document.querySelector("#table_item").innerHTML = `a`;
+  document.querySelector("#table_item").innerHTML = `
+
+  `;
 };
 // modal
 var modal = document.getElementById("myModal");
@@ -192,16 +197,21 @@ fetch("hangtang.json")
     return response.json();
   })
   .then(function (products) {
-    let placeholder = document.querySelector("#table_item");
+    let placeholder = document.querySelector("#hh_item");
     let out = "";
     for (let product of products) {
       out += `
-      <tr>
-        <td><input type="checkbox" /></td>  
-        <td> ${product.hhName} </td>
-        <td> ${product.hhPrice} </td>
+      <tr> 
+        <td><input type="checkbox" onclick="getData(this)" /></td>
+        <td class="namehh" > ${product.hhName} </td>
+        <td > ${product.hhPrice} </td>
       </tr>
     `;
     }
     placeholder.innerHTML = out;
   });
+function getData(x) {
+  let tr = x.parentElement.parentElement;
+  let namehh = tr.children[1].innerText;
+  console.log(namehh);
+}
