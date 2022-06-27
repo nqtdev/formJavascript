@@ -80,7 +80,7 @@
         <button onclick="addNew()">Lưu</button>
       </div>
     </div>
-    <div class="formTanghang">
+    <!-- <div class="formTanghang">
       <table>
         <th>
           <tr>
@@ -95,7 +95,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
     <div class="formGiamgiahang"></div>
     <select id="tableContent" onchange="renderTable()"></select>
     <table
@@ -126,39 +126,60 @@
     </button>
     <div id="myModal" class="modal">
       <div class="modal-content">
-        <span style="display: flex; justify-content: end" class="close"
-          >&times;</span
-        >
         <table>
           <tr>
-            <td></td>
+            <td>
+              <input
+                type="checkbox"
+                id="option-all"
+                onchange="checkAll(this)"
+              />
+            </td>
             <td>Chương trình khuyến mại</td>
             <td>Hình thức khuyến mại</td>
           </tr>
           <tr>
             <td>
-              <input type="checkbox" />
-            </td>
-            <td>2.1 Giảm giá đơn hàng</td>
-            <td>Giảm giá đơn hàng : Giảm 500,000 giá trị đơn hàng</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>2.2 Tặng hàng</td>
-            <td style="display: flex; justify-content: space-between">
-              Tặng hàng
               <input
-                class="input-modal modalSearch"
-                type="text"
-                placeholder="Tìm hàng tặng"
+                type="checkbox"
+                id="option-a"
+                value="giamgiadonhang"
+                name="discount"
               />
             </td>
+            <td>2.1 Giảm giá đơn hàng</td>
+            <td>Giảm giá đơn hàng : Giảm 500 giá trị đơn hàng</td>
           </tr>
           <tr>
             <td>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                id="option-b"
+                value="tanghang"
+                name="discount"
+              />
+            </td>
+            <td>2.2 Tặng hàng</td>
+            <td>
+              <div style="display: flex; justify-content: space-between" ;>
+                Tặng hàng
+                <input
+                  class="input-modal modalSearch"
+                  type="text"
+                  placeholder="Tìm hàng tặng"
+                />
+              </div>
+              <div id="table_item_hh"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                id="option-c"
+                value="giamgiahang"
+                name="discount"
+              />
             </td>
             <td>2.3 Giảm giá hàng</td>
             <td style="display: flex; justify-content: space-between">
@@ -172,7 +193,12 @@
           </tr>
           <tr>
             <td>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                id="option-d"
+                value="giamgiavoucher"
+                name="discount"
+              />
             </td>
             <td>2.4 Tặng voucher</td>
             <td style="display: flex; justify-content: space-between">
@@ -180,11 +206,21 @@
               <input
                 class="input-modal modalSearch"
                 type="text"
-                placeholder="Tìm voucher"
+                placeholder="AHIHI"
               />
             </td>
           </tr>
         </table>
+        <div
+          id="price-total"
+          style="width: 600px; margin: 0 auto; text-align: center"
+        >
+          <p>Tổng Tiền Giảm Giá: <span>0</span> Đ</p>
+        </div>
+        <div style="margin-top: 15px">
+          <button style="width: 100px" id="btn-main">áp dụng</button>
+          <button style="width: 100px" class="close">bỏ qua</button>
+        </div>
       </div>
       <div id="oneScreen">
         <div class="modal_hanghoa">
@@ -198,7 +234,7 @@
           </div>
           <div>
             <table style="width: 100%">
-              <tbody id="table_item"></tbody>
+              <tbody id="hh_item"></tbody>
             </table>
           </div>
           <div style="margin-top: 15px">
