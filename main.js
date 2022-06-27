@@ -152,6 +152,25 @@ function InputChange() {
     });
   }
 }
+function load() {
+  let ListStudent = localStorage.getItem("product")
+    ? JSON.parse(localStorage.getItem("product"))
+    : [];
+  let product = `
+            <option value="">Danh Sách Sản Phẩm</option>
+           `;
+  ListStudent.map((value, index) => {
+    product += `
+            <option value='${index}'>
+                <span class="stt">STT:${index + 1}</span>
+                <br/>
+                <span>${value.name}</span>
+                <br/>
+            </option>
+            `;
+  });
+  document.getElementById("tableContent").innerHTML = product;
+}
 // ẨN HIỆN POPUP SẢN PHẨM
 document.querySelector("#oneScreen").style.display = "none";
 document.querySelector("#btn2").onclick = function () {
@@ -162,9 +181,9 @@ document.querySelector(".modalSearch").onclick = function () {
 };
 document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
-  document.querySelector("#table_item_hh").innerHTML = ` <tr>
+  document.querySelector("#table_item_hhbtn").innerHTML = ` <tr>
   <td><button onclick="countUp()">+</button></td>
-  <td></td><input type="text" id="txt_invoer" value="1"></td>
+  <td></td><input type="text" id="txt_invoer" value="1" style="width:15px"></td>
   <td><button onclick="countDown()">-</button></td>
   </tr>
   `;
@@ -216,24 +235,23 @@ fetch("hangtang.json")
 function getData(x) {
   let tr = x.parentElement.parentElement;
   let namehh = tr.children[1].innerText;
-  console.log(namehh);
-  function load() {
-    let ListStudent = localStorage.getItem("product")
-      ? JSON.parse(localStorage.getItem("product"))
-      : [];
-    let product = `
-              <option value="">Danh Sách Sản Phẩm</option>
-             `;
-    ListStudent.map((value, index) => {
-      product += `
-              <option value='${index}'>
-                  <span class="stt">STT:${index + 1}</span>
-                  <br/>
-                  <span>${value.name}</span>
-                  <br/>
-              </option>
-              `;
-    });
-    document.getElementById("tableContent").innerHTML = product;
-  }
+  let producthh = document.getElementById('table_item_hh');
+
+  let in1 = `
+  <tr>
+  <td style="border:1px solid gray"><a> <i class="fa-solid fa-trash-can"></i> </a></td>
+  <td style="border:1px solid gray">${namehh}
+    </td>
+  </tr>
+  `
+  producthh.innerHTML = in1;
+
+}
+function createValue(){
+  var create = document.createElement('tr')
+  var ParseCreate = document.querySelector('#table_item1')
+  ParseCreate.append(create)
+  create.innerHTML= `
+    <input style="display: hidden" name="" value="">
+  `
 }
