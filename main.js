@@ -219,6 +219,10 @@ fetch("hangtang.json")
     return response.json();
   })
   .then(function (products) {
+    localStorage.setItem("hangtang", JSON.stringify(products));
+    if (!localStorage.getItem("cartyt")) {
+      localStorage.setItem("cartyt", "[]");
+    }
     let placeholder = document.querySelector("#hh_item");
     let out = "";
     for (let product of products) {
@@ -255,3 +259,27 @@ function createValue(){
     <input style="display: hidden" name="" value="">
   `
 }
+
+// Check / Uncheck All Checkboxes
+var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
+function checkAll(myCheckbox) {
+  if (myCheckbox.checked == true) {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = true;
+    });
+  } else {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = false;
+    });
+  }
+}
+// tính thành tiền ( hàng hoá và quà tặng )
+document.getElementById("btnm1").onclick = function () {
+  document.querySelector("#oneScreen").style.display = "none";
+  document.querySelector("#table_item_hh").innerHTML = ` <tr>
+  <td><button onclick="countUp()">+</button></td>
+  <td></td><input type="text" id="txt_invoer" value="1"></td>
+  <td><button onclick="countDown()">-</button></td>
+  </tr>
+  `;
+};

@@ -75,18 +75,18 @@ input {
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  /* color: #aaaaaa;
   float: right;
   font-size: 28px;
-  font-weight: bold;
+  font-weight: bold; */
 }
 
-.close:hover,
+/* .close:hover,
 .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
-}
+} */
 .btn-modal {
   position: absolute;
   left: 40%;
