@@ -242,14 +242,14 @@ function getData(x) {
   let producthh = document.getElementById("table_item_hh");
 
   let in1 = `
-  <td style="border:1px solid gray"><a> <i class="fa-solid fa-trash-can"></i> </a></td>
+  
   <td style="border:1px solid gray;width:60%;color:#333333;font-weight:500"> <span>${namehh}</span>
     <br>
-    <span>HKM01</span>
   </td>
     <td><button onclick="countUp()">+</button></td>
     <td><input type="text" id="txt_invoer" value="1" style="width:15px"></td>
-    <td><button onclick="countDown()">-</button></td>
+    <td><button onclick="countDown()">-</button>
+  </td>
   `;
   producthh.innerHTML = in1;
 }
