@@ -186,16 +186,16 @@ document.getElementById("btn1").onclick = function () {
 };
 // modal
 var modal = document.getElementById("myModal");
-var table = document.getElementById("showItem")
+var table = document.getElementById("showItem");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 var btnApply = document.getElementById("btn-main");
 btn.onclick = function () {
   modal.style.display = "block";
 };
-btnApply.onclick = function(){
+btnApply.onclick = function () {
   table.style.display = "block";
-}
+};
 span.onclick = function () {
   modal.style.display = "none";
 };
@@ -239,7 +239,7 @@ fetch("hangtang.json")
 function getData(x) {
   let tr = x.parentElement.parentElement;
   let namehh = tr.children[1].innerText;
-  let producthh = document.getElementById('table_item_hh');
+  let producthh = document.getElementById("table_item_hh");
 
   let in1 = `
   <td style="border:1px solid gray"><a> <i class="fa-solid fa-trash-can"></i> </a></td>
@@ -250,17 +250,16 @@ function getData(x) {
     <td><button onclick="countUp()">+</button></td>
     <td><input type="text" id="txt_invoer" value="1" style="width:15px"></td>
     <td><button onclick="countDown()">-</button></td>
-  `
+  `;
   producthh.innerHTML = in1;
-
 }
-function createValue(){
-  var create = document.createElement('tr')
-  var ParseCreate = document.querySelector('#table_item1')
-  ParseCreate.append(create)
-  create.innerHTML= `
+function createValue() {
+  var create = document.createElement("tr");
+  var ParseCreate = document.querySelector("#table_item1");
+  ParseCreate.append(create);
+  create.innerHTML = `
     <input style="display: hidden" name="" value="">
-  `
+  `;
   console.log(namehh);
 }
 
