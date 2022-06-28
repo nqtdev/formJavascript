@@ -141,14 +141,27 @@
           <tr>
             <td>
               <input
-                type="checkbox"
-                id="option-a"
-                value="giamgiadonhang"
-                name="discount"
-              />
+              type="checkbox"
+              id="option-a"
+              value="giamgiadonhang"
+              name="discount"
+            />
             </td>
             <td>2.1 Giảm giá đơn hàng</td>
-            <td>Giảm giá đơn hàng : Giảm 500 giá trị đơn hàng</td>
+            <td style="display:flex;justify-content: space-between;">
+              <div style="width:40%" ;>
+                <p style="margin:0px">
+                Giảm giá đơn hàng
+                </p>
+              </div>
+              <div style="width:60%">
+                <input
+                class="input-modal "
+                type="text"
+                value="Giảm 500,000 giá trị đơn hàng"
+               style="width:100%"/>
+            </div>
+            </td>
           </tr>
           <tr>
             <td>
@@ -160,57 +173,90 @@
               />
             </td>
             <td>2.2 Tặng hàng</td>
-            <td>
-              <div style="display: flex; justify-content: space-between" ;>
+            <td style="display:flex;justify-content: space-between;">
+              <div style="width:40%" ;>
+                <p style="margin:0px">
                 Tặng hàng
-                <input
-                  class="input-modal modalSearch"
-                  type="text"
-                  placeholder="Tìm hàng tặng"
-                />
+                </p>
+                <p style="margin:0px;color:#333333;font-weight: 500;">10 sản phẩm</p>
               </div>
-              <div id="table_item1"style="display:flex;justify-content: end;">
-              <div id="table_item_hh" style="padding:10px;border:1px solid gray;margin:3px"></div>
-              <div id="table_item_hhbtn" style="text-align: end;padding: 10px;border:1px solid gray;margin:3px"></div>
+              <div id="table_item1"style="width:60%">
+                <input
+                class="input-modal modalSearch"
+                type="text"
+                placeholder="Tìm hàng tặng"
+               style="width:100%"/>
+                <table id="showItem">
+                  <tbody>
+                    <tr id="table_item_hh">
+                    </tr>
+                </tbody>
+                </table>
             </div>
             </td>
           </tr>
           <tr>
             <td>
               <input
-                type="checkbox"
-                id="option-c"
-                value="giamgiahang"
-                name="discount"
-              />
+              type="checkbox"
+              id="option-c"
+              value="giamgiahang"
+              name="discount"
+            /> 
             </td>
             <td>2.3 Giảm giá hàng</td>
-            <td style="display: flex; justify-content: space-between">
-              Giảm giá sản phẩm
-              <input
+            <td style="display:flex;justify-content: space-between;">
+              <div style="width:40%" ;>
+                <p style="margin:0px">
+                Giảm giá hàng
+                </p>
+                <p style="margin:0px;color:#333333;font-weight: 500;">1 sản phẩm</p>
+              </div>
+              <div id="table_item1"style="width:60%">
+                <input
                 class="input-modal modalSearch"
                 type="text"
                 placeholder="Tìm hàng tặng"
               />
+                <table id="showItem">
+                  <tbody>
+                    <tr id="table_item_hh">
+                    </tr>
+                </tbody>
+                </table>
+            </div>
             </td>
           </tr>
           <tr>
             <td>
               <input
-                type="checkbox"
-                id="option-d"
-                value="giamgiavoucher"
-                name="discount"
-              />
+              type="checkbox"
+              id="option-d"
+              value="giamgiavoucher"
+              name="discount"
+            />
             </td>
-            <td>2.4 Tặng voucher</td>
-            <td style="display: flex; justify-content: space-between">
-              Tặng voucher
-              <input
+            <td>2.5 Tặng voucher</td>
+            <td style="display:flex;justify-content: space-between;">
+              <div style="width:40%" ;>
+                <p style="margin:0px">
+                Tặng voucher
+                </p>
+                <p style="margin:0px;color:#333333;font-weight: 500;">Tặng 1 voucher trong V20220614</p>
+              </div>
+              <div id="table_item1"style="width:60%">
+                <input
                 class="input-modal modalSearch"
                 type="text"
-                placeholder="AHIHI"
+                placeholder="Nhập mã voucher"
               />
+                <table id="showItem">
+                  <tbody>
+                    <tr id="table_item_hh">
+                    </tr>
+                </tbody>
+                </table>
+            </div>
             </td>
           </tr>
         </table>

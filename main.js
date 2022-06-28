@@ -181,20 +181,21 @@ document.querySelector(".modalSearch").onclick = function () {
 };
 document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
-  document.querySelector("#table_item_hhbtn").innerHTML = ` <tr>
-  <td><button onclick="countUp()">+</button></td>
-  <td></td><input type="text" id="txt_invoer" value="1" style="width:15px"></td>
-  <td><button onclick="countDown()">-</button></td>
-  </tr>
+  document.querySelector("#table_item_hhbtn").innerHTML = `
   `;
 };
 // modal
 var modal = document.getElementById("myModal");
+var table = document.getElementById("showItem")
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
+var btnApply = document.getElementById("btn-main");
 btn.onclick = function () {
   modal.style.display = "block";
 };
+btnApply.onclick = function(){
+  table.style.display = "block";
+}
 span.onclick = function () {
   modal.style.display = "none";
 };
@@ -242,11 +243,14 @@ function getData(x) {
   let producthh = document.getElementById('table_item_hh');
 
   let in1 = `
-  <tr>
   <td style="border:1px solid gray"><a> <i class="fa-solid fa-trash-can"></i> </a></td>
-  <td style="border:1px solid gray">${namehh}
-    </td>
-  </tr>
+  <td style="border:1px solid gray;width:60%;color:#333333;font-weight:500"> <span>${namehh}</span>
+    <br>
+    <span>HKM01</span>
+  </td>
+    <td><button onclick="countUp()">+</button></td>
+    <td><input type="text" id="txt_invoer" value="1" style="width:15px"></td>
+    <td><button onclick="countDown()">-</button></td>
   `
   producthh.innerHTML = in1;
 
