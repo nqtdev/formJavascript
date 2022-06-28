@@ -27,6 +27,7 @@ function addNew() {
     SaveData();
   }
 }
+// hàm lưu dữ liệu khi điền
 function SaveData() {
   let code = document.getElementById("code").value;
   let name = document.getElementById("name").value;
@@ -97,8 +98,6 @@ function Delete(x) {
       arrTable.splice(i, 1);
     }
   }
-  console.log(arrTable);
-  alert("xoá thành công");
   cartTotal();
 }
 // xử lý trùng item
@@ -130,6 +129,7 @@ function renderTable() {
   InputChange();
   Delete();
 }
+// xử lý tính tổng tiền
 function cartTotal() {
   var cartItem = document.querySelectorAll(".table_item tr");
   var totalC = 0;
@@ -215,15 +215,13 @@ function countDown() {
   var i = parseInt(txtInvoer.value, 0);
   txtInvoer.value = --i;
 }
+// gọi dữ liệu từ json
 fetch("hangtang.json")
   .then(function (response) {
     return response.json();
   })
   .then(function (products) {
     localStorage.setItem("hangtang", JSON.stringify(products));
-    if (!localStorage.getItem("cartyt")) {
-      localStorage.setItem("cartyt", "[]");
-    }
     let placeholder = document.querySelector("#hh_item");
     let out = "";
     for (let product of products) {
@@ -237,6 +235,7 @@ fetch("hangtang.json")
     }
     placeholder.innerHTML = out;
   });
+// lấy dữ liệu popup hàng hoá
 function getData(x) {
   let tr = x.parentElement.parentElement;
   let namehh = tr.children[1].innerText;
@@ -262,6 +261,7 @@ function createValue(){
   create.innerHTML= `
     <input style="display: hidden" name="" value="">
   `
+  console.log(namehh);
 }
 
 // Check / Uncheck All Checkboxes
@@ -277,13 +277,27 @@ function checkAll(myCheckbox) {
     });
   }
 }
+// xử lý xoá sản phẩm
+function Delete2(x) {
+  // xoá html
+  let tr = x.parentElement;
+  let nameItem = tr.parentElement.children.innerText;
+  tr.remove();
+  // // xoá array
+  // for (let i = 0; i < arrTable.length; i++) {
+  //   if (arrTable[i].name == nameItem) {
+  //     arrTable.splice(i, 1);
+  //   }
+  // }
+  cartTotal();
+}
 // tính thành tiền ( hàng hoá và quà tặng )
-document.getElementById("btnm1").onclick = function () {
+document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
   document.querySelector("#table_item_hh").innerHTML = ` <tr>
-  <td><button onclick="countUp()">+</button></td>
-  <td></td><input type="text" id="txt_invoer" value="1"></td>
-  <td><button onclick="countDown()">-</button></td>
+  <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
+  <td><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
+  width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
   </tr>
   `;
 };
