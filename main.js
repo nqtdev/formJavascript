@@ -1,5 +1,9 @@
 let sanpham = [];
 let arrTable = [];
+let arrChooseItem = [];
+let ListItem = JSON.parse(localStorage.getItem("hangtang"));
+var ListArray = document.getElementsByClassName('check');
+
 function validateInput() {
   let form = document.querySelector(".form");
   let form_input = form.querySelectorAll(".form-input");
@@ -181,8 +185,8 @@ document.querySelector(".modalSearch").onclick = function () {
 };
 document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
-  document.querySelector("#table_item_hhbtn").innerHTML = `
-  `;
+  // document.querySelector("#table_item_hhbtn").innerHTML = `
+  // `;
 };
 // modal
 var modal = document.getElementById("myModal");
@@ -193,9 +197,6 @@ var btnApply = document.getElementById("btn-main");
 btn.onclick = function () {
   modal.style.display = "block";
 };
-btnApply.onclick = function(){
-  table.style.display = "block";
-}
 span.onclick = function () {
   modal.style.display = "none";
 };
@@ -226,8 +227,8 @@ fetch("hangtang.json")
     let out = "";
     for (let product of products) {
       out += `
-      <tr> 
-        <td><input type="checkbox" onclick="getData(this)" /></td>
+      <tr > 
+        <td><input type="checkbox" onclick="getData(this)" class="check" value="${product.id}"/></td>
         <td class="namehh" > ${product.hhName} </td>
         <td > ${product.hhPrice} </td>
       </tr>
@@ -252,17 +253,18 @@ function getData(x) {
     <td><button onclick="countDown()">-</button></td>
   `
   producthh.innerHTML = in1;
+  checkicon();
 
 }
-function createValue(){
-  var create = document.createElement('tr')
-  var ParseCreate = document.querySelector('#table_item1')
-  ParseCreate.append(create)
-  create.innerHTML= `
-    <input style="display: hidden" name="" value="">
-  `
-  console.log(namehh);
-}
+// function createValue(){
+//   var create = document.createElement('tr')
+//   var ParseCreate = document.querySelector('#table_item1')
+//   ParseCreate.append(create)
+//   create.innerHTML= `
+//     <input style="display: hidden" name="" value="">
+//   `
+//   console.log(namehh);
+// }
 
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
@@ -283,6 +285,7 @@ function Delete2(x) {
   let tr = x.parentElement;
   let nameItem = tr.parentElement.children.innerText;
   tr.remove();
+
   // // xoá array
   // for (let i = 0; i < arrTable.length; i++) {
   //   if (arrTable[i].name == nameItem) {
@@ -291,13 +294,31 @@ function Delete2(x) {
   // }
   cartTotal();
 }
+
 // tính thành tiền ( hàng hoá và quà tặng )
-document.getElementById("btn1").onclick = function () {
-  document.querySelector("#oneScreen").style.display = "none";
-  document.querySelector("#table_item_hh").innerHTML = ` <tr>
-  <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
-  <td><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
-  width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
-  </tr>
-  `;
-};
+// document.getElementById("btn1").onclick = function () {
+//   document.querySelector("#oneScreen").style.display = "none";
+//   document.querySelector("#table_item_hh").innerHTML = ` <tr>
+//   <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
+//   <td><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
+//   width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
+//   </tr>
+//   `;
+// };
+
+function checkicon()
+{
+  console.log(arrChooseItem)
+for(var value of ListArray){
+  value.addEventListener('click',function(){
+  
+    if(this.checked == true){
+     arrChooseItem.push(ListItem[this.value]);
+     console.log(arrChooseItem)
+    }
+    else{
+      arrChooseItem = arrChooseItem.filter(e => e !== this.value);
+    }
+  })
+}
+}
