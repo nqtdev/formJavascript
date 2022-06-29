@@ -240,9 +240,9 @@ fetch("hangtang.json")
     }
     placeholder.innerHTML = out;
   });
-// click checkbox add value
+// lấy giá trị khi click checkbox
 let btnShow2 = document.querySelector("#btn1");
-let result2 = document.querySelector("#table_item_hh");
+let result2 = document.querySelector("#showItem");
 btnShow2.addEventListener("click", () => {
   let checkbox2 = document.querySelector('input[type="checkbox"]:checked');
   console.log(checkbox2);
@@ -277,18 +277,18 @@ function Delete2(x) {
   }
   cartTotal();
 }
-function checkIcon() {
-  for (var value of ListArray) {
-    value.addEventListener("click", function () {
-      if (this.checked == true) {
-        arrChooseItem.push(ListItem[this.value]);
-        console.log(arrChooseItem);
-      } else {
-        arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
-      }
-    });
-  }
-}
+// function checkIcon() {
+//   for (var value of ListArray) {
+//     value.addEventListener("click", function () {
+//       if (this.checked == true) {
+//         arrChooseItem.push(ListItem[this.value]);
+//         console.log(arrChooseItem);
+//       } else {
+//         arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
+//       }
+//     });
+//   }
+// }
 
 // click checkbox add value
 let btnShow = document.querySelector("#btn-main");
@@ -298,3 +298,12 @@ btnShow.addEventListener("click", () => {
   console.log(checkbox);
   result.innerText = checkbox.parentElement.textContent;
 });
+document.getElementById("btn1").onclick = function () {
+  document.querySelector("#oneScreen").style.display = "none";
+  document.querySelector("#table_item_hh").innerHTML = ` <tr>
+  <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
+  <td><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
+  width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
+  </tr>
+  `;
+};
