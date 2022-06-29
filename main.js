@@ -156,25 +156,6 @@ function InputChange() {
     });
   }
 }
-function load() {
-  let ListStudent = localStorage.getItem("product")
-    ? JSON.parse(localStorage.getItem("product"))
-    : [];
-  let product = `
-            <option value="">Danh Sách Sản Phẩm</option>
-           `;
-  ListStudent.map((value, index) => {
-    product += `
-            <option value='${index}'>
-                <span class="stt">STT:${index + 1}</span>
-                <br/>
-                <span>${value.name}</span>
-                <br/>
-            </option>
-            `;
-  });
-  document.getElementById("tableContent").innerHTML = product;
-}
 
 // ẨN HIỆN POPUP SẢN PHẨM
 document.querySelector("#oneScreen").style.display = "none";
@@ -231,9 +212,10 @@ fetch("hangtang.json")
       out += `
       <tr > 
         <td>
-          <input type="checkbox" onclick="getData(this)" class="check"/>
-          <input type="hidden" class="code" value="${product.hhName}" />
-          <input type="hidden" class="price" value="${product.hhPrice}" />
+          <input type="hidden" class="id" value="${product.id}" />
+          <input type="checkbox" onclick="getData(this)" class="check" value="${product.hhName}"/>
+          <input type="hidden" class="name" value="${product.hhName}" />    
+          <input type="hidden" class="price" value="${product.hhPrice}" />  
         </td>
         <td > ${product.hhName} </td>
         <td > ${product.hhPrice} </td>
@@ -242,9 +224,9 @@ fetch("hangtang.json")
     }
     placeholder.innerHTML = out;
   });
-// click checkbox add value
+// lấy giá trị khi click checkbox
 let btnShow2 = document.querySelector("#btn1");
-let result2 = document.querySelector("#table_item_hh");
+let result2 = document.querySelector("#showItem");
 btnShow2.addEventListener("click", () => {
   let checkbox2 = document.querySelector('input[type="checkbox"]:checked');
   console.log(checkbox2);
@@ -279,18 +261,18 @@ function Delete2(x) {
   }
   cartTotal();
 }
-function checkIcon() {
-  for (var value of ListArray) {
-    value.addEventListener("click", function () {
-      if (this.checked == true) {
-        arrChooseItem.push(ListItem[this.value]);
-        console.log(arrChooseItem);
-      } else {
-        arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
-      }
-    });
-  }
-}
+// function checkIcon() {
+//   for (var value of ListArray) {
+//     value.addEventListener("click", function () {
+//       if (this.checked == true) {
+//         arrChooseItem.push(ListItem[this.value]);
+//         console.log(arrChooseItem);
+//       } else {
+//         arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
+//       }
+//     });
+//   }
+// }
 
 // click checkbox add value
 let btnShow = document.querySelector("#btn-main");
@@ -300,3 +282,12 @@ btnShow.addEventListener("click", () => {
   console.log(checkbox);
   result.innerText = checkbox.parentElement.textContent;
 });
+document.getElementById("btn1").onclick = function () {
+  document.querySelector("#oneScreen").style.display = "none";
+  document.querySelector("#table_item_hh").innerHTML = ` <tr>
+  <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
+  <td><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
+  width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
+  </tr>
+  `;
+};
