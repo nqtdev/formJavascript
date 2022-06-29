@@ -2,7 +2,7 @@ let sanpham = [];
 let arrTable = [];
 let arrChooseItem = [];
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
-var ListArray = document.getElementsByClassName('check');
+var ListArray = document.getElementsByClassName("check");
 
 function validateInput() {
   let form = document.querySelector(".form");
@@ -185,8 +185,6 @@ document.querySelector(".modalSearch").onclick = function () {
 };
 document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
-  // document.querySelector("#table_item_hhbtn").innerHTML = `
-  // `;
 };
 // modal
 var modal = document.getElementById("myModal");
@@ -231,53 +229,25 @@ fetch("hangtang.json")
     for (let product of products) {
       out += `
       <tr > 
-        <td><input type="checkbox" onclick="getData(this)" class="check" value="${product.id}"/></td>
-        <td class="namehh" > ${product.hhName} </td>
+        <td>
+          <input type="checkbox" onclick="getData(this)" class="check" value="${product.hhName}"/>
+          <input type="hidden" class="code" value="${product.hhName}" />      
+        </td>
+        <td class="namehh" vua > ${product.hhName} </td>
         <td > ${product.hhPrice} </td>
       </tr>
     `;
     }
     placeholder.innerHTML = out;
   });
-// lấy dữ liệu popup hàng hoá
-function getData(x) {
-  let tr = x.parentElement.parentElement;
-  let namehh = tr.children[1].innerText;
-  let producthh = document.getElementById("table_item_hh");
-
-  let in1 = `
-  
-  <td style="border:1px solid gray;width:60%;color:#333333;font-weight:500"> <span>${namehh}</span>
-    <br>
-  </td>
-    <td><button onclick="countUp()">+</button></td>
-    <td><input type="text" id="txt_invoer" value="1" style="width:15px"></td>
-    <td><button onclick="countDown()">-</button>
-  </td>
-  `;
-  producthh.innerHTML = in1;
-  checkicon();
-
-}
-// function createValue(){
-//   var create = document.createElement('tr')
-//   var ParseCreate = document.querySelector('#table_item1')
-//   ParseCreate.append(create)
-//   create.innerHTML= `
-//     <input style="display: hidden" name="" value="">
-//   `
-//   console.log(namehh);
-// }
-
-function createValue() {
-  var create = document.createElement("tr");
-  var ParseCreate = document.querySelector("#table_item1");
-  ParseCreate.append(create);
-  create.innerHTML = `
-    <input style="display: hidden" name="" value="">
-  `;
-  console.log(namehh);
-}
+// click checkbox add value
+let btnShow2 = document.querySelector("#btn1");
+let result2 = document.querySelector("#table_item_hh");
+btnShow2.addEventListener("click", () => {
+  let checkbox2 = document.querySelector('input[type="checkbox"]:checked');
+  console.log(checkbox2);
+  result2.innerText = checkbox2.parentElement.textContent;
+});
 
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
@@ -295,43 +265,36 @@ function checkAll(myCheckbox) {
 // xử lý xoá sản phẩm
 function Delete2(x) {
   // xoá html
-  let tr = x.parentElement;
-  let nameItem = tr.parentElement.children.innerText;
+  let tr = x.parentElement.parentElement;
+  let nameItem = tr.children[1].innerText;
+  console.log(nameItem);
   tr.remove();
-
-  // // xoá array
-  // for (let i = 0; i < arrTable.length; i++) {
-  //   if (arrTable[i].name == nameItem) {
-  //     arrTable.splice(i, 1);
-  //   }
-  // }
+  // xoá array
+  for (let i = 0; i < arrChooseItem.length; i++) {
+    if (arrChooseItem[i].name == nameItem) {
+      arrChooseItem.splice(i, 1);
+    }
+  }
   cartTotal();
 }
-
-// tính thành tiền ( hàng hoá và quà tặng )
-// document.getElementById("btn1").onclick = function () {
-//   document.querySelector("#oneScreen").style.display = "none";
-//   document.querySelector("#table_item_hh").innerHTML = ` <tr>
-//   <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
-//   <td><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
-//   width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
-//   </tr>
-//   `;
-// };
-
-function checkicon()
-{
-  console.log(arrChooseItem)
-for(var value of ListArray){
-  value.addEventListener('click',function(){
-  
-    if(this.checked == true){
-     arrChooseItem.push(ListItem[this.value]);
-     console.log(arrChooseItem)
-    }
-    else{
-      arrChooseItem = arrChooseItem.filter(e => e !== this.value);
-    }
-  })
+function checkIcon() {
+  for (var value of ListArray) {
+    value.addEventListener("click", function () {
+      if (this.checked == true) {
+        arrChooseItem.push(ListItem[this.value]);
+        console.log(arrChooseItem);
+      } else {
+        arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
+      }
+    });
+  }
 }
-}
+
+// click checkbox add value
+let btnShow = document.querySelector("#btn-main");
+let result = document.querySelector("#tt2");
+btnShow.addEventListener("click", () => {
+  let checkbox = document.querySelector('input[type="checkbox"]:checked');
+  console.log(checkbox);
+  result.innerText = checkbox.parentElement.textContent;
+});

@@ -80,22 +80,6 @@
         <button onclick="addNew()">Lưu</button>
       </div>
     </div>
-    <!-- <div class="formTanghang">
-      <table>
-        <th>
-          <tr>
-            <td>Tên Sản Phẩm</td>
-            <td>Giá Thành</td>
-          </tr>
-        </th>
-        <tbody>
-          <tr>
-            <td id="hh-name">Nước ga đỏ</td>
-            <td id="hh-price">20000</td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
     <div class="formGiamgiahang"></div>
     <select id="tableContent" onchange="renderTable()"></select>
     <table
@@ -213,14 +197,14 @@
               </div>
               <div id="table_item1" style="width: 60%">
                 <input
-                class="input-modal"
-                type="text"
-                placeholder="Tìm hàng tặng"
-              />
+                  class="input-modal"
+                  type="text"
+                  placeholder="Tìm hàng tặng"
+                />
                 <table id="showItem">
-                  <tbody>
+                  <!-- <tbody>
                     <tr id="table_item_hh"></tr>
-                  </tbody>
+                  </tbody> -->
                 </table>
               </div>
             </td>
@@ -244,18 +228,14 @@
               </div>
               <div id="table_item1" style="width: 60%">
                 <input
-                class="input-modal "
-                type="text"
-                placeholder="Nhập mã voucher"
-              />
-                  class="input-modal modalSearch"
+                  class="input-modal"
                   type="text"
                   placeholder="Nhập mã voucher"
                 />
                 <table id="showItem">
-                  <tbody>
+                  <!-- <tbody>
                     <tr id="table_item_hh"></tr>
-                  </tbody>
+                  </tbody> -->
                 </table>
               </div>
             </td>
@@ -265,7 +245,7 @@
           id="price-total"
           style="width: 600px; margin: 0 auto; text-align: center"
         >
-          <p>Tổng Tiền Giảm Giá: <span>0</span> Đ</p>
+          <p id="tt2">Tổng Tiền Giảm Giá: <span>0</span> Đ</p>
         </div>
         <div style="margin-top: 15px">
           <button style="width: 100px" id="btn-main">áp dụng main</button>
