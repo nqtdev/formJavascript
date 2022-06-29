@@ -156,25 +156,7 @@ function InputChange() {
     });
   }
 }
-function load() {
-  let ListStudent = localStorage.getItem("product")
-    ? JSON.parse(localStorage.getItem("product"))
-    : [];
-  let product = `
-            <option value="">Danh Sách Sản Phẩm</option>
-           `;
-  ListStudent.map((value, index) => {
-    product += `
-            <option value='${index}'>
-                <span class="stt">STT:${index + 1}</span>
-                <br/>
-                <span>${value.name}</span>
-                <br/>
-            </option>
-            `;
-  });
-  document.getElementById("tableContent").innerHTML = product;
-}
+
 // ẨN HIỆN POPUP SẢN PHẨM
 document.querySelector("#oneScreen").style.display = "none";
 document.querySelector("#btn2").onclick = function () {
@@ -230,8 +212,10 @@ fetch("hangtang.json")
       out += `
       <tr > 
         <td>
+          <input type="hidden" class="id" value="${product.id}" />
           <input type="checkbox" onclick="getData(this)" class="check" value="${product.hhName}"/>
-          <input type="hidden" class="code" value="${product.hhName}" />      
+          <input type="hidden" class="name" value="${product.hhName}" />    
+          <input type="hidden" class="price" value="${product.hhPrice}" />  
         </td>
         <td class="namehh" vua > ${product.hhName} </td>
         <td > ${product.hhPrice} </td>
@@ -277,18 +261,18 @@ function Delete2(x) {
   }
   cartTotal();
 }
-function checkIcon() {
-  for (var value of ListArray) {
-    value.addEventListener("click", function () {
-      if (this.checked == true) {
-        arrChooseItem.push(ListItem[this.value]);
-        console.log(arrChooseItem);
-      } else {
-        arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
-      }
-    });
-  }
-}
+// function checkIcon() {
+//   for (var value of ListArray) {
+//     value.addEventListener("click", function () {
+//       if (this.checked == true) {
+//         arrChooseItem.push(ListItem[this.value]);
+//         console.log(arrChooseItem);
+//       } else {
+//         arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
+//       }
+//     });
+//   }
+// }
 
 // click checkbox add value
 let btnShow = document.querySelector("#btn-main");
