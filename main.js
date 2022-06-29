@@ -175,6 +175,7 @@ function load() {
   });
   document.getElementById("tableContent").innerHTML = product;
 }
+
 // ẨN HIỆN POPUP SẢN PHẨM
 document.querySelector("#oneScreen").style.display = "none";
 document.querySelector("#btn2").onclick = function () {
@@ -230,10 +231,11 @@ fetch("hangtang.json")
       out += `
       <tr > 
         <td>
-          <input type="checkbox" onclick="getData(this)" class="check" value="${product.hhName}"/>
-          <input type="hidden" class="code" value="${product.hhName}" />      
+          <input type="checkbox" onclick="getData(this)" class="check"/>
+          <input type="hidden" class="code" value="${product.hhName}" />
+          <input type="hidden" class="price" value="${product.hhPrice}" />
         </td>
-        <td class="namehh" vua > ${product.hhName} </td>
+        <td > ${product.hhName} </td>
         <td > ${product.hhPrice} </td>
       </tr>
     `;
