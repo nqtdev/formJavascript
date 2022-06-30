@@ -248,6 +248,7 @@ btnShow2.addEventListener("click", () => {
          var codeItem = checkbox.parentElement.querySelector('.id').value
          var nameItem = checkbox.parentElement.querySelector('.name').value
          var priceItem = checkbox.parentElement.querySelector('.price').value
+         if(arrChooseItem)
          arrChooseItem.push({
           id: codeItem,
           name: nameItem,
@@ -262,7 +263,7 @@ btnShow2.addEventListener("click", () => {
     addtr2 +=
     `<tr>
       <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
-      <td> <p style="font-weight: 500; margin-bottom: 0">${arrChooseItem[i].name} </p>
+      <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
       </td>
       <td style="width:40%"><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
@@ -272,8 +273,20 @@ btnShow2.addEventListener("click", () => {
   }
   document.querySelector("#table_item_hh").innerHTML = addtr2;
   alert('Thêm sản phẩm 2 thành công');
-   console.log(arrChooseItem);
 });
+function Delete2(x) {
+  // xoá html
+  let tr = x.parentElement.parentElement;
+  let nameItem = tr.children[1].querySelector('.itemlist').innerText;
+  tr.remove();
+  // xoá array
+  for (let i = 0; i < arrChooseItem.length; i++) {
+    if (arrChooseItem[i].name == nameItem) {
+      arrChooseItem.splice(i, 1);
+    }
+  }
+  console.log(arrChooseItem);
+}
 // Check / Uncheck All Checkboxes
 // var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
 // function checkAll(myCheckbox) {
