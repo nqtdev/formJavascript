@@ -1,9 +1,8 @@
-let sanpham = [];
-let arrTable = [];
-let arrChooseItem = [];
+let sanpham = []; // mảng chứa dữ liệu nhập từ form
+let arrTable = []; // mảng chứa item đã chọn từ form select
+let arrChooseItem = []; // mảng chứa item đã chọn từ popup tặng hàng
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
-var ListArray = document.getElementsByClassName("check");
-
+//Xử lý validate form
 function validateInput() {
   let form = document.querySelector(".form");
   let form_input = form.querySelectorAll(".form-input");
@@ -18,6 +17,7 @@ function validateInput() {
     }
   }
 }
+// kiểm tra điều kiện đưa vào mảng sanpham[]
 function addNew() {
   validateInput();
   let form = document.querySelector(".form");
@@ -31,7 +31,7 @@ function addNew() {
     SaveData();
   }
 }
-// hàm lưu dữ liệu khi điền
+// lưu dữ liệu nhập từ form
 function SaveData() {
   let code = document.getElementById("code").value;
   let name = document.getElementById("name").value;
@@ -52,6 +52,7 @@ function SaveData() {
   renderData();
   load();
 }
+// đưa dữ liệu ra form select
 function renderData() {
   let product = `
             <option value="">Select</option>
@@ -70,7 +71,7 @@ function renderData() {
   document.getElementById("tableContent").innerHTML = product;
   alert("Thêm sản phẩm thành công ");
 }
-// hiển thị danh sách chọn
+// hiển thị danh sách trong list select
 function load() {
   let ListStudent = localStorage.getItem("product")
     ? JSON.parse(localStorage.getItem("product"))
@@ -90,6 +91,7 @@ function load() {
   });
   document.getElementById("tableContent").innerHTML = product;
 }
+
 // xử lý xoá sản phẩm
 function Delete(x) {
   // xoá html
@@ -105,6 +107,7 @@ function Delete(x) {
   cartTotal();
 }
 // xử lý trùng item
+// đưa dữ liệu đã chọn trong select ra table item
 function renderTable() {
   let select2 = document.getElementById("tableContent").value;
   let local = JSON.parse(localStorage.getItem("product"));
@@ -168,6 +171,7 @@ document.querySelector(".modalSearch").onclick = function () {
 document.getElementById("btn1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
 };
+
 // modal
 var modal = document.getElementById("myModal");
 var table = document.getElementById("showItem");
@@ -246,6 +250,22 @@ function getInfo() {
   load();
 }
 
+document.querySelector("#oneScreen").style.display = "none";
+let addtr2 = ``;
+for (let i = 0; i < arrChooseItem.length; i++) {
+  addtr2 += `<tr>
+      <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
+      <td> <p style="font-weight: 500; margin-bottom: 0">${arrChooseItem[i].name} </p>
+        <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
+      </td>
+      <td style="width:40%"><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
+        width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
+    </tr>
+    `;
+}
+document.querySelector("#table_item_hh").innerHTML = addtr2;
+alert("Thêm sản phẩm 2 thành công");
+console.log(arrChooseItem);
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
 function checkAll(myCheckbox) {

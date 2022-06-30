@@ -143,6 +143,7 @@
                   value="Giảm 500,000 giá trị đơn hàng"
                   style="width: 100%"
                 />
+                <input type="hidden" class="khuyenmai" value="giamgiahang" />  
               </div>
             </td>
           </tr>
@@ -208,6 +209,7 @@
                 value="giamgiavoucher"
                 name="discount"
               />
+              <input type="hidden" class="khuyenmai" value="timhangtang" />  
             </td>
             <td>2.5 Tặng voucher</td>
             <td style="display: flex; justify-content: space-between">
@@ -248,11 +250,9 @@
               placeholder="tìm hàng hoá"
             />
           </div>
-          <div>
             <table style="width: 100%">
               <tbody id="hh_item"></tbody>
-            </table>
-          </div>
+              </table>
           <div style="margin-top: 15px">
             <button style="width: 100px" id="btn1">áp dụng</button>
             <button onclick="getInfo()">áp dụng</button>
