@@ -194,16 +194,7 @@ window.onclick = function (event) {
   }
 };
 // tăng giảm số lượng
-function countUp() {
-  var txtInvoer = document.getElementById("txt_invoer");
-  var i = parseInt(txtInvoer.value, 10);
-  txtInvoer.value = ++i;
-}
-function countDown() {
-  var txtInvoer = document.getElementById("txt_invoer");
-  var i = parseInt(txtInvoer.value, 0);
-  txtInvoer.value = --i;
-}
+
 // gọi dữ liệu từ json
 fetch("hangtang.json")
   .then(function (response) {
@@ -266,13 +257,14 @@ btnShow2.addEventListener("click", () => {
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
       </td>
-      <td style="width:40%"><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
-        width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
+      <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
+        width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
     </tr>
     `;
   }
   document.querySelector("#table_item_hh").innerHTML = addtr2;
   alert('Thêm sản phẩm 2 thành công');
+  TotalItem();
 });
 function Delete2(x) {
   // xoá html
@@ -287,18 +279,39 @@ function Delete2(x) {
   }
   console.log(arrChooseItem);
 }
+function countUp(x) {
+  let up = x.parentElement.querySelector('.txt_invoer');
+  var i = parseInt(up.value, 10);
+  up.value = ++i;
+  TotalItem();
+}
+function countDown(x) {
+  let up = x.parentElement.querySelector('.txt_invoer');
+  var i = parseInt(up.value, 0);
+  up.value = --i;
+  TotalItem();
+}
+function TotalItem(){
+  var up = document.querySelectorAll('.txt_invoer')
+  var tongtai = 0;
+  for(let i=0; i< arrChooseItem.length; i++){
+    var tong = arrChooseItem[i].price * up[i].value;
+    tongtai +=tong;
+  }
+  document.querySelector('#tt2').innerHTML = tongtai;
+}
 // Check / Uncheck All Checkboxes
-// var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
-// function checkAll(myCheckbox) {
-//   if (myCheckbox.checked == true) {
-//     checkboxes.forEach(function (checkbox) {
-//       checkbox.checked = true;
-//     });
-//   } else {
-//     checkboxes.forEach(function (checkbox) {
-//       checkbox.checked = false;
-//     });
-//   }
-// }
+var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
+function checkAll(myCheckbox) {
+  if (myCheckbox.checked == true) {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = true;
+    });
+  } else {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = false;
+    });
+  }
+}
 
 
