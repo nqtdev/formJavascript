@@ -190,12 +190,12 @@ window.onclick = function (event) {
 };
 // tăng giảm số lượng
 function countUp() {
-  var txtInvoer = document.getElementById("txt_invoer");
+  var txtInvoer = document.getElementById("numberUpDown");
   var i = parseInt(txtInvoer.value, 10);
   txtInvoer.value = ++i;
 }
 function countDown() {
-  var txtInvoer = document.getElementById("txt_invoer");
+  var txtInvoer = document.getElementById("numberUpDown");
   var i = parseInt(txtInvoer.value, 0);
   txtInvoer.value = --i;
 }
@@ -210,28 +210,41 @@ fetch("hangtang.json")
     let out = "";
     for (let product of products) {
       out += `
-      <tr > 
+      <tr> 
         <td>
-          <input type="hidden" class="id" value="${product.id}" />
-          <input type="checkbox" onclick="getData(this)" class="check" value="${product.hhName}"/>
-          <input type="hidden" class="name" value="${product.hhName}" />    
-          <input type="hidden" class="price" value="${product.hhPrice}" />  
+          <input type="checkbox" value="${product.hhPrice}"  name=" ${product.hhName}" class="like"/>
         </td>
-        <td > ${product.hhName} </td>
-        <td > ${product.hhPrice} </td>
+        <td> ${product.hhName} </td>
+        <td> ${product.hhPrice} </td>
       </tr>
     `;
     }
     placeholder.innerHTML = out;
   });
-// lấy giá trị khi click checkbox
-let btnShow2 = document.querySelector("#btn1");
-let result2 = document.querySelector("#showItem");
-btnShow2.addEventListener("click", () => {
-  let checkbox2 = document.querySelector('input[type="checkbox"]:checked');
-  console.log(checkbox2);
-  result2.innerText = checkbox2.parentElement.textContent;
-});
+// Hàm lấy giá trị từ bảng popup
+function getInfo() {
+  let like = document.getElementsByClassName("like");
+  let hhName = "";
+  let hhPrice = "";
+  for (var i = 0; i < like.length; i++) {
+    if (like[i].checked == true) {
+      hhName += like[i].name + "; ";
+      hhPrice += like[i].value + "; ";
+    }
+  }
+  console.log(hhName);
+  console.log(hhPrice);
+  let sanpham2 = localStorage.getItem("storehh")
+    ? JSON.parse(localStorage.getItem("storehh"))
+    : [];
+  sanpham2.push({
+    hhName: hhName,
+    hhPrice: hhPrice,
+  });
+  localStorage.setItem("storehh", JSON.stringify(sanpham2));
+  renderData2();
+  load();
+}
 
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
@@ -251,7 +264,6 @@ function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
   let nameItem = tr.children[1].innerText;
-  console.log(nameItem);
   tr.remove();
   // xoá array
   for (let i = 0; i < arrChooseItem.length; i++) {
@@ -261,33 +273,22 @@ function Delete2(x) {
   }
   cartTotal();
 }
-// function checkIcon() {
-//   for (var value of ListArray) {
-//     value.addEventListener("click", function () {
-//       if (this.checked == true) {
-//         arrChooseItem.push(ListItem[this.value]);
-//         console.log(arrChooseItem);
-//       } else {
-//         arrChooseItem = arrChooseItem.filter((e) => e !== this.value);
-//       }
-//     });
-//   }
-// }
-
 // click checkbox add value
 let btnShow = document.querySelector("#btn-main");
 let result = document.querySelector("#tt2");
 btnShow.addEventListener("click", () => {
   let checkbox = document.querySelector('input[type="checkbox"]:checked');
-  console.log(checkbox);
-  result.innerText = checkbox.parentElement.textContent;
+  result.innerText = checkbox.parentElement.parentElement.value;
 });
-document.getElementById("btn1").onclick = function () {
-  document.querySelector("#oneScreen").style.display = "none";
-  document.querySelector("#table_item_hh").innerHTML = ` <tr>
-  <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
-  <td><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
-  width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
-  </tr>
-  `;
-};
+
+// Hàm lấy giá trị từ bảng modal
+function getInfo1() {
+  let discount = document.getElementsByName("discount");
+  let discounts = "";
+  for (var i = 0; i < discount.length; i++) {
+    if (discount[i].checked == true) {
+      discounts += discount[i].value + "; ";
+    }
+  }
+  console.log(discounts);
+}

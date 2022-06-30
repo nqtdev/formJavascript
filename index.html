@@ -170,12 +170,7 @@
                   placeholder="Tìm hàng tặng1"
                   style="width: 100%"
                 />
-                <table class="showItem">
-                  <tbody>
-                    <tr id="table_item_hh"></tr>
-                  </tbody>
-                </table>
-                <table id="showItem"></table>
+                <div id="showItem"></div>
               </div>
             </td>
           </tr>
@@ -202,12 +197,6 @@
                   type="text"
                   placeholder="Tìm hàng tặng"
                 />
-                <table class="showItem">
-                  <!-- <tbody>
-                    <tr id="table_item_hh"></tr>
-                  </tbody> -->
-                </table>
-                <table id="showItem3"></table>
               </div>
             </td>
           </tr>
@@ -234,12 +223,6 @@
                   type="text"
                   placeholder="Nhập mã voucher"
                 />
-                <table class="showItem">
-                  <!-- <tbody>
-                    <tr id="table_item_hh"></tr>
-                  </tbody> -->
-                </table>
-                <table id="showItem3"></table>
               </div>
             </td>
           </tr>
@@ -248,10 +231,10 @@
           id="price-total"
           style="width: 600px; margin: 0 auto; text-align: center"
         >
-          <p id="tt2">Tổng Tiền Giảm Giá: <span>0</span> Đ</p>
+          <p>Tổng Tiền Giảm Giá: <p id="tt2"></p><span>0</span> Đ</p>
         </div>
         <div style="margin-top: 15px">
-          <button style="width: 100px" id="btn-main">áp dụng main</button>
+          <button style="width: 100px"  onclick="addNew()" id="btn-main">áp dụng main</button>
           <button style="width: 100px" class="close">bỏ qua main</button>
         </div>
       </div>
@@ -272,6 +255,7 @@
           </div>
           <div style="margin-top: 15px">
             <button style="width: 100px" id="btn1">áp dụng</button>
+            <button onclick="getInfo()">áp dụng</button>
             <button style="width: 100px" id="btn2">bỏ qua</button>
           </div>
         </div>
