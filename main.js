@@ -194,12 +194,12 @@ window.onclick = function (event) {
 };
 // tăng giảm số lượng
 function countUp() {
-  var txtInvoer = document.getElementById("txt_invoer");
+  var txtInvoer = document.getElementById("numberUpDown");
   var i = parseInt(txtInvoer.value, 10);
   txtInvoer.value = ++i;
 }
 function countDown() {
-  var txtInvoer = document.getElementById("txt_invoer");
+  var txtInvoer = document.getElementById("numberUpDown");
   var i = parseInt(txtInvoer.value, 0);
   txtInvoer.value = --i;
 }
@@ -214,49 +214,17 @@ fetch("hangtang.json")
     let out = "";
     for (let product of products) {
       out += `
-      <tr > 
-        <td class="inputcheck">
-        <input type="checkbox"  class="check"/>
-          <input type="hidden" class="id" value="${product.id}" />
-          <input type="hidden" class="name" value="${product.hhName}" />    
-          <input type="hidden" class="price" value="${product.hhPrice}" />  
+      <tr> 
+        <td>
+          <input type="checkbox" value="${product.hhPrice}"  name=" ${product.hhName}" class="like"/>
         </td>
-        <td > ${product.hhName} </td>
-        <td > ${product.hhPrice} </td>
+        <td> ${product.hhName} </td>
+        <td> ${product.hhPrice} </td>
       </tr>
     `;
     }
     placeholder.innerHTML = out;
   });
-// lấy giá trị khi click checkbox
-let btnShow2 = document.querySelector("#btn1");
-btnShow2.addEventListener("click", () => {
-  var modal_hang = document.querySelector(".modal_hanghoa");
-  var modal_table = modal_hang.querySelector("table");
-  var modal_tbody = modal_table.querySelector("tbody");
-  console.log(modal_tbody);
-  var modal_row = modal_tbody.getElementsByTagName("tr");
-  console.log(modal_row);
-  for (let i = 0; i < modal_row.length; i++) {
-    var td = modal_row[i].getElementsByClassName("inputcheck");
-    // var input =  td.getElementsByClassName('check');
-    var checkbox = modal_row[i].querySelector('input[type="checkbox"]');
-    if (checkbox.checked == true) {
-      var codeItem = checkbox.parentElement.querySelector(".id").value;
-      var nameItem = checkbox.parentElement.querySelector(".name").value;
-      var priceItem = checkbox.parentElement.querySelector(".price").value;
-      if (arrChooseItem)
-        arrChooseItem.push({
-          id: codeItem,
-          name: nameItem,
-          price: priceItem,
-        });
-    }
-  }
-  document.querySelector("#oneScreen").style.display = "none";
-  let addtr2 = ``;
-  for (let i = 0; i < arrChooseItem.length; i++) {
-    addtr2 += `<tr>
       <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
@@ -265,14 +233,28 @@ btnShow2.addEventListener("click", () => {
         width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
     </tr>
     `;
+}
+document.querySelector("#table_item_hh").innerHTML = addtr2;
+alert("Thêm sản phẩm 2 thành công");
+console.log(arrChooseItem);
+// Check / Uncheck All Checkboxes
+var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
+function checkAll(myCheckbox) {
+  if (myCheckbox.checked == true) {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = true;
+    });
+  } else {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = false;
+    });
   }
-  document.querySelector("#table_item_hh").innerHTML = addtr2;
-  alert("Thêm sản phẩm 2 thành công");
-});
+}
+// xử lý xoá sản phẩm
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
-  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
+  let nameItem = tr.children[1].innerText;
   tr.remove();
   // xoá array
   for (let i = 0; i < arrChooseItem.length; i++) {
@@ -280,18 +262,3 @@ function Delete2(x) {
       arrChooseItem.splice(i, 1);
     }
   }
-  console.log(arrChooseItem);
-}
-// Check / Uncheck All Checkboxes
-// var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
-// function checkAll(myCheckbox) {
-//   if (myCheckbox.checked == true) {
-//     checkboxes.forEach(function (checkbox) {
-//       checkbox.checked = true;
-//     });
-//   } else {
-//     checkboxes.forEach(function (checkbox) {
-//       checkbox.checked = false;
-//     });
-//   }
-// }
