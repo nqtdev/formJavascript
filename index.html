@@ -80,22 +80,6 @@
         <button onclick="addNew()">Lưu</button>
       </div>
     </div>
-    <!-- <div class="formTanghang">
-      <table>
-        <th>
-          <tr>
-            <td>Tên Sản Phẩm</td>
-            <td>Giá Thành</td>
-          </tr>
-        </th>
-        <tbody>
-          <tr>
-            <td id="hh-name">Nước ga đỏ</td>
-            <td id="hh-price">20000</td>
-          </tr>
-        </tbody>
-      </table>
-    </div> -->
     <div class="formGiamgiahang"></div>
     <select id="tableContent" onchange="renderTable()"></select>
     <table
@@ -148,7 +132,20 @@
               />
             </td>
             <td>2.1 Giảm giá đơn hàng</td>
-            <td>Giảm giá đơn hàng : Giảm 500 giá trị đơn hàng</td>
+            <td style="display: flex; justify-content: space-between">
+              <div style="width: 40%" ;>
+                <p style="margin: 0px">Giảm giá đơn hàng</p>
+              </div>
+              <div style="width: 60%">
+                <input
+                  class="input-modal"
+                  type="text"
+                  value="Giảm 500,000 giá trị đơn hàng"
+                  style="width: 100%"
+                />
+                <input type="hidden" class="khuyenmai" value="giamgiahang" />  
+              </div>
+            </td>
           </tr>
           <tr>
             <td>
@@ -160,16 +157,26 @@
               />
             </td>
             <td>2.2 Tặng hàng</td>
-            <td>
-              <div style="display: flex; justify-content: space-between" ;>
-                Tặng hàng
+            <td style="display: flex; justify-content: space-between">
+              <div style="width: 40%" ;>
+                <p style="margin: 0px">Tặng hàng</p>
+                <p style="margin: 0px; color: #333333; font-weight: 500">
+                  10 sản phẩm
+                </p>
+              </div>
+              <div id="table_item1" style="width: 60%">
                 <input
                   class="input-modal modalSearch"
                   type="text"
-                  placeholder="Tìm hàng tặng"
+                  placeholder="Tìm hàng tặng1"
+                  style="width: 100%"
                 />
+                <input type="hidden" class="khuyenmai" value="tanghang" />  
+                <table class="showItem" style="width:100%">
+                  <tbody id="table_item_hh">
+                  </tbody>
+                </table>
               </div>
-              <div id="table_item_hh"></div>
             </td>
           </tr>
           <tr>
@@ -183,12 +190,24 @@
             </td>
             <td>2.3 Giảm giá hàng</td>
             <td style="display: flex; justify-content: space-between">
-              Giảm giá sản phẩm
-              <input
-                class="input-modal modalSearch"
-                type="text"
-                placeholder="Tìm hàng tặng"
-              />
+              <div style="width: 40%" ;>
+                <p style="margin: 0px">Giảm giá hàng</p>
+                <p style="margin: 0px; color: #333333; font-weight: 500">
+                  1 sản phẩm
+                </p>
+              </div>
+              <div id="table_item1" style="width: 60%">
+                <input
+                  class="input-modal"
+                  type="text"
+                  placeholder="Tìm hàng tặng"
+                />
+                <table class="showItem">
+                  <!-- <tbody>
+                    <tr id="table_item_hh"></tr>
+                  </tbody> -->
+                </table>
+              </div>
             </td>
           </tr>
           <tr>
@@ -199,15 +218,28 @@
                 value="giamgiavoucher"
                 name="discount"
               />
+              <input type="hidden" class="khuyenmai" value="timhangtang" />  
             </td>
-            <td>2.4 Tặng voucher</td>
+            <td>2.5 Tặng voucher</td>
             <td style="display: flex; justify-content: space-between">
-              Tặng voucher
-              <input
-                class="input-modal modalSearch"
-                type="text"
-                placeholder="AHIHI"
-              />
+              <div style="width: 40%" ;>
+                <p style="margin: 0px">Tặng voucher</p>
+                <p style="margin: 0px; color: #333333; font-weight: 500">
+                  Tặng 1 voucher trong V20220614
+                </p>
+              </div>
+              <div id="table_item1" style="width: 60%">
+                <input
+                  class="input-modal"
+                  type="text"
+                  placeholder="Nhập mã voucher"
+                />
+                <table class="showItem">
+                  <!-- <tbody>
+                    <tr id="table_item_hh"></tr>
+                  </tbody> -->
+                </table>
+              </div>
             </td>
           </tr>
         </table>
@@ -215,11 +247,11 @@
           id="price-total"
           style="width: 600px; margin: 0 auto; text-align: center"
         >
-          <p>Tổng Tiền Giảm Giá: <span>0</span> Đ</p>
+          <p id="tt2">Tổng Tiền Giảm Giá: <span>0</span> Đ</p>
         </div>
         <div style="margin-top: 15px">
-          <button style="width: 100px" id="btn-main">áp dụng</button>
-          <button style="width: 100px" class="close">bỏ qua</button>
+          <button style="width: 100px" id="btn-main">áp dụng main</button>
+          <button style="width: 100px" class="close">bỏ qua main</button>
         </div>
       </div>
       <div id="oneScreen">
@@ -232,11 +264,9 @@
               placeholder="tìm hàng hoá"
             />
           </div>
-          <div>
             <table style="width: 100%">
               <tbody id="hh_item"></tbody>
-            </table>
-          </div>
+              </table>
           <div style="margin-top: 15px">
             <button style="width: 100px" id="btn1">áp dụng</button>
             <button style="width: 100px" id="btn2">bỏ qua</button>

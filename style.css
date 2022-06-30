@@ -73,20 +73,6 @@ input {
   width: 60%;
 }
 
-/* The Close Button */
-.close {
-  /* color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold; */
-}
-
-/* .close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-} */
 .btn-modal {
   position: absolute;
   left: 40%;
@@ -94,7 +80,7 @@ input {
 }
 .input-modal {
   border: 1px solid black;
-  width: 300px;
+  width: 100%;
 }
 .modal_hanghoa {
   padding: 12px;
