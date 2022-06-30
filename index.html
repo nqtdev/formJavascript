@@ -143,6 +143,7 @@
                   value="Giảm 500,000 giá trị đơn hàng"
                   style="width: 100%"
                 />
+                <input type="hidden" class="khuyenmai" value="giamgiahang" />  
               </div>
             </td>
           </tr>
@@ -170,12 +171,11 @@
                   placeholder="Tìm hàng tặng1"
                   style="width: 100%"
                 />
-                <table class="showItem">
-                  <tbody>
-                    <tr id="table_item_hh"></tr>
+                <input type="hidden" class="khuyenmai" value="tanghang" />  
+                <table class="showItem" style="width:100%">
+                  <tbody id="table_item_hh">
                   </tbody>
                 </table>
-                <table id="showItem"></table>
               </div>
             </td>
           </tr>
@@ -207,7 +207,6 @@
                     <tr id="table_item_hh"></tr>
                   </tbody> -->
                 </table>
-                <table id="showItem3"></table>
               </div>
             </td>
           </tr>
@@ -219,6 +218,7 @@
                 value="giamgiavoucher"
                 name="discount"
               />
+              <input type="hidden" class="khuyenmai" value="timhangtang" />  
             </td>
             <td>2.5 Tặng voucher</td>
             <td style="display: flex; justify-content: space-between">
@@ -239,7 +239,6 @@
                     <tr id="table_item_hh"></tr>
                   </tbody> -->
                 </table>
-                <table id="showItem3"></table>
               </div>
             </td>
           </tr>
@@ -265,11 +264,9 @@
               placeholder="tìm hàng hoá"
             />
           </div>
-          <div>
             <table style="width: 100%">
               <tbody id="hh_item"></tbody>
-            </table>
-          </div>
+              </table>
           <div style="margin-top: 15px">
             <button style="width: 100px" id="btn1">áp dụng</button>
             <button style="width: 100px" id="btn2">bỏ qua</button>
