@@ -222,7 +222,7 @@ fetch("hangtang.json")
           <input type="hidden" class="name" value="${product.hhName}" />    
           <input type="hidden" class="price" value="${product.hhPrice}" />  
         </td>
-        <td class="namehh" vua > ${product.hhName} </td>
+        <td > ${product.hhName} </td>
         <td > ${product.hhPrice} </td>
       </tr>
     `;
