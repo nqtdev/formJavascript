@@ -223,44 +223,38 @@ fetch("hangtang.json")
 // lấy giá trị khi click checkbox
 let btnShow2 = document.querySelector("#btn1");
 btnShow2.addEventListener("click", () => {
-  var modal_hang = document.querySelector('.modal_hanghoa');
-  var modal_table = modal_hang.querySelector('table');
-   var modal_tbody = modal_table.querySelector('tbody');
-   console.log(modal_tbody)
-   var modal_row = modal_tbody.getElementsByTagName('tr');
-   console.log(modal_row)
-   for(let i = 0; i< modal_row.length; i ++)
-   {
-       var td = modal_row[i].getElementsByClassName('inputcheck');
-      // var input =  td.getElementsByClassName('check');
-       var checkbox = modal_row[i].querySelector('input[type="checkbox"]')
-       if(checkbox.checked == true)
-       {
-         var codeItem = checkbox.parentElement.querySelector('.id').value
-         var nameItem = checkbox.parentElement.querySelector('.name').value
-         var priceItem = checkbox.parentElement.querySelector('.price').value
-         for(let i=0;i< arrChooseItem.length;i++)
-         {
-           if(codeItem == arrChooseItem[i].id)
-           {
-             alert("sản phẩm khuyến mãi đã có trong giỏ hàng")
-             return;
-           }
-         }
-         arrChooseItem.push({
-          id: codeItem,
-          name: nameItem,
-          price: priceItem,
-        });
-        console.log(arrChooseItem)
-       }
-
-   }
-   document.querySelector("#oneScreen").style.display = "none";
-  let addtr2 = ``
-  for (let i=0; i< arrChooseItem.length; i++){
-    addtr2 +=
-    `<tr>
+  var modal_hang = document.querySelector(".modal_hanghoa");
+  var modal_table = modal_hang.querySelector("table");
+  var modal_tbody = modal_table.querySelector("tbody");
+  console.log(modal_tbody);
+  var modal_row = modal_tbody.getElementsByTagName("tr");
+  console.log(modal_row);
+  for (let i = 0; i < modal_row.length; i++) {
+    var td = modal_row[i].getElementsByClassName("inputcheck");
+    // var input =  td.getElementsByClassName('check');
+    var checkbox = modal_row[i].querySelector('input[type="checkbox"]');
+    if (checkbox.checked == true) {
+      var codeItem = checkbox.parentElement.querySelector(".id").value;
+      var nameItem = checkbox.parentElement.querySelector(".name").value;
+      var priceItem = checkbox.parentElement.querySelector(".price").value;
+      for (let i = 0; i < arrChooseItem.length; i++) {
+        if (codeItem == arrChooseItem[i].id) {
+          alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
+          return;
+        }
+      }
+      arrChooseItem.push({
+        id: codeItem,
+        name: nameItem,
+        price: priceItem,
+      });
+      console.log(arrChooseItem);
+    }
+  }
+  document.querySelector("#oneScreen").style.display = "none";
+  let addtr2 = ``;
+  for (let i = 0; i < arrChooseItem.length; i++) {
+    addtr2 += `<tr>
       <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
@@ -271,24 +265,22 @@ btnShow2.addEventListener("click", () => {
     `;
   }
   document.querySelector("#table_item_hh").innerHTML = addtr2;
-  alert('Thêm sản phẩm khuyến mãi thành công');
+  alert("Thêm sản phẩm khuyến mãi thành công");
   TotalItem();
-  for(let i=0;i< arrChooseItem.length;i++)
-  {
-    if(codeItem == arrChooseItem[i].id)
-    {
-      var codeitem = checkbox.parentElement.querySelector('.id')
-      codeitem.parentElement.querySelector('input[type="checkbox"]').checked = true;
+  for (let i = 0; i < arrChooseItem.length; i++) {
+    if (codeItem == arrChooseItem[i].id) {
+      var codeitem = checkbox.parentElement.querySelector(".id");
+      codeitem.parentElement.querySelector(
+        'input[type="checkbox"]'
+      ).checked = true;
     }
   }
 });
-function Checked(){
-
-}
+function Checked() {}
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
-  let nameItem = tr.children[1].querySelector('.itemlist').innerText;
+  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
   tr.remove();
   // xoá array
   for (let i = 0; i < arrChooseItem.length; i++) {
@@ -299,25 +291,25 @@ function Delete2(x) {
   console.log(arrChooseItem);
 }
 function countUp(x) {
-  let up = x.parentElement.querySelector('.txt_invoer');
+  let up = x.parentElement.querySelector(".txt_invoer");
   var i = parseInt(up.value, 10);
   up.value = ++i;
   TotalItem();
 }
 function countDown(x) {
-  let up = x.parentElement.querySelector('.txt_invoer');
+  let up = x.parentElement.querySelector(".txt_invoer");
   var i = parseInt(up.value, 0);
   up.value = --i;
   TotalItem();
 }
-function TotalItem(){
-  var up = document.querySelectorAll('.txt_invoer')
+function TotalItem() {
+  var up = document.querySelectorAll(".txt_invoer");
   var tongtai = 0;
-  for(let i=0; i< arrChooseItem.length; i++){
+  for (let i = 0; i < arrChooseItem.length; i++) {
     var tong = arrChooseItem[i].price * up[i].value;
-    tongtai +=tong;
+    tongtai += tong;
   }
-  document.querySelector('#tt2').innerHTML = tongtai;
+  document.querySelector("#tt2").innerHTML = tongtai;
 }
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
@@ -332,5 +324,3 @@ function checkAll(myCheckbox) {
     });
   }
 }
-
-
