@@ -193,16 +193,7 @@ window.onclick = function (event) {
   }
 };
 // tăng giảm số lượng
-function countUp() {
-  var txtInvoer = document.getElementById("txt_invoer");
-  var i = parseInt(txtInvoer.value, 10);
-  txtInvoer.value = ++i;
-}
-function countDown() {
-  var txtInvoer = document.getElementById("txt_invoer");
-  var i = parseInt(txtInvoer.value, 0);
-  txtInvoer.value = --i;
-}
+
 // gọi dữ liệu từ json
 fetch("hangtang.json")
   .then(function (response) {
@@ -261,37 +252,9 @@ btnShow2.addEventListener("click", () => {
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
       </td>
-      <td style="width:40%"><button onclick="countUp()">+</button><input type="text" id="txt_invoer" style=" text-align: center;
-        width: 50px;" value="1" ><button onclick="countDown()">-</button></td>
+      <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
+        width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
     </tr>
     `;
   }
   document.querySelector("#table_item_hh").innerHTML = addtr2;
-  alert("Thêm sản phẩm 2 thành công");
-});
-function Delete2(x) {
-  // xoá html
-  let tr = x.parentElement.parentElement;
-  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
-  tr.remove();
-  // xoá array
-  for (let i = 0; i < arrChooseItem.length; i++) {
-    if (arrChooseItem[i].name == nameItem) {
-      arrChooseItem.splice(i, 1);
-    }
-  }
-  console.log(arrChooseItem);
-}
-// Check / Uncheck All Checkboxes
-// var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
-// function checkAll(myCheckbox) {
-//   if (myCheckbox.checked == true) {
-//     checkboxes.forEach(function (checkbox) {
-//       checkbox.checked = true;
-//     });
-//   } else {
-//     checkboxes.forEach(function (checkbox) {
-//       checkbox.checked = false;
-//     });
-//   }
-// }
