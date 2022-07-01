@@ -1,4 +1,4 @@
-let sanpham = []; // mảng chứa dữ liệu nhập từ form 
+let sanpham = []; // mảng chứa dữ liệu nhập từ form
 let arrTable = []; // mảng chứa item đã chọn từ form select
 let arrChooseItem = []; // mảng chứa item đã chọn từ popup tặng hàng
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
@@ -10,8 +10,7 @@ function validateInput() {
     if (form_input[i].value === "") {
       form_input[i].parentElement.querySelector(
         ".error-message"
-      ).innerText = `Please enter your ${
-        form_input[i].id} `;
+      ).innerText = `Please enter your ${form_input[i].id} `;
     } else {
       form_input[i].parentElement.querySelector(".error-message").innerText =
         "";
@@ -93,7 +92,7 @@ function load() {
   document.getElementById("tableContent").innerHTML = product;
 }
 
-// xử lý xoá sản phẩm 
+// xử lý xoá sản phẩm
 function Delete(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -137,7 +136,7 @@ function renderTable() {
   InputChange();
   Delete();
 }
-// xử lý tính tổng tiền 
+// xử lý tính tổng tiền
 function cartTotal() {
   var cartItem = document.querySelectorAll(".table_item tr");
   var totalC = 0;
