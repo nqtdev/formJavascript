@@ -220,6 +220,7 @@ fetch("hangtang.json")
     }
     placeholder.innerHTML = out;
   });
+
 // lấy giá trị khi click checkbox
 let btnShow2 = document.querySelector("#btn1");
 btnShow2.addEventListener("click", () => {
@@ -239,12 +240,20 @@ btnShow2.addEventListener("click", () => {
          var codeItem = checkbox.parentElement.querySelector('.id').value
          var nameItem = checkbox.parentElement.querySelector('.name').value
          var priceItem = checkbox.parentElement.querySelector('.price').value
-         if(arrChooseItem)
+         for(let i=0;i< arrChooseItem.length;i++)
+         {
+           if(codeItem == arrChooseItem[i].id)
+           {
+             alert("sản phẩm khuyến mãi đã có trong giỏ hàng")
+             return;
+           }
+         }
          arrChooseItem.push({
           id: codeItem,
           name: nameItem,
           price: priceItem,
         });
+        console.log(arrChooseItem)
        }
 
    }
@@ -263,9 +272,20 @@ btnShow2.addEventListener("click", () => {
     `;
   }
   document.querySelector("#table_item_hh").innerHTML = addtr2;
-  alert('Thêm sản phẩm 2 thành công');
+  alert('Thêm sản phẩm khuyến mãi thành công');
   TotalItem();
+  for(let i=0;i< arrChooseItem.length;i++)
+  {
+    if(codeItem == arrChooseItem[i].id)
+    {
+      var codeitem = checkbox.parentElement.querySelector('.id')
+      codeitem.parentElement.querySelector('input[type="checkbox"]').checked = true;
+    }
+  }
 });
+function Checked(){
+
+}
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
