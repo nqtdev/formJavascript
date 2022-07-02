@@ -382,7 +382,7 @@ btnShow2.addEventListener("click", () => {
   let addtr22 = ``;
   for (let i = 0; i < arrChooseItem2.length; i++) {
     addtr22 += `<tr>
-      <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
+      <td style='width:100px'><button onclick="Delete3(this)">xoá</button></td>
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem2[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem2[i].id} </p>
       </td>
@@ -394,3 +394,21 @@ btnShow2.addEventListener("click", () => {
   document.querySelector("#table_item_hh1").innerHTML = addtr22;
   alert("Thêm sản phẩm khuyến mãi thành công");
 });
+function Delete3(x) {
+  // xoá html
+  let tr = x.parentElement.parentElement;
+  let nameItem2 = tr.children[1].querySelector(".itemlist").innerText;
+  tr.remove();
+  // xoá array
+  for (let i = 0; i < arrChooseItem2.length; i++) {
+    if (arrChooseItem2[i].name == nameItem2) {
+      arrChooseItem2.splice(i, 1);
+    }
+  }
+}
+// xử lý voucher
+let arrVoucher = []; // mảng chứa voucher
+function getVoucher() {
+  let voucher = document.querySelector(".option-d").innerText;
+  console.log(voucher);
+}

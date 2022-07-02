@@ -121,6 +121,7 @@
             <td>Chương trình khuyến mại</td>
             <td>Hình thức khuyến mại</td>
           </tr>
+          <!-- 2.1 giảm giá đơn hàng  -->
           <tr>
             <td>
               <input
@@ -146,6 +147,7 @@
               </div>
             </td>
           </tr>
+          <!-- 2.2 tặng hàng  -->
           <tr>
             <td>
               <input
@@ -177,6 +179,7 @@
               </div>
             </td>
           </tr>
+          <!-- 2.3 giảm giá hàng  -->
           <tr>
             <td>
               <input
@@ -204,6 +207,7 @@
               </div>
             </td>
           </tr>
+          <!-- tặng hàng 2.2 promax  -->
           <tr>
             <td>
               <input
@@ -243,7 +247,12 @@
                 value="giamgiavoucher"
                 name="discount"
               />
-              <input type="hidden" class="khuyenmai" value="timhangtang" />
+              <input
+                type="hidden"
+                onclick="getVoucher()"
+                class="voucher"
+                value="timhangtang"
+              />
             </td>
             <td>2.5 Tặng voucher</td>
             <td style="display: flex; justify-content: space-between">
@@ -275,6 +284,7 @@
           <button style="width: 100px" class="close">bỏ qua main</button>
         </div>
       </div>
+      <!-- tặng hàng hoá 2.2   -->
       <div id="oneScreen">
         <div class="modal_hanghoa">
           <p>Chọn Hàng Hoá</p>
@@ -294,7 +304,7 @@
           </div>
         </div>
       </div>
-      <!-- tặng hàng hoá 2  -->
+      <!-- tặng hàng hoá 2.2 pro max  -->
       <div id="oneScreen1">
         <div class="modal_hanghoa2">
           <p>Chọn Hàng Hoá</p>
