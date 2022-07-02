@@ -197,14 +197,12 @@
               </div>
               <div id="table_item1" style="width: 60%">
                 <input
-                  class="input-modal"
+                  class="input-modal modalSearch2"
                   type="text"
                   placeholder="Tìm hàng tặng"
                 />
-                <table class="showItem">
-                  <!-- <tbody>
-                    <tr id="table_item_hh"></tr>
-                  </tbody> -->
+                <table class="showItem1">
+                  <tbody id="hh_item2_3"></tbody>
                 </table>
               </div>
             </td>
@@ -230,13 +228,13 @@
               <div id="table_item1" style="width: 60%">
                 <input
                   class="input-modal"
+                  id="input-voucher"
                   type="text"
                   placeholder="Nhập mã voucher"
                 />
-                <table class="showItem">
-                  <!-- <tbody>
-                    <tr id="table_item_hh"></tr>
-                  </tbody> -->
+                <table class="showItem2">
+                  <tbody id="table_item_voucher">
+                  </tbody>
                 </table>
               </div>
             </td>
@@ -267,8 +265,27 @@
             <tbody id="hh_item"></tbody>
           </table>
           <div style="margin-top: 15px">
-            <button style="width: 100px" id="btn1">áp dụng</button>
-            <button style="width: 100px" id="btn2">bỏ qua</button>
+            <button style="width: 100px" id="btntanghang1">áp dụng</button>
+            <button style="width: 100px" id="btntanghang2">bỏ qua</button>
+          </div>
+        </div>
+      </div>
+      <div id="oneScreen2">
+        <div class="modal_hanghoa1">
+          <p>Chọn Hàng Hoá</p>
+          <div>
+            <input
+              type="search"
+              style="width: 100%; margin-bottom: 10px"
+              placeholder="tìm hàng hoá"
+            />
+          </div>
+          <table style="width: 100%">
+            <tbody id="hh_item2"></tbody>
+          </table>
+          <div style="margin-top: 15px">
+            <button style="width: 100px" id="btngiamgia1">áp dụng</button>
+            <button style="width: 100px" id="btngiamgia2">bỏ qua</button>
           </div>
         </div>
       </div>
