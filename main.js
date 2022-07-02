@@ -406,9 +406,17 @@ function Delete3(x) {
     }
   }
 }
-// xử lý voucher
-let arrVoucher = []; // mảng chứa voucher
-function getVoucher() {
-  let voucher = document.querySelector(".option-d").innerText;
-  console.log(voucher);
+
+function Delete3(x) {
+  // xoá html
+  let tr = x.parentElement.parentElement;
+  let nameItem2 = tr.children[1].querySelector(".itemlist").innerText;
+  tr.remove();
+  // xoá array
+  for (let i = 0; i < arrChooseItem2.length; i++) {
+    if (arrChooseItem2[i].name == nameItem2) {
+      arrChooseItem2.splice(i, 1);
+    }
+  }
 }
+// xử lý voucher
