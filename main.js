@@ -237,7 +237,7 @@ btnShow.addEventListener("click", () => {
   var modal_hang = document.querySelector(".modal_hanghoa");
   var modal_table = modal_hang.querySelector("table");
   var modal_tbody = modal_table.querySelector("tbody");
-  var modal_row = modal_tbody.querySelector("tr");
+  var modal_row = modal_tbody.querySelectorAll("tr");
   for (let i = 0; i < modal_row.length; i++) {
     var td = modal_row[i].getElementsByClassName("inputcheck");
     // var input =  td.getElementsByClassName('check');
@@ -246,6 +246,7 @@ btnShow.addEventListener("click", () => {
       var codeItem = checkbox.parentElement.querySelector(".id").value;
       var nameItem = checkbox.parentElement.querySelector(".name").value;
       var priceItem = checkbox.parentElement.querySelector(".price").value;
+      console.log(codeItem);
       for (let i = 0; i < arrChooseItem.length; i++) {
         if (codeItem == arrChooseItem[i].id) {
           alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
@@ -257,8 +258,8 @@ btnShow.addEventListener("click", () => {
         name: nameItem,
         price: priceItem,
       });
-      console.log(arrChooseItem);
     }
+    console.log(arrChooseItem);
   }
   document.querySelector("#oneScreen").style.display = "none";
   let addtr2 = ``;
@@ -288,7 +289,6 @@ function Delete2(x) {
       arrChooseItem.splice(i, 1);
     }
   }
-  console.log(arrChooseItem);
 }
 function countUp(x) {
   let up = x.parentElement.querySelector(".txt_invoer");
@@ -376,7 +376,6 @@ btnShow2.addEventListener("click", () => {
         name: nameItem2,
         price: priceItem2,
       });
-      console.log(arrChooseItem2);
     }
   }
   document.querySelector("#oneScreen1").style.display = "none";
