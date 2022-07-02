@@ -82,7 +82,18 @@ input {
   border: 1px solid black;
   width: 100%;
 }
-.modal_hanghoa {
+.modal_hanghoa  {
+  padding: 12px;
+  width: 400px;
+  height: 500px;
+  border: 2px solid gray;
+  background: #fefefe;
+  position: absolute;
+  left: 30%;
+  top: 15%;
+  border-radius: 10px;
+}
+.modal_hanghoa1{
   padding: 12px;
   width: 400px;
   height: 500px;
