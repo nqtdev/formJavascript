@@ -80,6 +80,17 @@
         <button onclick="addNew()">Lưu</button>
       </div>
     </div>
+    <div class="payment-box">
+      <div id="tdownPayment">
+        <p>Giảm giá đơn hàng: <span>0</span> VND</p>
+      </div>
+      <div id="price-total">
+        <p>Tổng tiền hàng: <span>0</span> VND</p>
+      </div>
+      <div id="tPayment">
+        <p>Tổng phải thu: <span>0</span> VND</p>
+      </div>
+    </div>
     <div class="formGiamgiahang"></div>
     <select id="tableContent" onchange="renderTable()"></select>
     <table
@@ -99,15 +110,22 @@
       </thead>
       <tbody class="table_item"></tbody>
     </table>
-    <div
-      id="price-total"
-      style="width: 600px; margin: 0 auto; text-align: center"
-    >
-      <p>Tổng Tiền: <span>0</span> Đ</p>
-    </div>
     <button id="myBtn" class="btn-modal">
       <i class="fa-solid fa-gift"></i>
     </button>
+    <table
+      class="table-main-2"
+      cellpadding="5"
+      id="tableRender"
+      style="margin: 0 auto"
+    >
+      <thead>
+        <tr>
+          <td colspan="4" style="text-align: left">Khuyến mại</td>
+        </tr>
+      </thead>
+      <tbody class="tablePopupRender"></tbody>
+    </table>
     <div id="myModal" class="modal">
       <div class="modal-content">
         <table>
@@ -159,10 +177,15 @@
             <td>2.2 Tặng hàng</td>
             <td style="display: flex; justify-content: space-between">
               <div style="width: 40%" ;>
-                <p style="margin: 0px">Tặng hàng</p>
-                <p style="margin: 0px; color: #333333; font-weight: 500">
-                  10 sản phẩm
-                </p>
+                <span>
+                  <p style="margin: 0px">Tặng hàng</p>
+                  <p style="margin: 0px; color: #333333; font-weight: 500">
+                    10 sản phẩm
+                  </p>
+                </span>
+                <div id="price-total">
+                  <span>Giảm Giá Tặng Hàng: <span id="tt2">0</span> VND</span>
+                </div>
               </div>
               <div id="table_item1" style="width: 60%">
                 <input
@@ -174,6 +197,43 @@
                 <input type="hidden" class="khuyenmai" value="tanghang" />
                 <table class="showItem" style="width: 100%">
                   <tbody id="table_item_hh"></tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <!-- tặng hàng 2.2 promax  -->
+          <tr>
+            <td>
+              <input
+                type="checkbox"
+                id="option-b"
+                value="tanghang"
+                name="discount"
+              />
+            </td>
+            <td>2.2 Tặng hàng promax</td>
+            <td style="display: flex; justify-content: space-between">
+              <div style="width: 40%" ;>
+                <span>
+                  <p style="margin: 0px">Tặng hàng</p>
+                  <p style="margin: 0px; color: #333333; font-weight: 500">
+                    5 sản phẩm
+                  </p>
+                </span>
+                <div id="price-total">
+                  <span>Giảm Giá Tặng Hàng: <span id="tt2">0</span> VND</span>
+                </div>
+              </div>
+              <div id="table_item1" style="width: 60%">
+                <input
+                  class="input-modal modalSearch1"
+                  type="text"
+                  placeholder="Tìm hàng tặng1"
+                  style="width: 100%"
+                />
+                <input type="hidden" class="khuyenmai" value="tanghang" />
+                <table class="showItem" style="width: 100%">
+                  <tbody id="table_item_hh1"></tbody>
                 </table>
               </div>
             </td>
@@ -190,10 +250,15 @@
             <td>2.3 Giảm giá hàng</td>
             <td style="display: flex; justify-content: space-between">
               <div style="width: 40%" ;>
-                <p style="margin: 0px">Giảm giá hàng</p>
-                <p style="margin: 0px; color: #333333; font-weight: 500">
-                  1 sản phẩm
-                </p>
+                <span>
+                  <p style="margin: 0px">Giảm giá hàng</p>
+                  <p style="margin: 0px; color: #333333; font-weight: 500">
+                    1 sản phẩm
+                  </p>
+                </span>
+                <div id="price-total">
+                  <span>Giảm Giá Hàng: <span id="tt2">0</span> VND</span>
+                </div>
               </div>
               <div id="table_item1" style="width: 60%">
                 <input
@@ -220,10 +285,15 @@
             <td>2.5 Tặng voucher</td>
             <td style="display: flex; justify-content: space-between">
               <div style="width: 40%" ;>
-                <p style="margin: 0px">Tặng voucher</p>
-                <p style="margin: 0px; color: #333333; font-weight: 500">
-                  Tặng 1 voucher trong V20220614
-                </p>
+                <span>
+                  <p style="margin: 0px">Tặng voucher</p>
+                  <p style="margin: 0px; color: #333333; font-weight: 500">
+                    Tặng 1 voucher trong V20220614
+                  </p>
+                </span>
+                <div id="price-total">
+                  <span>Giảm Giá Voucher: <span id="tt2">0</span> VND</span>
+                </div>
               </div>
               <div id="table_item1" style="width: 60%">
                 <input
@@ -233,19 +303,12 @@
                   placeholder="Nhập mã voucher"
                 />
                 <table class="showItem2">
-                  <tbody id="table_item_voucher">
-                  </tbody>
+                  <tbody id="table_item_voucher"></tbody>
                 </table>
               </div>
             </td>
           </tr>
         </table>
-        <div
-          id="price-total"
-          style="width: 600px; margin: 0 auto; text-align: center"
-        >
-          <p id="tt2">Tổng Tiền Giảm Giá: <span>0</span> Đ</p>
-        </div>
         <div style="margin-top: 15px">
           <button style="width: 100px" id="btn-main">áp dụng main</button>
           <button style="width: 100px" class="close">bỏ qua main</button>
