@@ -4,6 +4,7 @@ let arrChooseItem = []; // mảng chứa item đã chọn từ popup tặng hàn
 let arrChooseItem1 = []; // mảng chứa item đã chọn từ popup giảm giá hàng 2.3
 let arrChooseItem2 = []; // mảng chứa item đã chọn từ popup tặng hàng 2.2 promax
 let arrVoucher = []; //mảng chứa item đã nhập từ voucher
+let arrProductMain = []; // mảng chứa item chọn từ popup main
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
 //Xử lý validate form
 function validateInput() {
@@ -248,9 +249,7 @@ btnShow2.addEventListener("click", () => {
   var modal_hang = document.querySelector(".modal_hanghoa");
   var modal_table = modal_hang.querySelector("table");
   var modal_tbody = modal_table.querySelector("tbody");
-  console.log(modal_tbody);
   var modal_row = modal_tbody.getElementsByTagName("tr");
-  console.log(modal_row);
   for (let i = 0; i < modal_row.length; i++) {
     var td = modal_row[i].getElementsByClassName("inputcheck");
     // var input =  td.getElementsByClassName('check');
@@ -276,8 +275,6 @@ btnShow2.addEventListener("click", () => {
         name: nameItem,
         price: priceItem,
       });
-
-      console.log(arrChooseItem);
     }
   }
   document.querySelector("#oneScreen").style.display = "none";
@@ -322,7 +319,6 @@ function Delete2(x) {
       arrChooseItem.splice(i, 1);
     }
   }
-  console.log(arrChooseItem);
   TotalItem();
 }
 function countUp(x) {
@@ -338,9 +334,8 @@ function countDown(x) {
   TotalItem();
 }
 
-
-                                          // -------------- Hàng giảm giá-----------------
-  fetch("hanggiamgia.json")
+// -------------- Hàng giảm giá-----------------
+fetch("hanggiamgia.json")
   .then(function (response) {
     return response.json();
   })
@@ -369,9 +364,7 @@ btnShow3.addEventListener("click", () => {
   var modal_hang1 = document.querySelector(".modal_hanghoa1");
   var modal_table1 = modal_hang1.querySelector("table");
   var modal_tbody1 = modal_table1.querySelector("tbody");
-  console.log(modal_tbody1);
   var modal_row1 = modal_tbody1.getElementsByTagName("tr");
-  console.log(modal_row1);
   for (let i = 0; i < modal_row1.length; i++) {
     var td = modal_row1[i].getElementsByClassName("inputcheck");
     // var input =  td.getElementsByClassName('check');
@@ -392,7 +385,6 @@ btnShow3.addEventListener("click", () => {
         name: nameItem1,
         price: priceItem1,
       });
-      console.log(arrChooseItem1);
     }
   }
   document.querySelector("#oneScreen").style.display = "none";
@@ -423,7 +415,6 @@ function Delete3(x) {
       arrChooseItem1.splice(i, 1);
     }
   }
-  console.log(arrChooseItem1);
   TotalItem1();
 }
 function TotalItem1() {
@@ -448,7 +439,7 @@ function countDown1(x) {
   up.value = --i;
   TotalItem1();
 }
-                              // ----------------- Tặng hàng promax -------------------------
+// ----------------- Tặng hàng promax -------------------------
 
 // js hàng tặng 2.2 promax
 // modal hàng tặng 2
@@ -532,8 +523,7 @@ btnShow4.addEventListener("click", () => {
   alert("Thêm sản phẩm khuyến mãi thành công");
   TotalItem2();
 });
-function Delete4(x) 
-{
+function Delete4(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
   let nameItem2 = tr.children[1].querySelector(".itemlist").innerText;
@@ -569,8 +559,7 @@ function countDown2(x) {
   TotalItem2();
 }
 
-
-                                // ----------- Giảm giá voucher------------------\
+// ----------- Giảm giá voucher------------------\
 var inputVoucher = document.querySelector("#input-voucher");
 var outputVoucher = document.querySelector("#table_item_voucher");
 
@@ -586,7 +575,6 @@ inputVoucher.addEventListener("keypress", (e) => {
     arrVoucher.push({
       name3: valueVoucher,
     });
-    console.log(arrVoucher);
     var voucher = "";
     for (let i = 0; i < arrVoucher.length; i++) {
       voucher += `
@@ -612,7 +600,6 @@ function DeleteVoucher(x) {
       arrVoucher.splice(i, 1);
     }
   }
-  console.log(arrChooseItem);
   TotalItem();
 }
 
@@ -630,3 +617,49 @@ function checkAll(myCheckbox) {
     });
   }
 }
+// ----------- In hàng tặng ra màn hình main------------------\
+let btnShowMain = document.querySelector("#btn-main");
+btnShowMain.addEventListener("click", () => {
+  let modalMain = document.querySelector(".modal-content");
+  let modalMainTr = modalMain.querySelector("tr");
+  console.log(modalMainTr);
+  // let modalTbody = modalMainTr.querySelector("tbody");
+  for (let i = 0; i < modalMainTr.length; i++) {
+    var td = modalMainTr[i].getElementsByClassName("inputcheck");
+    // var input =  td.getElementsByClassName('check');
+    var checkboxMain = modalMainTr[i].querySelector('input[type="checkbox"]');
+    if (checkboxMain.checked == true) {
+      let idModalMain = checkboxMain.parentElement.querySelector(".id").value;
+      let nameModalMain =
+        checkboxMain.parentElement.querySelector(".name").value;
+      let priceModalMain =
+        checkboxMain.parentElement.querySelector(".price").value;
+      // for (let i = 0; i < arrChooseItem2.length; i++) {
+      //   if (codeItem2 == arrChooseItem2[i].id) {
+      //     alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
+      //     return;
+      //   }
+      // }
+      arrProductMain.push({
+        id: idModalMain,
+        name: nameModalMain,
+        price: priceModalMain,
+      });
+    }
+  }
+  // document.querySelector("#oneScreen1").style.display = "none";
+  // let addtr22 = ``;
+  // for (let i = 0; i < arrChooseItem2.length; i++) {
+  //   addtr22 += `<tr>
+  //     <td style='width:100px'><button onclick="Delete4(this)">xoá</button></td>
+  //     <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem2[i].name} </p>
+  //       <p style="margin-bottom:0"> ${arrChooseItem2[i].id} </p>
+  //     </td>
+  //     <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
+  //       width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
+  //   </tr>
+  //   `;
+  // }
+  // document.querySelector("#table_item_hh1").innerHTML = addtr22;
+  // alert("Thêm sản phẩm khuyến mãi thành công");
+});
