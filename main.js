@@ -395,8 +395,8 @@ btnShow3.addEventListener("click", () => {
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem1[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem1[i].id} </p>
       </td>
-      <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
-        width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
+      <td style="width:40%"><button onclick="countUp1(this)">+</button><input type="text" class="txt_invoer1" style=" text-align: center;
+        width: 50px;" value="1" ><button onclick="countDown1(this)">-</button></td>
     </tr>
     `;
   }
@@ -415,16 +415,29 @@ function Delete3(x) {
       arrChooseItem1.splice(i, 1);
     }
   }
-  TotalItem();
+  TotalItem1();
 }
 function TotalItem1() {
-  var up = document.querySelectorAll(".txt_invoer");
+  var up = document.querySelectorAll(".txt_invoer1");
   var tongtai1 = 0;
   for (let i = 0; i < arrChooseItem1.length; i++) {
     var tong1 = arrChooseItem1[i].price * up[i].value;
     tongtai1 += tong1;
   }
-  document.querySelector("#tt3").innerHTML = tongtai1;
+  console.log(tongtai1)
+  document.querySelector("#tt4").innerHTML = tongtai1;
+}
+function countUp1(x) {
+  let up = x.parentElement.querySelector(".txt_invoer1");
+  var i = parseInt(up.value, 10);
+  up.value = ++i;
+  TotalItem1();
+}
+function countDown1(x) {
+  let up = x.parentElement.querySelector(".txt_invoer1");
+  var i = parseInt(up.value, 0);
+  up.value = --i;
+  TotalItem1();
 }
 // ----------------- Tặng hàng promax -------------------------
 
@@ -501,13 +514,14 @@ btnShow4.addEventListener("click", () => {
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem2[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem2[i].id} </p>
       </td>
-      <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
-        width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
+      <td style="width:40%"><button onclick="countUp2(this)">+</button><input type="text" class="txt_invoer2" style=" text-align: center;
+        width: 50px;" value="1" ><button onclick="countDown2(this)">-</button></td>
     </tr>
     `;
   }
   document.querySelector("#table_item_hh1").innerHTML = addtr22;
   alert("Thêm sản phẩm khuyến mãi thành công");
+  TotalItem2();
 });
 function Delete4(x) {
   // xoá html
@@ -520,6 +534,29 @@ function Delete4(x) {
       arrChooseItem2.splice(i, 1);
     }
   }
+  TotalItem2();
+}
+function TotalItem2() {
+  var up = document.querySelectorAll(".txt_invoer2");
+  var tongtai2 = 0;
+  for (let i = 0; i < arrChooseItem2.length; i++) {
+    var tong2 = arrChooseItem2[i].price * up[i].value;
+    tongtai2 += tong2;
+  }
+  console.log(tongtai2)
+  document.querySelector("#tt3").innerHTML = tongtai2;
+}
+function countUp2(x) {
+  let up = x.parentElement.querySelector(".txt_invoer2");
+  var i = parseInt(up.value, 10);
+  up.value = ++i;
+  TotalItem2();
+}
+function countDown2(x) {
+  let up = x.parentElement.querySelector(".txt_invoer2");
+  var i = parseInt(up.value, 0);
+  up.value = --i;
+  TotalItem2();
 }
 
 // ----------- Giảm giá voucher------------------\
@@ -565,15 +602,7 @@ function DeleteVoucher(x) {
   }
   TotalItem();
 }
-function TotalItem2() {
-  var up = document.querySelectorAll(".txt_invoer");
-  var tongtai2 = 0;
-  for (let i = 0; i < arrChooseItem2.length; i++) {
-    var tong2 = arrChooseItem2[i].price * up[i].value;
-    tongtai2 += tong2;
-  }
-  document.querySelector("#tt4").innerHTML = tongtai2;
-}
+
 
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
