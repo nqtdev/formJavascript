@@ -215,7 +215,7 @@ window.onclick = function (event) {
   }
 };
 // tăng giảm số lượng
-
+//                                    -------------------Hàng Tặng----------------------
 // gọi dữ liệu từ json
 fetch("hangtang.json")
   .then(function (response) {
@@ -302,64 +302,15 @@ btnShow2.addEventListener("click", () => {
   alert("Thêm sản phẩm khuyến mãi thành công");
   TotalItem();
 });
-let btnShow3 = document.querySelector("#btngiamgia1");
-btnShow3.addEventListener("click", () => {
-  var modal_hang1 = document.querySelector(".modal_hanghoa1");
-  var modal_table1 = modal_hang1.querySelector("table");
-  var modal_tbody1 = modal_table1.querySelector("tbody");
-  console.log(modal_tbody1);
-  var modal_row1 = modal_tbody1.getElementsByTagName("tr");
-  console.log(modal_row1);
-  for (let i = 0; i < modal_row1.length; i++) {
-    var td = modal_row1[i].getElementsByClassName("inputcheck");
-    // var input =  td.getElementsByClassName('check');
-    var checkbox1 = modal_row1[i].querySelector('input[type="checkbox"]');
-
-    if (checkbox1.checked == true) {
-      var codeItem1 = checkbox1.parentElement.querySelector(".id").value;
-      var nameItem1 = checkbox1.parentElement.querySelector(".name").value;
-      var priceItem1 = checkbox1.parentElement.querySelector(".price").value;
-      for (let i = 0; i < arrChooseItem1.length; i++) {
-        if (codeItem1 == arrChooseItem1[i].id) {
-          alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
-          return;
-        }
-        //  if(codeItem == arrChooseItem[i].id)
-        //  {
-        //    var codeitem = checkbox.parentElement.querySelector('.id')
-        //    codeitem.parentElement.querySelector('input[type="checkbox"]').checked = true;
-        //  }
-      }
-      arrChooseItem1.push({
-        id: codeItem1,
-        name: nameItem1,
-        price: priceItem1,
-      });
-
-      console.log(arrChooseItem1);
-    }
+function TotalItem() {
+  var up = document.querySelectorAll(".txt_invoer");
+  var tongtai = 0;
+  for (let i = 0; i < arrChooseItem.length; i++) {
+    var tong = arrChooseItem[i].price * up[i].value;
+    tongtai += tong;
   }
-  document.querySelector("#oneScreen").style.display = "none";
-  let addtr1 = ``;
-  for (let i = 0; i < arrChooseItem1.length; i++) {
-    addtr1 += `<tr>
-      <td style='width:100px'><button onclick="Delete3(this)">xoá</button></td>
-      <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem1[i].name} </p>
-        <p style="margin-bottom:0"> ${arrChooseItem1[i].id} </p>
-      </td>
-      <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
-        width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
-    </tr>
-    `;
-    //     if(checkbox.parentElement.querySelector('.id').value == arrChooseItem1[i].id)
-    // {
-    //   checkbox1.checked = true;
-    // }
-  }
-  document.querySelector("#hh_item2_3").innerHTML = addtr1;
-  alert("Thêm sản phẩm khuyến mãi thành công");
-  TotalItem();
-});
+  document.querySelector("#tt2").innerHTML = tongtai;
+}
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -369,34 +320,6 @@ function Delete2(x) {
   for (let i = 0; i < arrChooseItem.length; i++) {
     if (arrChooseItem[i].name == nameItem) {
       arrChooseItem.splice(i, 1);
-    }
-  }
-  console.log(arrChooseItem);
-  TotalItem();
-}
-function Delete3(x) {
-  // xoá html
-  let tr = x.parentElement.parentElement;
-  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
-  tr.remove();
-  // xoá array
-  for (let i = 0; i < arrChooseItem1.length; i++) {
-    if (arrChooseItem1[i].name == nameItem) {
-      arrChooseItem1.splice(i, 1);
-    }
-  }
-  console.log(arrChooseItem1);
-  TotalItem();
-}
-function DeleteVoucher(x) {
-  // xoá html
-  let tr = x.parentElement.parentElement;
-  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
-  tr.remove();
-  // xoá array
-  for (let i = 0; i < arrVoucher.length; i++) {
-    if (arrVoucher[i].name3 == nameItem) {
-      arrVoucher.splice(i, 1);
     }
   }
   console.log(arrChooseItem);
@@ -414,30 +337,10 @@ function countDown(x) {
   up.value = --i;
   TotalItem();
 }
-function TotalItem() {
-  var up = document.querySelectorAll(".txt_invoer");
-  var tongtai = 0;
-  for (let i = 0; i < arrChooseItem.length; i++) {
-    var tong = arrChooseItem[i].price * up[i].value;
-    tongtai += tong;
-  }
-  document.querySelector("#tt2").innerHTML = tongtai;
-}
-// Check / Uncheck All Checkboxes
-var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
-function checkAll(myCheckbox) {
-  if (myCheckbox.checked == true) {
-    checkboxes.forEach(function (checkbox) {
-      checkbox.checked = true;
-    });
-  } else {
-    checkboxes.forEach(function (checkbox) {
-      checkbox.checked = false;
-    });
-  }
-}
 
-fetch("hanggiamgia.json")
+
+                                          // -------------- Hàng giảm giá-----------------
+  fetch("hanggiamgia.json")
   .then(function (response) {
     return response.json();
   })
@@ -461,39 +364,79 @@ fetch("hanggiamgia.json")
     }
     placeholder2.innerHTML = out;
   });
+let btnShow3 = document.querySelector("#btngiamgia1");
+btnShow3.addEventListener("click", () => {
+  var modal_hang1 = document.querySelector(".modal_hanghoa1");
+  var modal_table1 = modal_hang1.querySelector("table");
+  var modal_tbody1 = modal_table1.querySelector("tbody");
+  console.log(modal_tbody1);
+  var modal_row1 = modal_tbody1.getElementsByTagName("tr");
+  console.log(modal_row1);
+  for (let i = 0; i < modal_row1.length; i++) {
+    var td = modal_row1[i].getElementsByClassName("inputcheck");
+    // var input =  td.getElementsByClassName('check');
+    var checkbox1 = modal_row1[i].querySelector('input[type="checkbox"]');
 
-///voucher
-var inputVoucher = document.querySelector("#input-voucher");
-var outputVoucher = document.querySelector("#table_item_voucher");
-
-inputVoucher.addEventListener("keypress", (e) => {
-  if (e.keyCode == 13) {
-    debugger;
-    var valueVoucher = inputVoucher.value;
-    for (let i = 0; i < arrVoucher.length; i++) {
-      if (valueVoucher == arrVoucher[i].name3) {
-        alert("mã voucher trùng");
-        return;
+    if (checkbox1.checked == true) {
+      var codeItem1 = checkbox1.parentElement.querySelector(".id").value;
+      var nameItem1 = checkbox1.parentElement.querySelector(".name").value;
+      var priceItem1 = checkbox1.parentElement.querySelector(".price").value;
+      for (let i = 0; i < arrChooseItem1.length; i++) {
+        if (codeItem1 == arrChooseItem1[i].id) {
+          alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
+          return;
+        }
       }
+      arrChooseItem1.push({
+        id: codeItem1,
+        name: nameItem1,
+        price: priceItem1,
+      });
+      console.log(arrChooseItem1);
     }
-    arrVoucher.push({
-      name3: valueVoucher,
-    });
-    console.log(arrVoucher);
-    var voucher = "";
-    for (let i = 0; i < arrVoucher.length; i++) {
-      voucher += `
-    <tr>
-    <td style='width:100px'><button onclick="DeleteVoucher(this)">xoá</button></td>
-    <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrVoucher[i].name3} </p>
-    </td>
-  </tr>
-    `;
-    }
-
-    outputVoucher.innerHTML = voucher;
   }
+  document.querySelector("#oneScreen").style.display = "none";
+  let addtr1 = ``;
+  for (let i = 0; i < arrChooseItem1.length; i++) {
+    addtr1 += `<tr>
+      <td style='width:100px'><button onclick="Delete3(this)">xoá</button></td>
+      <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem1[i].name} </p>
+        <p style="margin-bottom:0"> ${arrChooseItem1[i].id} </p>
+      </td>
+      <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
+        width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
+    </tr>
+    `;
+  }
+  document.querySelector("#hh_item2_3").innerHTML = addtr1;
+  alert("Thêm sản phẩm khuyến mãi thành công");
+  TotalItem1();
 });
+function Delete3(x) {
+  // xoá html
+  let tr = x.parentElement.parentElement;
+  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
+  tr.remove();
+  // xoá array
+  for (let i = 0; i < arrChooseItem1.length; i++) {
+    if (arrChooseItem1[i].name == nameItem) {
+      arrChooseItem1.splice(i, 1);
+    }
+  }
+  console.log(arrChooseItem1);
+  TotalItem();
+}
+function TotalItem1() {
+  var up = document.querySelectorAll(".txt_invoer");
+  var tongtai1 = 0;
+  for (let i = 0; i < arrChooseItem1.length; i++) {
+    var tong1 = arrChooseItem1[i].price * up[i].value;
+    tongtai1 += tong1;
+  }
+  document.querySelector("#tt3").innerHTML = tongtai1;
+}
+                              // ----------------- Tặng hàng promax -------------------------
+
 // js hàng tặng 2.2 promax
 // modal hàng tặng 2
 document.querySelector("#oneScreen1").style.display = "none";
@@ -531,7 +474,6 @@ fetch("hangtangpro.json")
     }
     placeholder.innerHTML = out;
   });
-// // lấy giá trị khi click checkbox
 // lấy giá trị khi click checkbox
 let btnShow4 = document.querySelector("#btn12");
 btnShow4.addEventListener("click", () => {
@@ -576,7 +518,8 @@ btnShow4.addEventListener("click", () => {
   document.querySelector("#table_item_hh1").innerHTML = addtr22;
   alert("Thêm sản phẩm khuyến mãi thành công");
 });
-function Delete4(x) {
+function Delete4(x) 
+{
   // xoá html
   let tr = x.parentElement.parentElement;
   let nameItem2 = tr.children[1].querySelector(".itemlist").innerText;
@@ -586,5 +529,75 @@ function Delete4(x) {
     if (arrChooseItem2[i].name == nameItem2) {
       arrChooseItem2.splice(i, 1);
     }
+  }
+}
+
+
+                                // ----------- Giảm giá voucher------------------\
+var inputVoucher = document.querySelector("#input-voucher");
+var outputVoucher = document.querySelector("#table_item_voucher");
+
+inputVoucher.addEventListener("keypress", (e) => {
+  if (e.keyCode == 13) {
+    var valueVoucher = inputVoucher.value;
+    for (let i = 0; i < arrVoucher.length; i++) {
+      if (valueVoucher == arrVoucher[i].name3) {
+        alert("mã voucher trùng");
+        return;
+      }
+    }
+    arrVoucher.push({
+      name3: valueVoucher,
+    });
+    console.log(arrVoucher);
+    var voucher = "";
+    for (let i = 0; i < arrVoucher.length; i++) {
+      voucher += `
+    <tr>
+    <td style='width:100px'><button onclick="DeleteVoucher(this)">xoá</button></td>
+    <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrVoucher[i].name3} </p>
+    </td>
+  </tr>
+    `;
+    }
+
+    outputVoucher.innerHTML = voucher;
+  }
+});
+function DeleteVoucher(x) {
+  // xoá html
+  let tr = x.parentElement.parentElement;
+  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
+  tr.remove();
+  // xoá array
+  for (let i = 0; i < arrVoucher.length; i++) {
+    if (arrVoucher[i].name3 == nameItem) {
+      arrVoucher.splice(i, 1);
+    }
+  }
+  console.log(arrChooseItem);
+  TotalItem();
+}
+function TotalItem2() {
+  var up = document.querySelectorAll(".txt_invoer");
+  var tongtai2 = 0;
+  for (let i = 0; i < arrChooseItem2.length; i++) {
+    var tong2 = arrChooseItem2[i].price * up[i].value;
+    tongtai2 += tong2;
+  }
+  document.querySelector("#tt4").innerHTML = tongtai2;
+}
+
+// Check / Uncheck All Checkboxes
+var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
+function checkAll(myCheckbox) {
+  if (myCheckbox.checked == true) {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = true;
+    });
+  } else {
+    checkboxes.forEach(function (checkbox) {
+      checkbox.checked = false;
+    });
   }
 }
