@@ -495,6 +495,17 @@ inputVoucher.addEventListener("keypress", (e) => {
   }
 });
 // js hàng tặng 2.2 promax
+// modal hàng tặng 2
+document.querySelector("#oneScreen1").style.display = "none";
+document.querySelector("#btn22").onclick = function () {
+  document.querySelector("#oneScreen1").style.display = "none";
+};
+document.querySelector(".modalSearch1").onclick = function () {
+  document.querySelector("#oneScreen1").style.display = "block";
+};
+document.querySelector("#btn12").onclick = function () {
+  document.querySelector("#oneScreen1").style.display = "none";
+};
 // gọi dữ liệu từ json
 fetch("hangtangpro.json")
   .then(function (response) {
