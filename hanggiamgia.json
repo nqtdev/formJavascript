@@ -1,0 +1,6 @@
+[
+    { "id": "Milk", "hhName": "Sữa bò", "hhPrice": 200 , "hhSale":100},
+    { "id": "Sugar", "hhName": "Đường phèn", "hhPrice": 10,"hhSale":10 },
+    { "id": "Pen", "hhName": "Bút máy", "hhPrice": 250 ,"hhSale":120},
+    { "id": "Cup", "hhName": "Cốc sứ", "hhPrice": 300 ,"hhSale":150}
+  ]
