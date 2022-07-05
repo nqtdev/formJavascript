@@ -288,6 +288,7 @@ btnShow2.addEventListener("click", () => {
         <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
         <input type="hidden" class="nameItem1" value="${arrChooseItem[i].name}">
         <input type="hidden" class="PriceItem1" value="${arrChooseItem[i].price}">
+        <input type="hidden" class="IdItem1" value="${arrChooseItem[i].id}">
       </td>
       <td style="width:40%"><button onclick="countUp(this)">+</button><input name="amoutItem"type="text" class="txt_invoer" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
@@ -400,6 +401,7 @@ btnShow3.addEventListener("click", () => {
         <p style="margin-bottom:0" > ${arrChooseItem1[i].id} </p>
         <input type="hidden" class="nameItem2" value="${arrChooseItem1[i].name}">
         <input type="hidden" class="PriceItem2" value="${arrChooseItem1[i].price}">
+        <input type="hidden" class="IdItem2" value="${arrChooseItem1[i].id}">
       </td>
       <td style="width:40%"><button onclick="countUp1(this)">+</button><input name="amoutItem" type="text" class="txt_invoer2" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown1(this)">-</button></td>
@@ -424,7 +426,7 @@ function Delete3(x) {
   TotalItem1();
 }
 function TotalItem1() {
-  var up = document.querySelectorAll(".txt_invoer1");
+  var up = document.querySelectorAll(".txt_invoer2");
   var tongtai1 = 0;
   for (let i = 0; i < arrChooseItem1.length; i++) {
     var tong1 = arrChooseItem1[i].price * up[i].value;
@@ -434,13 +436,13 @@ function TotalItem1() {
   document.querySelector("#tt4").innerHTML = tongtai1;
 }
 function countUp1(x) {
-  let up = x.parentElement.querySelector(".txt_invoer1");
+  let up = x.parentElement.querySelector(".txt_invoer2");
   var i = parseInt(up.value, 10);
   up.value = ++i;
   TotalItem1();
 }
 function countDown1(x) {
-  let up = x.parentElement.querySelector(".txt_invoer1");
+  let up = x.parentElement.querySelector(".txt_invoer2");
   var i = parseInt(up.value, 0);
   up.value = --i;
   TotalItem1();
@@ -521,6 +523,7 @@ btnShow4.addEventListener("click", () => {
         <p style="margin-bottom:0"> ${arrChooseItem2[i].id} </p>
         <input type="hidden" class="nameItem3" value="${arrChooseItem2[i].name}">
         <input type="hidden" class="PriceItem3" value="${arrChooseItem2[i].price}">
+        <input type="hidden" class="IdItem3" value="${arrChooseItem2[i].id}">
       </td>
       <td style="width:40%"><button onclick="countUp2(this)">+</button><input type="text" name="amoutItem" class="txt_invoer3" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown2(this)">-</button></td>
@@ -545,7 +548,7 @@ function Delete4(x) {
   TotalItem2();
 }
 function TotalItem2() {
-  var up = document.querySelectorAll(".txt_invoer2");
+  var up = document.querySelectorAll(".txt_invoer3");
   var tongtai2 = 0;
   for (let i = 0; i < arrChooseItem2.length; i++) {
     var tong2 = arrChooseItem2[i].price * up[i].value;
@@ -555,13 +558,13 @@ function TotalItem2() {
   document.querySelector("#tt3").innerHTML = tongtai2;
 }
 function countUp2(x) {
-  let up = x.parentElement.querySelector(".txt_invoer2");
+  let up = x.parentElement.querySelector(".txt_invoer3");
   var i = parseInt(up.value, 10);
   up.value = ++i;
   TotalItem2();
 }
 function countDown2(x) {
-  let up = x.parentElement.querySelector(".txt_invoer2");
+  let up = x.parentElement.querySelector(".txt_invoer3");
   var i = parseInt(up.value, 0);
   up.value = --i;
   TotalItem2();
@@ -638,19 +641,24 @@ btnShowMain.addEventListener("click", () => {
       for(let i=0;i< NameModalMain.length;i++){
         let NameItemHangTang = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")[i].value;
         let PriceItemlMain = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem1")[i].value;
+        let IdItemlMain = checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem1")[i].value;
         let AmoutItemMain = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer")[i].value;
         arrTotalHangTang.push({
+          id:IdItemlMain,
           name: NameItemHangTang,
           price: PriceItemlMain,
           amout: AmoutItemMain,
+          
         });
       }
       let NameModalMain2 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem2")
       for(let i=0;i< NameModalMain2.length;i++){
         let NameItemHangTang1 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem2")[i].value;
+        let IdItemlMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem2")[i].value;
         let PriceItemlMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem2")[i].value;
         let AmoutItemMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer2")[i].value;
         arrTotalHangGiamGia.push({
+          id: IdItemlMain1,
           name: NameItemHangTang1,
           price: PriceItemlMain1,
           amout: AmoutItemMain1,
@@ -660,9 +668,11 @@ btnShowMain.addEventListener("click", () => {
       let NameModalMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem3")
       for(let i=0;i< NameModalMain3.length;i++){
         let NameItemHangTang3 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem3")[i].value;
+        let IdItemlMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem3")[i].value;
         let PriceItemlMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem3")[i].value;
         let AmoutItemMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer3")[i].value;
         arrTotalHangTangPro.push({
+          id: IdItemlMain3,
           name: NameItemHangTang3,
           price: PriceItemlMain3,
           amout: AmoutItemMain3,
@@ -673,5 +683,69 @@ btnShowMain.addEventListener("click", () => {
   console.log(arrTotalHangTang)
   console.log(arrTotalHangGiamGia)
   console.log(arrTotalHangTangPro)
+  renderDataKhuyenMai()
 });
+function renderDataKhuyenMai(){
+  var popup = document.querySelector("#tablePopupRender");
+  hangtang = ''
+for(let i=0; i < arrTotalHangTang.length;i++){
+  hangtang += `
+          <tr>
+          <td style='text-align:start'> 
+          <span class='name'>
+          <p>${arrTotalHangTang[i].name}</p>
+          <p>${arrTotalHangTang[i].id}</p>
+          </span>
+          <td style='width:110px;text-align:end'>${arrTotalHangTang[i].amout}</td>
+          <td style='width:110px;text-align:end'> <span class='tt'>
+          <p>0</p>
+          <p>${arrTotalHangTang[i].price}</p>
+          </span></td>
+          </tr>`;
+    }
+    popup.innerHTML = hangtang;
 
+
+    var popup1 = document.querySelector("#tablePopupRender1");
+    hangpro = ''
+  for(let i=0; i < arrTotalHangTangPro.length;i++){
+    hangpro += `
+            <tr>
+            <td style='text-align:start'> 
+            <span class='name'>
+            <p>${arrTotalHangTangPro[i].name}</p>
+            <p>${arrTotalHangTangPro[i].id}</p>
+            </span>
+            <td style='width:110px;text-align:end'>${arrTotalHangTangPro[i].amout}</td>
+            <td style='width:110px;text-align:end'> <span class='tt'>
+            <p>0</p>
+            <p>${arrTotalHangTangPro[i].price}</p>
+            </span></td>
+            </tr>`;
+      }
+      popup1.innerHTML = hangpro;
+
+
+      var popup2 = document.querySelector("#tablePopupRender2");
+      hangGiam = ''
+    for(let i=0; i < arrTotalHangGiamGia.length;i++){
+      hangGiam += `
+              <tr>
+              <td style='text-align:start'> 
+              <span class='name'>
+              <p>${arrTotalHangGiamGia[i].name}</p>
+              <p>${arrTotalHangGiamGia[i].id}</p>
+              </span>
+              <td style='width:110px;text-align:end'>${arrTotalHangGiamGia[i].amout}</td>
+              <td style='width:110px;text-align:end'> 
+              <span class='tt'>
+              <p>0</p>
+              <p>${arrTotalHangGiamGia[i].price}</p>
+              
+              </span>
+              </td>
+              </tr>`;
+        }
+        popup2.innerHTML = hangGiam;
+}
+  
