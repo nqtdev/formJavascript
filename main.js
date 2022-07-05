@@ -401,7 +401,7 @@ btnShow3.addEventListener("click", () => {
         <input type="hidden" class="nameItem2" value="${arrChooseItem1[i].name}">
         <input type="hidden" class="PriceItem2" value="${arrChooseItem1[i].price}">
       </td>
-      <td style="width:40%"><button onclick="countUp1(this)">+</button><input name="amoutItem" type="text" class="txt_invoer1" style=" text-align: center;
+      <td style="width:40%"><button onclick="countUp1(this)">+</button><input name="amoutItem" type="text" class="txt_invoer2" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown1(this)">-</button></td>
     </tr>
     `;
@@ -522,7 +522,7 @@ btnShow4.addEventListener("click", () => {
         <input type="hidden" class="nameItem3" value="${arrChooseItem2[i].name}">
         <input type="hidden" class="PriceItem3" value="${arrChooseItem2[i].price}">
       </td>
-      <td style="width:40%"><button onclick="countUp2(this)">+</button><input type="text" name="amoutItem" class="txt_invoer2" style=" text-align: center;
+      <td style="width:40%"><button onclick="countUp2(this)">+</button><input type="text" name="amoutItem" class="txt_invoer3" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown2(this)">-</button></td>
     </tr>
     `;
@@ -631,37 +631,47 @@ btnShowMain.addEventListener("click", () => {
   let modalMain = document.querySelector("#modal-contentTable");
   let modalMainTr = modalMain.querySelectorAll(".tr-modal");
   console.log(modalMainTr);
-  // let modalTbody = modalMainTr.querySelector("tbody");
   for (let i = 0; i < modalMainTr.length; i++) {
     var checkboxMain = modalMainTr[i].querySelector('input[type="checkbox"]');
     if (checkboxMain.checked == true) {
       let NameModalMain = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")
       for(let i=0;i< NameModalMain.length;i++){
-        let PriceItemHangTang = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")[i].value;
-        let PriceModalMain = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem1")[i].value;
+        let NameItemHangTang = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")[i].value;
+        let PriceItemlMain = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem1")[i].value;
+        let AmoutItemMain = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer")[i].value;
         arrTotalHangTang.push({
-          name: PriceItemHangTang,
-          price: PriceModalMain,
+          name: NameItemHangTang,
+          price: PriceItemlMain,
+          amout: AmoutItemMain,
+        });
+      }
+      let NameModalMain2 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem2")
+      for(let i=0;i< NameModalMain2.length;i++){
+        let NameItemHangTang1 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem2")[i].value;
+        let PriceItemlMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem2")[i].value;
+        let AmoutItemMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer2")[i].value;
+        arrTotalHangGiamGia.push({
+          name: NameItemHangTang1,
+          price: PriceItemlMain1,
+          amout: AmoutItemMain1,
+        });
+      }
+
+      let NameModalMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem3")
+      for(let i=0;i< NameModalMain3.length;i++){
+        let NameItemHangTang3 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem3")[i].value;
+        let PriceItemlMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem3")[i].value;
+        let AmoutItemMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer3")[i].value;
+        arrTotalHangTangPro.push({
+          name: NameItemHangTang3,
+          price: PriceItemlMain3,
+          amout: AmoutItemMain3,
         });
       }
     }
   }
   console.log(arrTotalHangTang)
-
-  // document.querySelector("#oneScreen1").style.display = "none";
-  // let addtr22 = ``;
-  // for (let i = 0; i < arrChooseItem2.length; i++) {
-  //   addtr22 += `<tr>
-  //     <td style='width:100px'><button onclick="Delete4(this)">xoá</button></td>
-  //     <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem2[i].name} </p>
-  //       <p style="margin-bottom:0"> ${arrChooseItem2[i].id} </p>
-  //     </td>
-  //     <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
-  //       width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
-  //   </tr>
-  //   `;
-  // }
-  // document.querySelector("#table_item_hh1").innerHTML = addtr22;
-  // alert("Thêm sản phẩm khuyến mãi thành công");
+  console.log(arrTotalHangGiamGia)
+  console.log(arrTotalHangTangPro)
 });
 
