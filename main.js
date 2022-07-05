@@ -4,7 +4,9 @@ let arrChooseItem = []; // mảng chứa item đã chọn từ popup tặng hàn
 let arrChooseItem1 = []; // mảng chứa item đã chọn từ popup giảm giá hàng 2.3
 let arrChooseItem2 = []; // mảng chứa item đã chọn từ popup tặng hàng 2.2 promax
 let arrVoucher = []; //mảng chứa item đã nhập từ voucher
-let arrProductMain = []; // mảng chứa item chọn từ popup main
+let arrTotalHangTang = []; // mảng chứa item lấy từ hàng tặng
+let arrTotalHangTangPro = []; // mảng chứa item lấy từ hàng tặng pro
+let arrTotalHangGiamGia = []; // mảng chứa item lấy từ hàng giảm giá
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
 //Xử lý validate form
 function validateInput() {
@@ -284,8 +286,10 @@ btnShow2.addEventListener("click", () => {
       <td style='width:100px'><button onclick="Delete2(this)">xoá</button></td>
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem[i].id} </p>
+        <input type="hidden" class="nameItem1" value="${arrChooseItem[i].name}">
+        <input type="hidden" class="PriceItem1" value="${arrChooseItem[i].price}">
       </td>
-      <td style="width:40%"><button onclick="countUp(this)">+</button><input type="text" class="txt_invoer" style=" text-align: center;
+      <td style="width:40%"><button onclick="countUp(this)">+</button><input name="amoutItem"type="text" class="txt_invoer" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
     </tr>
     `;
@@ -393,9 +397,11 @@ btnShow3.addEventListener("click", () => {
     addtr1 += `<tr>
       <td style='width:100px'><button onclick="Delete3(this)">xoá</button></td>
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem1[i].name} </p>
-        <p style="margin-bottom:0"> ${arrChooseItem1[i].id} </p>
+        <p style="margin-bottom:0" > ${arrChooseItem1[i].id} </p>
+        <input type="hidden" class="nameItem2" value="${arrChooseItem1[i].name}">
+        <input type="hidden" class="PriceItem2" value="${arrChooseItem1[i].price}">
       </td>
-      <td style="width:40%"><button onclick="countUp1(this)">+</button><input type="text" class="txt_invoer1" style=" text-align: center;
+      <td style="width:40%"><button onclick="countUp1(this)">+</button><input name="amoutItem" type="text" class="txt_invoer1" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown1(this)">-</button></td>
     </tr>
     `;
@@ -513,8 +519,10 @@ btnShow4.addEventListener("click", () => {
       <td style='width:100px'><button onclick="Delete4(this)">xoá</button></td>
       <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrChooseItem2[i].name} </p>
         <p style="margin-bottom:0"> ${arrChooseItem2[i].id} </p>
+        <input type="hidden" class="nameItem3" value="${arrChooseItem2[i].name}">
+        <input type="hidden" class="PriceItem3" value="${arrChooseItem2[i].price}">
       </td>
-      <td style="width:40%"><button onclick="countUp2(this)">+</button><input type="text" class="txt_invoer2" style=" text-align: center;
+      <td style="width:40%"><button onclick="countUp2(this)">+</button><input type="text" name="amoutItem" class="txt_invoer2" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown2(this)">-</button></td>
     </tr>
     `;
@@ -620,33 +628,26 @@ function checkAll(myCheckbox) {
 // ----------- In hàng tặng ra màn hình main------------------\
 let btnShowMain = document.querySelector("#btn-main");
 btnShowMain.addEventListener("click", () => {
-  let modalMain = document.querySelector(".modal-content");
-  let modalMainTr = modalMain.querySelector("tr");
+  let modalMain = document.querySelector("#modal-contentTable");
+  let modalMainTr = modalMain.querySelectorAll(".tr-modal");
   console.log(modalMainTr);
   // let modalTbody = modalMainTr.querySelector("tbody");
   for (let i = 0; i < modalMainTr.length; i++) {
-    var td = modalMainTr[i].getElementsByClassName("inputcheck");
-    // var input =  td.getElementsByClassName('check');
     var checkboxMain = modalMainTr[i].querySelector('input[type="checkbox"]');
     if (checkboxMain.checked == true) {
-      let idModalMain = checkboxMain.parentElement.querySelector(".id").value;
-      let nameModalMain =
-        checkboxMain.parentElement.querySelector(".name").value;
-      let priceModalMain =
-        checkboxMain.parentElement.querySelector(".price").value;
-      // for (let i = 0; i < arrChooseItem2.length; i++) {
-      //   if (codeItem2 == arrChooseItem2[i].id) {
-      //     alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
-      //     return;
-      //   }
-      // }
-      arrProductMain.push({
-        id: idModalMain,
-        name: nameModalMain,
-        price: priceModalMain,
-      });
+      let NameModalMain = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")
+      for(let i=0;i< NameModalMain.length;i++){
+        let PriceItemHangTang = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")[i].value;
+        let PriceModalMain = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem1")[i].value;
+        arrTotalHangTang.push({
+          name: PriceItemHangTang,
+          price: PriceModalMain,
+        });
+      }
     }
   }
+  console.log(arrTotalHangTang)
+
   // document.querySelector("#oneScreen1").style.display = "none";
   // let addtr22 = ``;
   // for (let i = 0; i < arrChooseItem2.length; i++) {
@@ -663,3 +664,4 @@ btnShowMain.addEventListener("click", () => {
   // document.querySelector("#table_item_hh1").innerHTML = addtr22;
   // alert("Thêm sản phẩm khuyến mãi thành công");
 });
+
