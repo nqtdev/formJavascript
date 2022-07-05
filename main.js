@@ -701,6 +701,11 @@ for(let i=0; i < arrTotalHangTang.length;i++){
           <p>0</p>
           <p>${arrTotalHangTang[i].price}</p>
           </span></td>
+          <td style='width:110px;text-align:end'> 
+          <span class='tt'>
+          Tổng tiền
+          </span>
+          </td>
           </tr>`;
     }
     popup.innerHTML = hangtang;
@@ -721,6 +726,11 @@ for(let i=0; i < arrTotalHangTang.length;i++){
             <p>0</p>
             <p>${arrTotalHangTangPro[i].price}</p>
             </span></td>
+            <td style='width:110px;text-align:end'> 
+            <span class='tt'>
+            Tổng tiền
+            </span>
+            </td>
             </tr>`;
       }
       popup1.innerHTML = hangpro;
@@ -742,6 +752,11 @@ for(let i=0; i < arrTotalHangTang.length;i++){
               <p>0</p>
               <p>${arrTotalHangGiamGia[i].price}</p>
               
+              </span>
+              </td>
+              <td style='width:110px;text-align:end'> 
+              <span class='tt'>
+              Tổng tiền
               </span>
               </td>
               </tr>`;
