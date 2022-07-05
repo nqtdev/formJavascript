@@ -356,6 +356,7 @@ fetch("hanggiamgia.json")
           <input type="hidden" class="id" value="${product.id}" />
           <input type="hidden" class="name" value="${product.hhName}" />    
           <input type="hidden" class="price" value="${product.hhPrice}" />  
+          <input type="hidden" class="sale" value="${product.hhSale}" />  
         </td>
         <td > ${product.hhName} </td>
         <td > ${product.hhPrice} </td>
@@ -379,6 +380,7 @@ btnShow3.addEventListener("click", () => {
       var codeItem1 = checkbox1.parentElement.querySelector(".id").value;
       var nameItem1 = checkbox1.parentElement.querySelector(".name").value;
       var priceItem1 = checkbox1.parentElement.querySelector(".price").value;
+      var SaleItem1 = checkbox1.parentElement.querySelector('.sale').value
       for (let i = 0; i < arrChooseItem1.length; i++) {
         if (codeItem1 == arrChooseItem1[i].id) {
           alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
@@ -389,6 +391,7 @@ btnShow3.addEventListener("click", () => {
         id: codeItem1,
         name: nameItem1,
         price: priceItem1,
+        sale: SaleItem1,
       });
     }
   }
@@ -402,6 +405,7 @@ btnShow3.addEventListener("click", () => {
         <input type="hidden" class="nameItem2" value="${arrChooseItem1[i].name}">
         <input type="hidden" class="PriceItem2" value="${arrChooseItem1[i].price}">
         <input type="hidden" class="IdItem2" value="${arrChooseItem1[i].id}">
+        <input type="hidden" class="SaleItem2" value="${arrChooseItem1[i].sale}">
       </td>
       <td style="width:40%"><button onclick="countUp1(this)">+</button><input name="amoutItem" type="text" class="txt_invoer2" style=" text-align: center;
         width: 50px;" value="1" ><button onclick="countDown1(this)">-</button></td>
@@ -429,7 +433,7 @@ function TotalItem1() {
   var up = document.querySelectorAll(".txt_invoer2");
   var tongtai1 = 0;
   for (let i = 0; i < arrChooseItem1.length; i++) {
-    var tong1 = arrChooseItem1[i].price * up[i].value;
+    var tong1 = arrChooseItem1[i].price * up[i].value - arrChooseItem1[i].sale;
     tongtai1 += tong1;
   }
   console.log(tongtai1)
@@ -657,10 +661,12 @@ btnShowMain.addEventListener("click", () => {
         let IdItemlMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem2")[i].value;
         let PriceItemlMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem2")[i].value;
         let AmoutItemMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer2")[i].value;
+        let SaleItem1 = checkboxMain.parentElement.parentElement.querySelectorAll(".SaleItem2")[i].value;
         arrTotalHangGiamGia.push({
           id: IdItemlMain1,
           name: NameItemHangTang1,
           price: PriceItemlMain1,
+          sale: SaleItem1,
           amout: AmoutItemMain1,
         });
       }
@@ -689,6 +695,7 @@ function renderDataKhuyenMai(){
   var popup = document.querySelector("#tablePopupRender");
   hangtang = ''
 for(let i=0; i < arrTotalHangTang.length;i++){
+  let tt03 = arrTotalHangTang[i].price * arrTotalHangTang[i].amout
   hangtang += `
           <tr>
           <td style='text-align:start'> 
@@ -699,7 +706,7 @@ for(let i=0; i < arrTotalHangTang.length;i++){
           <td style='width:110px;text-align:end'>${arrTotalHangTang[i].amout}</td>
           <td style='width:110px;text-align:end'> <span class='tt'>
           <p>0</p>
-          <p>${arrTotalHangTang[i].price}</p>
+          <p style="text-decoration: line-through;color:red;font-weight:300">${tt03}</p>
           </span></td>
           <td style='width:110px;text-align:end'> 
           <span class='tt'>
@@ -714,6 +721,7 @@ for(let i=0; i < arrTotalHangTang.length;i++){
     var popup1 = document.querySelector("#tablePopupRender1");
     hangpro = ''
   for(let i=0; i < arrTotalHangTangPro.length;i++){
+    let tt02 = arrTotalHangTangPro[i].price * arrTotalHangTangPro[i].amout
     hangpro += `
             <tr>
             <td style='text-align:start'> 
@@ -724,7 +732,7 @@ for(let i=0; i < arrTotalHangTang.length;i++){
             <td style='width:110px;text-align:end'>${arrTotalHangTangPro[i].amout}</td>
             <td style='width:110px;text-align:end'> <span class='tt'>
             <p>0</p>
-            <p>${arrTotalHangTangPro[i].price}</p>
+            <p style="text-decoration: line-through;color:red;font-weight:300">${tt02}</p>
             </span></td>
             <td style='width:110px;text-align:end'> 
             <span class='tt'>
@@ -739,6 +747,7 @@ for(let i=0; i < arrTotalHangTang.length;i++){
       var popup2 = document.querySelector("#tablePopupRender2");
       hangGiam = ''
     for(let i=0; i < arrTotalHangGiamGia.length;i++){
+      let tt01 = arrTotalHangGiamGia[i].price - arrTotalHangGiamGia[i].sale;
       hangGiam += `
               <tr>
               <td style='text-align:start'> 
@@ -749,8 +758,8 @@ for(let i=0; i < arrTotalHangTang.length;i++){
               <td style='width:110px;text-align:end'>${arrTotalHangGiamGia[i].amout}</td>
               <td style='width:110px;text-align:end'> 
               <span class='tt'>
-              <p>0</p>
-              <p>${arrTotalHangGiamGia[i].price}</p>
+              <p>${tt01}</p>
+              <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangGiamGia[i].sale}</p>
               
               </span>
               </td>
