@@ -309,7 +309,7 @@ function TotalItem() {
       var tong = arrChooseItem[i].price * up[i].value;
       tongtai += tong;
     } else {
-      alert("Sản phẩm khuyến mãi đã đạt giới hạn cho phép ");
+      alert("Sản phẩm khuyến mãi đã đạt giới hạn ");
       return;
     }
   }
@@ -440,7 +440,7 @@ function TotalItem1() {
   //   tongtai1 += tong1;
   // }
   for (let i = 0; i < arrChooseItem1.length; i++) {
-    if (up[i].value <= 1) {
+    if (up[i].value < 2) {
       var tong1 =
         arrChooseItem1[i].price * up[i].value - arrChooseItem1[i].sale;
       tongtai1 += tong1;
