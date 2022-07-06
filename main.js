@@ -157,7 +157,7 @@ function cartTotal() {
     totalC += totalA;
   }
   var CartTotal = document.querySelector("#price-total span");
-  CartTotal.innerHTML = totalC
+  CartTotal.innerHTML = totalC;
 }
 function InputChange() {
   var cartItem = document.querySelectorAll(".table_item tr");
@@ -459,21 +459,20 @@ function countUp1(x) {
   TotalItem1();
 }
 
-function abc(list){
-  let tbody = '';
-  for(var i = 0; i < list.length; i++){
+function abc(list) {
+  let tbody = "";
+  for (var i = 0; i < list.length; i++) {
     var product = list[i];
-    tbody += '<tr>';
-    tbody += '<td>' + product.Code+'</td>';
-    tbody += '<td>' + product.Name+'</td>';
-    tbody +='</tr>';
+    tbody += "<tr>";
+    tbody += "<td>" + product.Code + "</td>";
+    tbody += "<td>" + product.Name + "</td>";
+    tbody += "</tr>";
   }
 
-  var tr = `<tr><td>${product.Code}}</td</tr>`
+  var tr = `<tr><td>${product.Code}}</td</tr>`;
 }
 
 function countDown1(x) {
-
   let up = x.parentElement.querySelector(".txt_invoer2");
   var i = parseInt(up.value, 0);
   up.value = --i;
@@ -582,7 +581,7 @@ function Delete4(x) {
 }
 function TotalItem2() {
   var up = document.querySelectorAll(".txt_invoer3");
-  if (up > 5) var tongtai2 = 0;
+  var tongtai2 = 0;
   for (let i = 0; i < arrChooseItem2.length; i++) {
     if (up[i].value <= 5) {
       var tong2 = arrChooseItem2[i].price * up[i].value;
@@ -671,8 +670,6 @@ function checkAll(myCheckbox) {
 // ----------- In hàng tặng ra màn hình main------------------\
 let btnShowMain = document.querySelector("#btn-main");
 btnShowMain.addEventListener("click", () => {
-
-
   let modalMain = document.querySelector("#modal-contentTable");
   let modalMainTr = modalMain.querySelectorAll(".tr-modal");
   for (let i = 0; i < modalMainTr.length; i++) {
@@ -821,13 +818,12 @@ function renderDataKhuyenMai() {
   }
   popup1.innerHTML = hangpro;
 
-
-      var popup2 = document.querySelector("#tablePopupRender2");
-      hangGiam = ''
-    for(let i=0; i < arrTotalHangGiamGia.length;i++){
-      let tt01 = arrTotalHangGiamGia[i].price - arrTotalHangGiamGia[i].sale;
-      let th01 = tt01* arrTotalHangGiamGia[i].amout;
-      hangGiam += `
+  var popup2 = document.querySelector("#tablePopupRender2");
+  hangGiam = "";
+  for (let i = 0; i < arrTotalHangGiamGia.length; i++) {
+    let tt01 = arrTotalHangGiamGia[i].price - arrTotalHangGiamGia[i].sale;
+    let th01 = tt01 * arrTotalHangGiamGia[i].amout;
+    hangGiam += `
               <tr>
               <td style='text-align:start'> 
               <span class='name'>
@@ -848,15 +844,14 @@ function renderDataKhuyenMai() {
               </span>
               </td>
               </tr>`;
+  }
 
-        }
-
-        popup2.innerHTML = hangGiam;
-        hello()
+  popup2.innerHTML = hangGiam;
+  hello();
 }
-function hello(){
-  var he1=0;
-  if(document.querySelector("#option-b").checked == true){
+function hello() {
+  var he1 = 0;
+  if (document.querySelector("#option-b").checked == true) {
     let valueGiamGiaDon = document.querySelector(".khuyenmaigiamdon");
     var he = document.querySelector("#Valuegiamgiadonhang");
     he.innerHTML = valueGiamGiaDon.value;
@@ -864,18 +859,16 @@ function hello(){
   }
   var giaphaitra = document.querySelectorAll(".giaphaitra");
   var ValueGiaGiam = 0;
-  for(let i=0; i< giaphaitra.length;i++)
-  {
+  for (let i = 0; i < giaphaitra.length; i++) {
     var valueGia = giaphaitra[i].innerText;
-    console.log(giaphaitra[i].innerText)
+    console.log(giaphaitra[i].innerText);
     ValueGiaGiam += parseInt(valueGia);
   }
-  var tongtienhang1 = document.querySelector("#tongtienhang1")
+  var tongtienhang1 = document.querySelector("#tongtienhang1");
   var tongtienhang = document.querySelector("#tongtienhang").innerText;
   var tongphaithu = document.querySelector("#tongphaithu");
   tongphaithu.innerHTML = parseInt(tongtienhang) + ValueGiaGiam - he1;
   tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
-
 }
 console.log(arrTotalHangGiamGia);
 console.log(arrTotalHangTangPro);
