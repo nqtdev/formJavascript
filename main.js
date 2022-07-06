@@ -298,16 +298,17 @@ function TotalItem() {
   var up = document.querySelectorAll(".txt_invoer");
   var tongtai = 0;
   for (let i = 0; i < arrChooseItem.length; i++) {
-    if (up[i].value <= 9) {
+    if (up[i].value <= 10) {
       var tong = arrChooseItem[i].price * up[i].value;
       tongtai += tong;
     } else {
-      alert("Sản phẩm khuyến mãi đã đạt giới hạn");
+      alert("Sản phẩm khuyến mãi đã đạt giới hạn cho phép ");
       return;
     }
   }
   document.querySelector("#tt2").innerHTML = tongtai;
 }
+
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -441,6 +442,7 @@ function TotalItem1() {
       return;
     }
   }
+
   document.querySelector("#tt4").innerHTML = tongtai1;
 }
 function countUp1(x) {
@@ -494,6 +496,7 @@ fetch("hangtangpro.json")
     }
     placeholder.innerHTML = out;
   });
+
 // lấy giá trị khi click checkbox
 let btnShow4 = document.querySelector("#btn12");
 btnShow4.addEventListener("click", () => {
@@ -557,17 +560,13 @@ function Delete4(x) {
 }
 function TotalItem2() {
   var up = document.querySelectorAll(".txt_invoer3");
-  var tongtai2 = 0;
-  // for (let i = 0; i < arrChooseItem2.length; i++) {
-  //   var tong2 = arrChooseItem2[i].price * up[i].value;
-  //   tongtai2 += tong2;
-  // }
+  if (up > 5) var tongtai2 = 0;
   for (let i = 0; i < arrChooseItem2.length; i++) {
-    if (up[i].value <= 4) {
+    if (up[i].value <= 5) {
       var tong2 = arrChooseItem2[i].price * up[i].value;
       tongtai2 += tong2;
     } else {
-      alert("Sản phẩm khuyến mãi đã đạt giới hạn");
+      alert("Sản phẩm khuyến mãi đã đạt giới hạn ");
       return;
     }
   }
@@ -700,6 +699,7 @@ btnShowMain.addEventListener("click", () => {
           checkboxMain.parentElement.parentElement.querySelectorAll(
             ".txt_invoer2"
           )[i].value;
+
         let SaleItem1 =
           checkboxMain.parentElement.parentElement.querySelectorAll(
             ".SaleItem2"
@@ -825,13 +825,10 @@ function renderDataKhuyenMai() {
   }
   popup2.innerHTML = hangGiam;
 }
+console.log(arrTotalHangGiamGia);
+console.log(arrTotalHangTangPro);
+console.log(arrTotalHangTang);
 
 document.getElementById("btntanghang1").onclick = function () {
   document.querySelector("#oneScreen").style.display = "none";
 };
-
-function Geeks() {
-  document.querySelector("#table_item_hh").remove();
-  document.querySelector("#table_item_hh1").remove();
-  document.querySelector("#hh_item2_3").remove();
-}
