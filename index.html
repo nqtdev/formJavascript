@@ -104,8 +104,14 @@
           <td>Xoá</td>
           <td>Hàng Hóa</td>
           <td>Số Lượng</td>
-          <td>Đơn Giá</td>
-          <td>Thành Tiền</td>
+          <td>
+            Đơn Giá
+            <p><i style="font-weight: 300">giảm giá</i></p>
+          </td>
+          <td>
+            Thành Tiền
+            <p><i style="font-weight: 300">tiền giảm</i></p>
+          </td>
         </tr>
       </thead>
       <tbody class="table_item"></tbody>
@@ -124,217 +130,216 @@
           <td colspan="4" style="text-align: left">Khuyến mại</td>
         </tr>
       </thead>
-      <tbody id="tablePopupRender">
-      </tbody>
-      <tbody id="tablePopupRender1">
-      </tbody>
-      <tbody id="tablePopupRender2">
-      </tbody>
+      <tbody id="tablePopupRender"></tbody>
+      <tbody id="tablePopupRender1"></tbody>
+      <tbody id="tablePopupRender2"></tbody>
     </table>
     <div id="myModal" class="modal">
       <div class="modal-content">
         <table>
           <tbody id="modal-contentTable">
-          <tr>
-            <td>
-              <input
-                type="checkbox"
-                id="option-all"
-                onchange="checkAll(this)"
-              />
-            </td>
-            <td>Chương trình khuyến mại</td>
-            <td>Hình thức khuyến mại</td>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="checkbox"
-                id="option-a"
-                value="giamgiadonhang"
-                name="discount"
-              />
-            </td>
-            <td>2.1 Giảm giá đơn hàng</td>
-            <td
-              class="modalTd"
-              style="display: flex; justify-content: space-between"
-            >
-              <div style="width: 40%" ;>
-                <p style="margin: 0px">Giảm giá đơn hàng</p>
-              </div>
-              <div style="width: 60%">
+            <tr>
+              <td>
                 <input
-                  class="input-modal"
-                  type="text"
-                  value="Giảm 500,000 giá trị đơn hàng"
-                  style="width: 100%"
+                  type="checkbox"
+                  id="option-all"
+                  onchange="checkAll(this)"
                 />
-                <input type="hidden" class="khuyenmai" value="giamgiahang" />
-              </div>
-            </td>
-          </tr>
-          <tr class="tr-modal">
-            <td>
-              <input
-                type="checkbox"
-                id="option-b"
-                value="tanghang"
-                name="discount"
-              />
-            </td>
-            <td>2.2 Tặng hàng</td>
-            <td
-              class="modalTd"
-              style="display: flex; justify-content: space-between"
-            >
-              <div style="width: 40%" ;>
-                <span>
-                  <p style="margin: 0px">Tặng hàng</p>
-                  <p style="margin: 0px; color: #333333; font-weight: 500">
-                    10 sản phẩm
-                  </p>
-                </span>
-                <div id="price-total">
-                  <span>Giảm Giá Tặng Hàng: <span id="tt2">0</span> VND</span>
+              </td>
+              <td>Chương trình khuyến mại</td>
+              <td>Hình thức khuyến mại</td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="checkbox"
+                  id="option-a"
+                  value="giamgiadonhang"
+                  name="discount"
+                />
+              </td>
+              <td>2.1 Giảm giá đơn hàng</td>
+              <td
+                class="modalTd"
+                style="display: flex; justify-content: space-between"
+              >
+                <div style="width: 40%" ;>
+                  <p style="margin: 0px">Giảm giá đơn hàng</p>
                 </div>
-              </div>
-              <div id="table_item1" style="width: 60%">
-                <input
-                  class="input-modal modalSearch"
-                  type="text"
-                  placeholder="Tìm hàng tặng1"
-                  style="width: 100%"
-                />
-                <input type="hidden" class="khuyenmai" value="tanghang" />
-                <table class="showItem" style="width: 100%">
-                  <tbody id="table_item_hh"></tbody>
-                </table>
-              </div>
-            </td>
-          </tr>
-          <!-- tặng hàng 2.2 promax  -->
-          <tr class="tr-modal">
-            <td>
-              <input
-                type="checkbox"
-                id="option-b"
-                value="tanghang"
-                name="discount"
-              />
-            </td>
-            <td>2.2 Tặng hàng promax</td>
-            <td
-              class="modalTd"
-              style="display: flex; justify-content: space-between"
-            >
-              <div style="width: 40%" ;>
-                <span>
-                  <p style="margin: 0px">Tặng hàng</p>
-                  <p style="margin: 0px; color: #333333; font-weight: 500">
-                    5 sản phẩm
-                  </p>
-                </span>
-                <div id="price-total">
-                  <span
-                    >Giảm Giá Tặng Hàng 2.2: <span id="tt3">0</span> VND</span
-                  >
+                <div style="width: 60%">
+                  <input
+                    class="input-modal"
+                    type="text"
+                    value="Giảm 500,000 giá trị đơn hàng"
+                    style="width: 100%"
+                  />
+                  <input type="hidden" class="khuyenmai" value="giamgiahang" />
                 </div>
-              </div>
-              <div id="table_item1" style="width: 60%">
+              </td>
+            </tr>
+            <tr class="tr-modal">
+              <td>
                 <input
-                  class="input-modal modalSearch1"
-                  type="text"
-                  placeholder="Tìm hàng tặng1"
-                  style="width: 100%"
+                  type="checkbox"
+                  id="option-b"
+                  value="tanghang"
+                  name="discount"
                 />
-                <input type="hidden" class="khuyenmai" value="tanghang" />
-                <table class="showItem" style="width: 100%">
-                  <tbody id="table_item_hh1"></tbody>
-                </table>
-              </div>
-            </td>
-          </tr>
-          <tr class="tr-modal">
-            <td>
-              <input
-                type="checkbox"
-                id="option-c"
-                value="giamgiahang"
-                name="discount"
-              />
-            </td>
-            <td>2.3 Giảm giá hàng</td>
-            <td
-              class="modalTd"
-              style="display: flex; justify-content: space-between"
-            >
-              <div style="width: 40%" ;>
-                <span>
-                  <p style="margin: 0px">Giảm giá hàng</p>
-                  <p style="margin: 0px; color: #333333; font-weight: 500">
-                    1 sản phẩm
-                  </p>
-                </span>
-                <div id="price-total">
-                  <span>Giảm Giá Hàng: <span id="tt4">0</span> VND</span>
+              </td>
+              <td>2.2 Tặng hàng</td>
+              <td
+                class="modalTd"
+                style="display: flex; justify-content: space-between"
+              >
+                <div style="width: 40%" ;>
+                  <span>
+                    <p style="margin: 0px">Tặng hàng</p>
+                    <p style="margin: 0px; color: #333333; font-weight: 500">
+                      10 sản phẩm
+                    </p>
+                  </span>
+                  <div id="price-total">
+                    <span>Giảm Giá Tặng Hàng: <span id="tt2">0</span> VND</span>
+                  </div>
                 </div>
-              </div>
-              <div id="table_item1" style="width: 60%">
-                <input
-                  class="input-modal modalSearch2"
-                  type="text"
-                  placeholder="Tìm hàng tặng"
-                />
-                <table class="showItem1">
-                  <tbody id="hh_item2_3"></tbody>
-                </table>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input
-                type="checkbox"
-                id="option-d"
-                value="giamgiavoucher"
-                name="discount"
-              />
-              <input type="hidden" class="khuyenmai" value="timhangtang" />
-            </td>
-            <td>2.5 Tặng voucher</td>
-            <td
-              class="modalTd"
-              style="display: flex; justify-content: space-between"
-            >
-              <div style="width: 40%" ;>
-                <span>
-                  <p style="margin: 0px">Tặng voucher</p>
-                  <p style="margin: 0px; color: #333333; font-weight: 500">
-                    Tặng 1 voucher trong V20220614
-                  </p>
-                </span>
-                <div id="price-total">
-                  <span>Giảm Giá Voucher: <span id="tt5">0</span> VND</span>
+                <div id="table_item1" style="width: 60%">
+                  <input
+                    class="input-modal modalSearch"
+                    type="text"
+                    placeholder="Tìm hàng tặng1"
+                    style="width: 100%"
+                  />
+                  <input type="hidden" class="khuyenmai" value="tanghang" />
+                  <table class="showItem" style="width: 100%">
+                    <tbody id="table_item_hh"></tbody>
+                  </table>
                 </div>
-              </div>
-              <div id="table_item1" style="width: 60%">
+              </td>
+            </tr>
+            <!-- tặng hàng 2.2 promax  -->
+            <tr class="tr-modal">
+              <td>
                 <input
-                  class="input-modal"
-                  id="input-voucher"
-                  type="text"
-                  placeholder="Nhập mã voucher"
+                  type="checkbox"
+                  id="option-b"
+                  value="tanghang"
+                  name="discount"
                 />
-                <table class="showItem2">
-                  <tbody id="table_item_voucher"></tbody>
-                </table>
-              </div>
-            </td>
-          </tr>
-        </tbody>
+              </td>
+              <td>2.2 Tặng hàng promax</td>
+              <td
+                class="modalTd"
+                style="display: flex; justify-content: space-between"
+              >
+                <div style="width: 40%" ;>
+                  <span>
+                    <p style="margin: 0px">Tặng hàng</p>
+                    <p style="margin: 0px; color: #333333; font-weight: 500">
+                      5 sản phẩm
+                    </p>
+                  </span>
+                  <div id="price-total">
+                    <span
+                      >Giảm Giá Tặng Hàng 2.2: <span id="tt3">0</span> VND</span
+                    >
+                  </div>
+                </div>
+                <div id="table_item1" style="width: 60%">
+                  <input
+                    class="input-modal modalSearch1"
+                    type="text"
+                    placeholder="Tìm hàng tặng1"
+                    style="width: 100%"
+                  />
+                  <input type="hidden" class="khuyenmai" value="tanghang" />
+                  <table class="showItem" style="width: 100%">
+                    <tbody id="table_item_hh1"></tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <tr class="tr-modal">
+              <td>
+                <input
+                  type="checkbox"
+                  id="option-c"
+                  value="giamgiahang"
+                  name="discount"
+                />
+              </td>
+              <td>2.3 Giảm giá hàng</td>
+              <td
+                class="modalTd"
+                style="display: flex; justify-content: space-between"
+              >
+                <div style="width: 40%" ;>
+                  <span>
+                    <p style="margin: 0px">Giảm giá hàng</p>
+                    <p style="margin: 0px; color: #333333; font-weight: 500">
+                      1 sản phẩm
+                    </p>
+                  </span>
+                  <div id="price-total">
+                    <span>Giảm Giá Hàng: <span id="tt4">0</span> VND</span>
+                  </div>
+                </div>
+                <div id="table_item1" style="width: 60%">
+                  <input
+                    class="input-modal modalSearch2"
+                    type="text"
+                    placeholder="Tìm hàng tặng"
+                  />
+                  <table class="showItem1">
+                    <tbody id="hh_item2_3"></tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input
+                  type="checkbox"
+                  id="option-d"
+                  value="giamgiavoucher"
+                  name="discount"
+                />
+                <input type="hidden" class="khuyenmai" value="timhangtang" />
+              </td>
+              <td>2.5 Tặng voucher</td>
+              <td
+                class="modalTd"
+                style="display: flex; justify-content: space-between"
+              >
+                <div style="width: 40%" ;>
+                  <span>
+                    <p style="margin: 0px">Tặng voucher</p>
+                    <p style="margin: 0px; color: #333333; font-weight: 500">
+                      Tặng 1 voucher trong V20220614
+                    </p>
+                  </span>
+                  <div id="price-total">
+                    <span>Giảm Giá Voucher: <span id="tt5">0</span> VND</span>
+                  </div>
+                </div>
+                <div id="table_item1" style="width: 60%">
+                  <input
+                    class="input-modal"
+                    id="input-voucher"
+                    type="text"
+                    placeholder="Nhập mã voucher"
+                  />
+                  <table class="showItem2">
+                    <tbody id="table_item_voucher"></tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
         </table>
         <div style="margin-top: 15px">
-          <button style="width: 100px" id="btn-main">áp dụng main</button>
+          <button style="width: 100px" onclick="Geeks()" id="btn-main">
+            áp dụng main
+          </button>
           <button style="width: 100px" class="close">bỏ qua main</button>
         </div>
       </div>
