@@ -7,6 +7,8 @@ let arrVoucher = []; //mảng chứa item đã nhập từ voucher
 let arrTotalHangTang = []; // mảng chứa item lấy từ hàng tặng
 let arrTotalHangTangPro = []; // mảng chứa item lấy từ hàng tặng pro
 let arrTotalHangGiamGia = []; // mảng chứa item lấy từ hàng giảm giá
+let arrGiamGiaDonHang = []; // mảng chứa giảm giá đơn hàng
+var totalC = 0;
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
 //Xử lý validate form
 function validateInput() {
@@ -144,8 +146,9 @@ function renderTable() {
 }
 // xử lý tính tổng tiền
 function cartTotal() {
-  var cartItem = document.querySelectorAll(".table_item tr");
   var totalC = 0;
+  var cartItem = document.querySelectorAll(".table_item tr");
+
   for (var i = 0; i < cartItem.length; i++) {
     var inputCart = cartItem[i].querySelector("input").value;
     var totalA = arrTable[i].price * inputCart;
@@ -154,7 +157,7 @@ function cartTotal() {
     totalC += totalA;
   }
   var CartTotal = document.querySelector("#price-total span");
-  CartTotal.innerHTML = totalC.toLocaleString("de-DE");
+  CartTotal.innerHTML = totalC
 }
 function InputChange() {
   var cartItem = document.querySelectorAll(".table_item tr");
@@ -195,12 +198,13 @@ var table = document.getElementById("showItem");
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 var btnApply = document.getElementById("btn-main");
+btnApply.onclick = function () {
+  modal.style.display = "none";
+};
 btn.onclick = function () {
   modal.style.display = "block";
 };
-btnApply.onclick = function () {
-  table.style.display = "block";
-};
+
 span.onclick = function () {
   modal.style.display = "none";
 };
@@ -217,6 +221,7 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
 // tăng giảm số lượng
 //                                    -------------------Hàng Tặng----------------------
 // gọi dữ liệu từ json
@@ -445,7 +450,22 @@ function countUp1(x) {
   up.value = ++i;
   TotalItem1();
 }
+
+function abc(list){
+  let tbody = '';
+  for(var i = 0; i < list.length; i++){
+    var product = list[i];
+    tbody += '<tr>';
+    tbody += '<td>' + product.Code+'</td>';
+    tbody += '<td>' + product.Name+'</td>';
+    tbody +='</tr>';
+  }
+
+  var tr = `<tr><td>${product.Code}}</td</tr>`
+}
+
 function countDown1(x) {
+
   let up = x.parentElement.querySelector(".txt_invoer2");
   var i = parseInt(up.value, 0);
   up.value = --i;
@@ -635,6 +655,8 @@ function checkAll(myCheckbox) {
 // ----------- In hàng tặng ra màn hình main------------------\
 let btnShowMain = document.querySelector("#btn-main");
 btnShowMain.addEventListener("click", () => {
+
+
   let modalMain = document.querySelector("#modal-contentTable");
   let modalMainTr = modalMain.querySelectorAll(".tr-modal");
   console.log(modalMainTr);
@@ -706,11 +728,12 @@ for(let i=0; i < arrTotalHangTang.length;i++){
           <td style='width:110px;text-align:end'>${arrTotalHangTang[i].amout}</td>
           <td style='width:110px;text-align:end'> <span class='tt'>
           <p>0</p>
-          <p style="text-decoration: line-through;color:red;font-weight:300">${tt03}</p>
+          <p style="text-decoration: line-through;color:red;font-weight:300">${ arrTotalHangTang[i].price}</p>
           </span></td>
           <td style='width:110px;text-align:end'> 
           <span class='tt'>
-          Tổng tiền
+          <p>0</p>
+          <p style="text-decoration: line-through;color:red;font-weight:300">${tt03}</p>
           </span>
           </td>
           </tr>`;
@@ -732,11 +755,12 @@ for(let i=0; i < arrTotalHangTang.length;i++){
             <td style='width:110px;text-align:end'>${arrTotalHangTangPro[i].amout}</td>
             <td style='width:110px;text-align:end'> <span class='tt'>
             <p>0</p>
-            <p style="text-decoration: line-through;color:red;font-weight:300">${tt02}</p>
+            <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangTangPro[i].price}</p>
             </span></td>
             <td style='width:110px;text-align:end'> 
             <span class='tt'>
-            Tổng tiền
+            <p>0</p>
+            <p style="text-decoration: line-through;color:red;font-weight:300">${tt02}</p>
             </span>
             </td>
             </tr>`;
@@ -748,6 +772,7 @@ for(let i=0; i < arrTotalHangTang.length;i++){
       hangGiam = ''
     for(let i=0; i < arrTotalHangGiamGia.length;i++){
       let tt01 = arrTotalHangGiamGia[i].price - arrTotalHangGiamGia[i].sale;
+      let th01 = tt01* arrTotalHangGiamGia[i].amout;
       hangGiam += `
               <tr>
               <td style='text-align:start'> 
@@ -765,11 +790,36 @@ for(let i=0; i < arrTotalHangTang.length;i++){
               </td>
               <td style='width:110px;text-align:end'> 
               <span class='tt'>
-              Tổng tiền
+              <p class="giaphaitra">${th01}</p>
+              <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangGiamGia[i].sale}</p>
               </span>
               </td>
               </tr>`;
         }
+
         popup2.innerHTML = hangGiam;
+        hello()
+}
+function hello(){
+  if(document.querySelector("#option-a").checked == true){
+    let valueGiamGiaDon = document.querySelector(".khuyenmaigiamdon");
+    var he = document.querySelector("#Valuegiamgiadonhang");
+    he.innerHTML = valueGiamGiaDon.value;
+ var he1 = valueGiamGiaDon.value;
+  }
+  var giaphaitra = document.querySelectorAll(".giaphaitra");
+  var ValueGiaGiam = 0;
+  for(let i=0; i< giaphaitra.length;i++)
+  {
+    var valueGia = giaphaitra[i].innerText;
+    console.log(giaphaitra[i].innerText)
+    ValueGiaGiam += parseInt(valueGia);
+  }
+  var tongtienhang1 = document.querySelector("#tongtienhang1")
+  var tongtienhang = document.querySelector("#tongtienhang").innerText;
+  var tongphaithu = document.querySelector("#tongphaithu");
+  tongphaithu.innerHTML = parseInt(tongtienhang) + ValueGiaGiam - he1;
+  tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
+
 }
   

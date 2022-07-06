@@ -82,13 +82,16 @@
     </div>
     <div class="payment-box">
       <div id="tdownPayment">
-        <p>Giảm giá đơn hàng: <span>0</span> VND</p>
+        <p>Giảm giá đơn hàng: <span id="Valuegiamgiadonhang">0</span> VND</p>
       </div>
       <div id="price-total">
-        <p>Tổng tiền hàng: <span>0</span> VND</p>
+        <p>Tiền hàng đã chọn: <span id="tongtienhang">0</span> VND</p>
+      </div>
+      <div id="price-total1">
+        <p>Tổng tiền hàng: <span id="tongtienhang1">0</span> VND</p>
       </div>
       <div id="tPayment">
-        <p>Tổng phải thu: <span>0</span> VND</p>
+        <p>Tổng phải thu: <span id="tongphaithu">0</span> VND</p>
       </div>
     </div>
     <div class="formGiamgiahang"></div>
@@ -170,7 +173,7 @@
                   value="Giảm 500,000 giá trị đơn hàng"
                   style="width: 100%"
                 />
-                <input type="hidden" class="khuyenmai" value="giamgiahang" />
+                <input type="hidden" class="khuyenmaigiamdon" value="5000" />
               </div>
             </td>
           </tr>
