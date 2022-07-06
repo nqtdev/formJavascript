@@ -801,11 +801,12 @@ for(let i=0; i < arrTotalHangTang.length;i++){
         hello()
 }
 function hello(){
-  if(document.querySelector("#option-a").checked == true){
+  var he1=0;
+  if(document.querySelector("#option-b").checked == true){
     let valueGiamGiaDon = document.querySelector(".khuyenmaigiamdon");
     var he = document.querySelector("#Valuegiamgiadonhang");
     he.innerHTML = valueGiamGiaDon.value;
- var he1 = valueGiamGiaDon.value;
+    he1 = valueGiamGiaDon.value;
   }
   var giaphaitra = document.querySelectorAll(".giaphaitra");
   var ValueGiaGiam = 0;
