@@ -114,6 +114,7 @@ function Delete(x) {
   }
   cartTotal();
 }
+function DeleteAll(x) {}
 // xử lý trùng item
 // đưa dữ liệu đã chọn trong select ra table item
 function renderTable() {
@@ -157,7 +158,7 @@ function cartTotal() {
     totalC += totalA;
   }
   var CartTotal = document.querySelector("#price-total span");
-  CartTotal.innerHTML = totalC
+  CartTotal.innerHTML = totalC;
 }
 function InputChange() {
   var cartItem = document.querySelectorAll(".table_item tr");
@@ -225,6 +226,7 @@ window.onclick = function (event) {
 // tăng giảm số lượng
 //                                    -------------------Hàng Tặng----------------------
 // gọi dữ liệu từ json
+
 fetch("hangtang.json")
   .then(function (response) {
     return response.json();
@@ -271,11 +273,6 @@ btnShow2.addEventListener("click", () => {
           alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
           return;
         }
-        //  if(codeItem == arrChooseItem[i].id)
-        //  {
-        //    var codeitem = checkbox.parentElement.querySelector('.id')
-        //    codeitem.parentElement.querySelector('input[type="checkbox"]').checked = true;
-        //  }
       }
       arrChooseItem.push({
         id: codeItem,
@@ -385,7 +382,7 @@ btnShow3.addEventListener("click", () => {
       var codeItem1 = checkbox1.parentElement.querySelector(".id").value;
       var nameItem1 = checkbox1.parentElement.querySelector(".name").value;
       var priceItem1 = checkbox1.parentElement.querySelector(".price").value;
-      var SaleItem1 = checkbox1.parentElement.querySelector('.sale').value
+      var SaleItem1 = checkbox1.parentElement.querySelector(".sale").value;
       for (let i = 0; i < arrChooseItem1.length; i++) {
         if (codeItem1 == arrChooseItem1[i].id) {
           alert("sản phẩm khuyến mãi đã có trong giỏ hàng");
@@ -441,7 +438,6 @@ function TotalItem1() {
     var tong1 = arrChooseItem1[i].price * up[i].value - arrChooseItem1[i].sale;
     tongtai1 += tong1;
   }
-  console.log(tongtai1)
   document.querySelector("#tt4").innerHTML = tongtai1;
 }
 function countUp1(x) {
@@ -451,21 +447,20 @@ function countUp1(x) {
   TotalItem1();
 }
 
-function abc(list){
-  let tbody = '';
-  for(var i = 0; i < list.length; i++){
+function abc(list) {
+  let tbody = "";
+  for (var i = 0; i < list.length; i++) {
     var product = list[i];
-    tbody += '<tr>';
-    tbody += '<td>' + product.Code+'</td>';
-    tbody += '<td>' + product.Name+'</td>';
-    tbody +='</tr>';
+    tbody += "<tr>";
+    tbody += "<td>" + product.Code + "</td>";
+    tbody += "<td>" + product.Name + "</td>";
+    tbody += "</tr>";
   }
 
-  var tr = `<tr><td>${product.Code}}</td</tr>`
+  var tr = `<tr><td>${product.Code}}</td</tr>`;
 }
 
 function countDown1(x) {
-
   let up = x.parentElement.querySelector(".txt_invoer2");
   var i = parseInt(up.value, 0);
   up.value = --i;
@@ -578,7 +573,6 @@ function TotalItem2() {
     var tong2 = arrChooseItem2[i].price * up[i].value;
     tongtai2 += tong2;
   }
-  console.log(tongtai2)
   document.querySelector("#tt3").innerHTML = tongtai2;
 }
 function countUp2(x) {
@@ -638,7 +632,6 @@ function DeleteVoucher(x) {
   TotalItem();
 }
 
-
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
 function checkAll(myCheckbox) {
@@ -655,35 +648,60 @@ function checkAll(myCheckbox) {
 // ----------- In hàng tặng ra màn hình main------------------\
 let btnShowMain = document.querySelector("#btn-main");
 btnShowMain.addEventListener("click", () => {
-
-
   let modalMain = document.querySelector("#modal-contentTable");
   let modalMainTr = modalMain.querySelectorAll(".tr-modal");
-  console.log(modalMainTr);
   for (let i = 0; i < modalMainTr.length; i++) {
     var checkboxMain = modalMainTr[i].querySelector('input[type="checkbox"]');
     if (checkboxMain.checked == true) {
-      let NameModalMain = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")
-      for(let i=0;i< NameModalMain.length;i++){
-        let NameItemHangTang = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1")[i].value;
-        let PriceItemlMain = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem1")[i].value;
-        let IdItemlMain = checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem1")[i].value;
-        let AmoutItemMain = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer")[i].value;
+      let NameModalMain =
+        checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem1");
+      for (let i = 0; i < NameModalMain.length; i++) {
+        let NameItemHangTang =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".nameItem1"
+          )[i].value;
+        let PriceItemlMain =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".PriceItem1"
+          )[i].value;
+        let IdItemlMain =
+          checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem1")[
+            i
+          ].value;
+        let AmoutItemMain =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".txt_invoer"
+          )[i].value;
         arrTotalHangTang.push({
-          id:IdItemlMain,
+          id: IdItemlMain,
           name: NameItemHangTang,
           price: PriceItemlMain,
           amout: AmoutItemMain,
-          
         });
       }
-      let NameModalMain2 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem2")
-      for(let i=0;i< NameModalMain2.length;i++){
-        let NameItemHangTang1 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem2")[i].value;
-        let IdItemlMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem2")[i].value;
-        let PriceItemlMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem2")[i].value;
-        let AmoutItemMain1 = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer2")[i].value;
-        let SaleItem1 = checkboxMain.parentElement.parentElement.querySelectorAll(".SaleItem2")[i].value;
+      let NameModalMain2 =
+        checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem2");
+      for (let i = 0; i < NameModalMain2.length; i++) {
+        let NameItemHangTang1 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".nameItem2"
+          )[i].value;
+        let IdItemlMain1 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem2")[
+            i
+          ].value;
+        let PriceItemlMain1 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".PriceItem2"
+          )[i].value;
+        let AmoutItemMain1 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".txt_invoer2"
+          )[i].value;
+        let SaleItem1 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".SaleItem2"
+          )[i].value;
         arrTotalHangGiamGia.push({
           id: IdItemlMain1,
           name: NameItemHangTang1,
@@ -693,12 +711,25 @@ btnShowMain.addEventListener("click", () => {
         });
       }
 
-      let NameModalMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem3")
-      for(let i=0;i< NameModalMain3.length;i++){
-        let NameItemHangTang3 = checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem3")[i].value;
-        let IdItemlMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem3")[i].value;
-        let PriceItemlMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".PriceItem3")[i].value;
-        let AmoutItemMain3 = checkboxMain.parentElement.parentElement.querySelectorAll(".txt_invoer3")[i].value;
+      let NameModalMain3 =
+        checkboxMain.parentElement.parentElement.querySelectorAll(".nameItem3");
+      for (let i = 0; i < NameModalMain3.length; i++) {
+        let NameItemHangTang3 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".nameItem3"
+          )[i].value;
+        let IdItemlMain3 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(".IdItem3")[
+            i
+          ].value;
+        let PriceItemlMain3 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".PriceItem3"
+          )[i].value;
+        let AmoutItemMain3 =
+          checkboxMain.parentElement.parentElement.querySelectorAll(
+            ".txt_invoer3"
+          )[i].value;
         arrTotalHangTangPro.push({
           id: IdItemlMain3,
           name: NameItemHangTang3,
@@ -708,56 +739,70 @@ btnShowMain.addEventListener("click", () => {
       }
     }
   }
-  console.log(arrTotalHangTang)
-  console.log(arrTotalHangGiamGia)
-  console.log(arrTotalHangTangPro)
-  checkAmoutItem(arrTotalHangTang,arrTotalHangGiamGia,arrTotalHangTangPro )
+  // console.log(arrTotalHangTang);
+  // console.log(arrTotalHangGiamGia);
+  // console.log(arrTotalHangTangPro);
+  checkAmoutItem(arrTotalHangTang, arrTotalHangGiamGia, arrTotalHangTangPro);
 });
 
-function checkAmoutItem(amoutTotalHangTang,amoutTotalHangGiamGia, arrTotalHangTangPro  ){
-  let amoutTotalHangTang1 = 0
-  for(let i=0; i<amoutTotalHangTang.length;i++){
-      amoutTotalHangTang1 += parseInt(arrTotalHangTang[i].amout)
+function checkAmoutItem(
+  amoutTotalHangTang,
+  amoutTotalHangGiamGia,
+  arrTotalHangTangPro
+) {
+  let amoutTotalHangTang1 = 0;
+  for (let i = 0; i < amoutTotalHangTang.length; i++) {
+    amoutTotalHangTang1 += parseInt(arrTotalHangTang[i].amout);
   }
-  if(amoutTotalHangTang1 <= 10){
-    let amoutTotalHangTangPro1 = 0
-    for(let i=0; i<arrTotalHangTangPro.length;i++){
-      amoutTotalHangTangPro1 += parseInt(arrTotalHangTangPro[i].amout)
-  
+  if (amoutTotalHangTang1 <= 10) {
+    let amoutTotalHangTangPro1 = 0;
+    for (let i = 0; i < arrTotalHangTangPro.length; i++) {
+      amoutTotalHangTangPro1 += parseInt(arrTotalHangTangPro[i].amout);
     }
-    if(amoutTotalHangTangPro1 <= 5){
-      let amoutTotalHangGiamGia = 0
-      for(let i=0; i<arrTotalHangGiamGia.length;i++){
-        amoutTotalHangGiamGia += parseInt(arrTotalHangGiamGia[i].amout)
-    
+    if (amoutTotalHangTangPro1 <= 5) {
+      let amoutTotalHangGiamGia = 0;
+      for (let i = 0; i < arrTotalHangGiamGia.length; i++) {
+        amoutTotalHangGiamGia += parseInt(arrTotalHangGiamGia[i].amout);
       }
-      if(amoutTotalHangGiamGia <= 3){
-        renderDataKhuyenMai()
-      }
-      else{
-        alert('Sản phẩm hàng giảm giá 2.4 chọn đã vượt quá số lượng');
+      if (amoutTotalHangGiamGia <= 3) {
+        renderDataKhuyenMai();
+      } else {
+        confirm("Sản phẩm hàng giảm giá 2.4 chọn đã vượt quá số lượng");
+        const numbers24 = arrTotalHangGiamGia;
+        numbers24.length = 0;
+        arrTotalHangTang = [];
+        arrTotalHangGiamGia = [];
+        arrTotalHangTangPro = [];
         return;
       }
-    }
-    else{
-      alert('Sản phẩm Hàng giảm giá 2.3 chọn đã vượt quá số lượng');
+    } else {
+      confirm("Sản phẩm Hàng giảm giá 2.3 chọn đã vượt quá số lượng");
+      const numbers23 = arrTotalHangTangPro;
+      numbers23.length = 0;
+      arrTotalHangTang = [];
+      arrTotalHangGiamGia = [];
+      arrTotalHangTangPro = [];
       return;
     }
-  
-  }
-  else{
-    alert('Sản phẩm chọn Hàng khuyến mãi 2.2 đã vượt quá số lượng');
+  } else {
+    confirm("Sản phẩm chọn Hàng khuyến mãi 2.2 đã vượt quá số lượng");
+
+    const numbers22 = amoutTotalHangTang;
+    numbers22.splice(0, amoutTotalHangTang.length);
+    numbers22.length = 0;
+    arrTotalHangTang = [];
+    arrTotalHangGiamGia = [];
+    arrTotalHangTangPro = [];
     return;
   }
-
 }
 
-function renderDataKhuyenMai(){
+function renderDataKhuyenMai() {
   var popup = document.querySelector("#tablePopupRender");
-  hangtang = ''
-for(let i=0; i < arrTotalHangTang.length;i++){
-  let tt03 = arrTotalHangTang[i].price * arrTotalHangTang[i].amout
-  hangtang += `
+  hangtang = "";
+  for (let i = 0; i < arrTotalHangTang.length; i++) {
+    let tt03 = arrTotalHangTang[i].price * arrTotalHangTang[i].amout;
+    hangtang += `
           <tr>
           <td style='text-align:start'> 
           <span class='name'>
@@ -767,7 +812,7 @@ for(let i=0; i < arrTotalHangTang.length;i++){
           <td style='width:110px;text-align:end'>${arrTotalHangTang[i].amout}</td>
           <td style='width:110px;text-align:end'> <span class='tt'>
           <p>0</p>
-          <p style="text-decoration: line-through;color:red;font-weight:300">${ arrTotalHangTang[i].price}</p>
+          <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangTang[i].price}</p>
           </span></td>
           <td style='width:110px;text-align:end'> 
           <span class='tt'>
@@ -776,14 +821,14 @@ for(let i=0; i < arrTotalHangTang.length;i++){
           </span>
           </td>
           </tr>`;
-    }
-    popup.innerHTML = hangtang;
+  }
+  popup.innerHTML = hangtang;
+  // document.getElementById("table_item_hh").innerText = [];
 
-
-    var popup1 = document.querySelector("#tablePopupRender1");
-    hangpro = ''
-  for(let i=0; i < arrTotalHangTangPro.length;i++){
-    let tt02 = arrTotalHangTangPro[i].price * arrTotalHangTangPro[i].amout
+  var popup1 = document.querySelector("#tablePopupRender1");
+  hangpro = "";
+  for (let i = 0; i < arrTotalHangTangPro.length; i++) {
+    let tt02 = arrTotalHangTangPro[i].price * arrTotalHangTangPro[i].amout;
     hangpro += `
             <tr>
             <td style='text-align:start'> 
@@ -803,16 +848,15 @@ for(let i=0; i < arrTotalHangTang.length;i++){
             </span>
             </td>
             </tr>`;
-      }
-      popup1.innerHTML = hangpro;
+  }
+  popup1.innerHTML = hangpro;
 
-
-      var popup2 = document.querySelector("#tablePopupRender2");
-      hangGiam = ''
-    for(let i=0; i < arrTotalHangGiamGia.length;i++){
-      let tt01 = arrTotalHangGiamGia[i].price - arrTotalHangGiamGia[i].sale;
-      let th01 = tt01* arrTotalHangGiamGia[i].amout;
-      hangGiam += `
+  var popup2 = document.querySelector("#tablePopupRender2");
+  hangGiam = "";
+  for (let i = 0; i < arrTotalHangGiamGia.length; i++) {
+    let tt01 = arrTotalHangGiamGia[i].price - arrTotalHangGiamGia[i].sale;
+    let th01 = tt01 * arrTotalHangGiamGia[i].amout;
+    hangGiam += `
               <tr>
               <td style='text-align:start'> 
               <span class='name'>
@@ -834,14 +878,17 @@ for(let i=0; i < arrTotalHangTang.length;i++){
               </span>
               </td>
               </tr>`;
-        }
+  }
 
-        popup2.innerHTML = hangGiam;
-        hello()
+  popup2.innerHTML = hangGiam;
+  hello();
+  arrTotalHangTang = [];
+  arrTotalHangGiamGia = [];
+  arrTotalHangTangPro = [];
 }
-function hello(){
-  var he1=0;
-  if(document.querySelector("#option-b").checked == true){
+function hello() {
+  var he1 = 0;
+  if (document.querySelector("#option-b").checked == true) {
     let valueGiamGiaDon = document.querySelector(".khuyenmaigiamdon");
     var he = document.querySelector("#Valuegiamgiadonhang");
     he.innerHTML = valueGiamGiaDon.value;
@@ -849,17 +896,27 @@ function hello(){
   }
   var giaphaitra = document.querySelectorAll(".giaphaitra");
   var ValueGiaGiam = 0;
-  for(let i=0; i< giaphaitra.length;i++)
-  {
+  for (let i = 0; i < giaphaitra.length; i++) {
     var valueGia = giaphaitra[i].innerText;
-    console.log(giaphaitra[i].innerText)
     ValueGiaGiam += parseInt(valueGia);
   }
-  var tongtienhang1 = document.querySelector("#tongtienhang1")
+  var tongtienhang1 = document.querySelector("#tongtienhang1");
   var tongtienhang = document.querySelector("#tongtienhang").innerText;
   var tongphaithu = document.querySelector("#tongphaithu");
   tongphaithu.innerHTML = parseInt(tongtienhang) + ValueGiaGiam - he1;
   tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
-
 }
-
+let checkChecked = document.querySelector("#btn-main");
+checkChecked.addEventListener("click", () => {
+  let checkmodal = document.querySelector("#modal-contentTable");
+  let checkmodalTr = checkmodal.querySelectorAll(".tr-modal");
+  console.log(checkmodalTr);
+  for (let i = 0; i < checkmodalTr.length; i++) {
+    var checkboxModal = checkmodalTr[i].querySelector("input[type=checkbox]");
+    if (checkboxModal.checked == true) {
+      checkboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
+    }
+  }
+});
