@@ -114,6 +114,7 @@ function Delete(x) {
   }
   cartTotal();
 }
+function DeleteAll(x) {}
 // xử lý trùng item
 // đưa dữ liệu đã chọn trong select ra table item
 function renderTable() {
@@ -204,11 +205,14 @@ btnApply.onclick = function () {
 btn.onclick = function () {
   modal.style.display = "block";
 };
+
 span.onclick = function () {
   modal.style.display = "none";
 };
-btnApply.onclick = function () {
-  modal.style.display = "none";
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 };
 
 // hang giam gia
@@ -220,8 +224,9 @@ window.onclick = function (event) {
 };
 
 // tăng giảm số lượng
-//     -------------------Hàng Tặng----------------------
+//                                    -------------------Hàng Tặng----------------------
 // gọi dữ liệu từ json
+
 fetch("hangtang.json")
   .then(function (response) {
     return response.json();
@@ -305,17 +310,11 @@ function TotalItem() {
   var up = document.querySelectorAll(".txt_invoer");
   var tongtai = 0;
   for (let i = 0; i < arrChooseItem.length; i++) {
-    if (up[i].value <= 10) {
-      var tong = arrChooseItem[i].price * up[i].value;
-      tongtai += tong;
-    } else {
-      alert("Sản phẩm khuyến mãi đã đạt giới hạn ");
-      return;
-    }
+    var tong = arrChooseItem[i].price * up[i].value;
+    tongtai += tong;
   }
   document.querySelector("#tt2").innerHTML = tongtai;
 }
-
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -435,19 +434,9 @@ function Delete3(x) {
 function TotalItem1() {
   var up = document.querySelectorAll(".txt_invoer2");
   var tongtai1 = 0;
-  // for (let i = 0; i < arrChooseItem1.length; i++) {
-  //   var tong1 = arrChooseItem1[i].price * up[i].value - arrChooseItem1[i].sale;
-  //   tongtai1 += tong1;
-  // }
   for (let i = 0; i < arrChooseItem1.length; i++) {
-    if (up[i].value < 2) {
-      var tong1 =
-        arrChooseItem1[i].price * up[i].value - arrChooseItem1[i].sale;
-      tongtai1 += tong1;
-    } else {
-      alert("Sản phẩm khuyến mãi đã đạt giới hạn");
-      return;
-    }
+    var tong1 = arrChooseItem1[i].price * up[i].value - arrChooseItem1[i].sale;
+    tongtai1 += tong1;
   }
   document.querySelector("#tt4").innerHTML = tongtai1;
 }
@@ -516,7 +505,6 @@ fetch("hangtangpro.json")
     }
     placeholder.innerHTML = out;
   });
-
 // lấy giá trị khi click checkbox
 let btnShow4 = document.querySelector("#btn12");
 btnShow4.addEventListener("click", () => {
@@ -582,13 +570,8 @@ function TotalItem2() {
   var up = document.querySelectorAll(".txt_invoer3");
   var tongtai2 = 0;
   for (let i = 0; i < arrChooseItem2.length; i++) {
-    if (up[i].value <= 5) {
-      var tong2 = arrChooseItem2[i].price * up[i].value;
-      tongtai2 += tong2;
-    } else {
-      alert("Sản phẩm khuyến mãi đã đạt giới hạn ");
-      return;
-    }
+    var tong2 = arrChooseItem2[i].price * up[i].value;
+    tongtai2 += tong2;
   }
   document.querySelector("#tt3").innerHTML = tongtai2;
 }
@@ -648,11 +631,7 @@ function DeleteVoucher(x) {
   }
   TotalItem();
 }
-function resetCheckbox() {
-  let checkBoxmain = document.querySelector("#btn-main");
-  let checBoxTr = checkBoxmain.querySelectorAll(".tr-modal");
-  console.log(checBoxTr);
-}
+
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
 function checkAll(myCheckbox) {
@@ -719,7 +698,6 @@ btnShowMain.addEventListener("click", () => {
           checkboxMain.parentElement.parentElement.querySelectorAll(
             ".txt_invoer2"
           )[i].value;
-
         let SaleItem1 =
           checkboxMain.parentElement.parentElement.querySelectorAll(
             ".SaleItem2"
@@ -761,9 +739,64 @@ btnShowMain.addEventListener("click", () => {
       }
     }
   }
-
-  renderDataKhuyenMai();
+  // console.log(arrTotalHangTang);
+  // console.log(arrTotalHangGiamGia);
+  // console.log(arrTotalHangTangPro);
+  checkAmoutItem(arrTotalHangTang, arrTotalHangGiamGia, arrTotalHangTangPro);
 });
+
+function checkAmoutItem(
+  amoutTotalHangTang,
+  amoutTotalHangGiamGia,
+  arrTotalHangTangPro
+) {
+  let amoutTotalHangTang1 = 0;
+  for (let i = 0; i < amoutTotalHangTang.length; i++) {
+    amoutTotalHangTang1 += parseInt(arrTotalHangTang[i].amout);
+  }
+  if (amoutTotalHangTang1 <= 10) {
+    let amoutTotalHangTangPro1 = 0;
+    for (let i = 0; i < arrTotalHangTangPro.length; i++) {
+      amoutTotalHangTangPro1 += parseInt(arrTotalHangTangPro[i].amout);
+    }
+    if (amoutTotalHangTangPro1 <= 5) {
+      let amoutTotalHangGiamGia = 0;
+      for (let i = 0; i < arrTotalHangGiamGia.length; i++) {
+        amoutTotalHangGiamGia += parseInt(arrTotalHangGiamGia[i].amout);
+      }
+      if (amoutTotalHangGiamGia <= 3) {
+        renderDataKhuyenMai();
+      } else {
+        confirm("Sản phẩm hàng giảm giá 2.4 chọn đã vượt quá số lượng");
+        const numbers24 = arrTotalHangGiamGia;
+        numbers24.length = 0;
+        arrTotalHangTang = [];
+        arrTotalHangGiamGia = [];
+        arrTotalHangTangPro = [];
+        return;
+      }
+    } else {
+      confirm("Sản phẩm Hàng giảm giá 2.3 chọn đã vượt quá số lượng");
+      const numbers23 = arrTotalHangTangPro;
+      numbers23.length = 0;
+      arrTotalHangTang = [];
+      arrTotalHangGiamGia = [];
+      arrTotalHangTangPro = [];
+      return;
+    }
+  } else {
+    confirm("Sản phẩm chọn Hàng khuyến mãi 2.2 đã vượt quá số lượng");
+
+    const numbers22 = amoutTotalHangTang;
+    numbers22.splice(0, amoutTotalHangTang.length);
+    numbers22.length = 0;
+    arrTotalHangTang = [];
+    arrTotalHangGiamGia = [];
+    arrTotalHangTangPro = [];
+    return;
+  }
+}
+
 function renderDataKhuyenMai() {
   var popup = document.querySelector("#tablePopupRender");
   hangtang = "";
@@ -776,12 +809,12 @@ function renderDataKhuyenMai() {
           <p>${arrTotalHangTang[i].name}</p>
           <p>${arrTotalHangTang[i].id}</p>
           </span>
-          <td style='width:170px;text-align:end'>${arrTotalHangTang[i].amout}</td>
-          <td style='width:145px;text-align:end'> <span class='tt'>
+          <td style='width:110px;text-align:end'>${arrTotalHangTang[i].amout}</td>
+          <td style='width:110px;text-align:end'> <span class='tt'>
           <p>0</p>
           <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangTang[i].price}</p>
           </span></td>
-          <td style='width:181px;text-align:end'> 
+          <td style='width:110px;text-align:end'> 
           <span class='tt'>
           <p>0</p>
           <p style="text-decoration: line-through;color:red;font-weight:300">${tt03}</p>
@@ -790,6 +823,7 @@ function renderDataKhuyenMai() {
           </tr>`;
   }
   popup.innerHTML = hangtang;
+  // document.getElementById("table_item_hh").innerText = [];
 
   var popup1 = document.querySelector("#tablePopupRender1");
   hangpro = "";
@@ -802,12 +836,12 @@ function renderDataKhuyenMai() {
             <p>${arrTotalHangTangPro[i].name}</p>
             <p>${arrTotalHangTangPro[i].id}</p>
             </span>
-            <td style='width:170px;text-align:end'>${arrTotalHangTangPro[i].amout}</td>
-            <td style='width:145px;text-align:end'> <span class='tt'>
+            <td style='width:110px;text-align:end'>${arrTotalHangTangPro[i].amout}</td>
+            <td style='width:110px;text-align:end'> <span class='tt'>
             <p>0</p>
             <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangTangPro[i].price}</p>
             </span></td>
-            <td style='width:181px;text-align:end'> 
+            <td style='width:110px;text-align:end'> 
             <span class='tt'>
             <p>0</p>
             <p style="text-decoration: line-through;color:red;font-weight:300">${tt02}</p>
@@ -829,14 +863,15 @@ function renderDataKhuyenMai() {
               <p>${arrTotalHangGiamGia[i].name}</p>
               <p>${arrTotalHangGiamGia[i].id}</p>
               </span>
-              <td style='width:170px;text-align:end'>${arrTotalHangGiamGia[i].amout}</td>
-              <td style='width:145px;text-align:end'> 
+              <td style='width:110px;text-align:end'>${arrTotalHangGiamGia[i].amout}</td>
+              <td style='width:110px;text-align:end'> 
               <span class='tt'>
               <p>${tt01}</p>
               <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangGiamGia[i].sale}</p>
+              
               </span>
               </td>
-              <td style='width:181px;text-align:end'> 
+              <td style='width:110px;text-align:end'> 
               <span class='tt'>
               <p class="giaphaitra">${th01}</p>
               <p style="text-decoration: line-through;color:red;font-weight:300">${arrTotalHangGiamGia[i].sale}</p>
@@ -847,6 +882,9 @@ function renderDataKhuyenMai() {
 
   popup2.innerHTML = hangGiam;
   hello();
+  arrTotalHangTang = [];
+  arrTotalHangGiamGia = [];
+  arrTotalHangTangPro = [];
 }
 function hello() {
   var he1 = 0;
@@ -860,7 +898,6 @@ function hello() {
   var ValueGiaGiam = 0;
   for (let i = 0; i < giaphaitra.length; i++) {
     var valueGia = giaphaitra[i].innerText;
-    console.log(giaphaitra[i].innerText);
     ValueGiaGiam += parseInt(valueGia);
   }
   var tongtienhang1 = document.querySelector("#tongtienhang1");
@@ -869,10 +906,17 @@ function hello() {
   tongphaithu.innerHTML = parseInt(tongtienhang) + ValueGiaGiam - he1;
   tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
 }
-console.log(arrTotalHangGiamGia);
-console.log(arrTotalHangTangPro);
-console.log(arrTotalHangTang);
-
-document.getElementById("btntanghang1").onclick = function () {
-  document.querySelector("#oneScreen").style.display = "none";
-};
+let checkChecked = document.querySelector("#btn-main");
+checkChecked.addEventListener("click", () => {
+  let checkmodal = document.querySelector("#modal-contentTable");
+  let checkmodalTr = checkmodal.querySelectorAll(".tr-modal");
+  console.log(checkmodalTr);
+  for (let i = 0; i < checkmodalTr.length; i++) {
+    var checkboxModal = checkmodalTr[i].querySelector("input[type=checkbox]");
+    if (checkboxModal.checked == true) {
+      checkboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
+    }
+  }
+});
