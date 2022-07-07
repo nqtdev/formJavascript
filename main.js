@@ -907,6 +907,7 @@ function hello() {
   tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
 }
 let checkChecked = document.querySelector("#btn-main");
+// xử lý huỷ nút checkbox hàng khuyến mại khi in ra màn hình main
 checkChecked.addEventListener("click", () => {
   let checkmodal = document.querySelector("#modal-contentTable");
   let checkmodalTr = checkmodal.querySelectorAll(".tr-modal");
