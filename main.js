@@ -309,7 +309,7 @@ function TotalItem() {
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
-  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
+  var nameItem = tr.children[1].querySelector(".itemlist").innerText;
   tr.remove();
   // xoá array
   for (let i = 0; i < arrChooseItem.length; i++) {
@@ -323,22 +323,28 @@ function Delete2(x) {
   let modal_tbodyjs = modal_tablejs.querySelector("tbody");
   let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
   for (let i = 0; i < modal_rowjs.length; i++) {
-    let get22tdjs1 = modal_rowjs[i].querySelector(".check");
-    if (get22tdjs1.checked == true) {
-      var get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    var get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    console.log(get22tdjs);
+    if (get22tdjs == nameItem) {
+      let checkbox22 = modal_rowjs[i].querySelector(".check");
+      console.log(checkbox22);
+      checkbox22.checked = false;
+      break;
     }
-  }
-  console.log(nameItem);
-  console.log(get22tdjs);
-  if (nameItem == get22tdjs) {
-    var modal_hang = document.querySelector(".modal_hanghoa");
-    var modal_table = modal_hang.querySelector("table");
-    var modal_tbody = modal_table.querySelector("tbody");
-    var modal_row = modal_tbody.getElementsByTagName("tr");
-    for (let i = 0; i < modal_row.length; i++) {
-      var checkbox = modal_row[i].querySelector(".check");
-      checkbox.checked = false;
-    }
+
+    //   if (nameItem == get22tdjs) {
+    //     var modal_hang = document.querySelector(".modal_hanghoa");
+    //     var modal_table = modal_hang.querySelector("table");
+    //     var modal_tbody = modal_table.querySelector("tbody");
+    //     var modal_row = modal_tbody.getElementsByTagName("tr");
+    //     for (let i = 0; i < modal_row.length; i++) {
+    //       let checkbox22 = modal_row[i].querySelector(".check");
+    //       console.log(checkbox22);
+    //       checkbox22[i].checked = false;
+    //       break;
+    //     }
+    //   }
+    //
   }
 }
 function countUp(x) {
