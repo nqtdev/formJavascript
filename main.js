@@ -251,7 +251,6 @@ fetch("hangtang.json")
     }
     placeholder.innerHTML = out;
   });
-
 // lấy giá trị khi click checkbox
 let btnShow2 = document.querySelector("#btntanghang1");
 btnShow2.addEventListener("click", () => {
@@ -260,10 +259,7 @@ btnShow2.addEventListener("click", () => {
   var modal_tbody = modal_table.querySelector("tbody");
   var modal_row = modal_tbody.getElementsByTagName("tr");
   for (let i = 0; i < modal_row.length; i++) {
-    var td = modal_row[i].getElementsByClassName("inputcheck");
-    // var input =  td.getElementsByClassName('check');
-    var checkbox = modal_row[i].querySelector('input[type="checkbox"]');
-
+    var checkbox = modal_row[i].querySelector(".check");
     if (checkbox.checked == true) {
       var codeItem = checkbox.parentElement.querySelector(".id").value;
       var nameItem = checkbox.parentElement.querySelector(".name").value;
@@ -296,11 +292,6 @@ btnShow2.addEventListener("click", () => {
         width: 50px;" value="1" ><button onclick="countDown(this)">-</button></td>
     </tr>
     `;
-    if (
-      checkbox.parentElement.querySelector(".id").value == arrChooseItem[i].id
-    ) {
-      checkbox.checked = true;
-    }
   }
   document.querySelector("#table_item_hh").innerHTML = addtr2;
   alert("Thêm sản phẩm khuyến mãi thành công");
@@ -327,6 +318,28 @@ function Delete2(x) {
     }
   }
   TotalItem();
+  let modal_hangjs = document.querySelector(".modal_hanghoa");
+  let modal_tablejs = modal_hangjs.querySelector("table");
+  let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+  let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+  for (let i = 0; i < modal_rowjs.length; i++) {
+    let get22tdjs1 = modal_rowjs[i].querySelector(".check");
+    if (get22tdjs1.checked == true) {
+      var get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    }
+  }
+  console.log(nameItem);
+  console.log(get22tdjs);
+  if (nameItem == get22tdjs) {
+    var modal_hang = document.querySelector(".modal_hanghoa");
+    var modal_table = modal_hang.querySelector("table");
+    var modal_tbody = modal_table.querySelector("tbody");
+    var modal_row = modal_tbody.getElementsByTagName("tr");
+    for (let i = 0; i < modal_row.length; i++) {
+      var checkbox = modal_row[i].querySelector(".check");
+      checkbox.checked = false;
+    }
+  }
 }
 function countUp(x) {
   let up = x.parentElement.querySelector(".txt_invoer");
@@ -823,7 +836,6 @@ function renderDataKhuyenMai() {
           </tr>`;
   }
   popup.innerHTML = hangtang;
-  // document.getElementById("table_item_hh").innerText = [];
 
   var popup1 = document.querySelector("#tablePopupRender1");
   hangpro = "";
@@ -907,10 +919,10 @@ function hello() {
   tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
 }
 let checkChecked = document.querySelector("#btn-main");
+// xử lý huỷ nút checkbox hàng khuyến mại khi in ra màn hình main
 checkChecked.addEventListener("click", () => {
   let checkmodal = document.querySelector("#modal-contentTable");
   let checkmodalTr = checkmodal.querySelectorAll(".tr-modal");
-  console.log(checkmodalTr);
   for (let i = 0; i < checkmodalTr.length; i++) {
     var checkboxModal = checkmodalTr[i].querySelector("input[type=checkbox]");
     if (checkboxModal.checked == true) {
