@@ -323,7 +323,7 @@ function Delete2(x) {
   let modal_tbodyjs = modal_tablejs.querySelector("tbody");
   let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
   for (let i = 0; i < modal_rowjs.length; i++) {
-    var get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    let get22tdjs = modal_rowjs[i].querySelector(".name").value;
     console.log(get22tdjs);
     if (get22tdjs == nameItem) {
       let checkbox22 = modal_rowjs[i].querySelector(".check");
@@ -331,20 +331,6 @@ function Delete2(x) {
       checkbox22.checked = false;
       break;
     }
-
-    //   if (nameItem == get22tdjs) {
-    //     var modal_hang = document.querySelector(".modal_hanghoa");
-    //     var modal_table = modal_hang.querySelector("table");
-    //     var modal_tbody = modal_table.querySelector("tbody");
-    //     var modal_row = modal_tbody.getElementsByTagName("tr");
-    //     for (let i = 0; i < modal_row.length; i++) {
-    //       let checkbox22 = modal_row[i].querySelector(".check");
-    //       console.log(checkbox22);
-    //       checkbox22[i].checked = false;
-    //       break;
-    //     }
-    //   }
-    //
   }
 }
 function countUp(x) {
@@ -449,6 +435,20 @@ function Delete3(x) {
     }
   }
   TotalItem1();
+  let modal_hangjs = document.querySelector(".modal_hanghoa1");
+  let modal_tablejs = modal_hangjs.querySelector("table");
+  let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+  let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+  for (let i = 0; i < modal_rowjs.length; i++) {
+    let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    console.log(get22tdjs);
+    if (get22tdjs == nameItem) {
+      let checkbox22 = modal_rowjs[i].querySelector(".check");
+      console.log(checkbox22);
+      checkbox22.checked = false;
+      break;
+    }
+  }
 }
 function TotalItem1() {
   var up = document.querySelectorAll(".txt_invoer2");
@@ -584,6 +584,19 @@ function Delete4(x) {
     }
   }
   TotalItem2();
+  let modal_hangjs = document.querySelector(".modal_hanghoa2");
+  let modal_tablejs = modal_hangjs.querySelector("table");
+  let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+  let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+  for (let i = 0; i < modal_rowjs.length; i++) {
+    let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    if (get22tdjs == nameItem2) {
+      let checkbox22 = modal_rowjs[i].querySelector(".check");
+      console.log(checkbox22);
+      checkbox22.checked = false;
+      break;
+    }
+  }
 }
 function TotalItem2() {
   var up = document.querySelectorAll(".txt_invoer3");
