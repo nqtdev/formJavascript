@@ -296,6 +296,7 @@ btnShow2.addEventListener("click", () => {
   document.querySelector("#table_item_hh").innerHTML = addtr2;
   alert("Thêm sản phẩm khuyến mãi thành công");
   TotalItem();
+  NumberItem();
 });
 function TotalItem() {
   var up = document.querySelectorAll(".txt_invoer");
@@ -306,6 +307,16 @@ function TotalItem() {
   }
   document.querySelector("#tt2").innerHTML = tongtai;
 }
+function NumberItem() {
+  var up = document.querySelectorAll(".txt_invoer");
+  var sumAmout = 0;
+  for (let i = 0; i < arrChooseItem.length; i++) {
+    var sumAmout1 = up[i].value;
+    sumAmout += sumAmout1;
+  }
+  document.querySelector("#sp2").innerHTML = sumAmout;
+}
+
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -338,12 +349,14 @@ function countUp(x) {
   var i = parseInt(up.value, 10);
   up.value = ++i;
   TotalItem();
+  NumberItem();
 }
 function countDown(x) {
   let up = x.parentElement.querySelector(".txt_invoer");
   var i = parseInt(up.value, 0);
   up.value = --i;
   TotalItem();
+  NumberItem();
 }
 
 // -------------- Hàng giảm giá-----------------
