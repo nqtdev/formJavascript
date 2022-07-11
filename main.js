@@ -309,7 +309,7 @@ function TotalItem() {
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
-  let nameItem = tr.children[1].querySelector(".itemlist").innerText;
+  var nameItem = tr.children[1].querySelector(".itemlist").innerText;
   tr.remove();
   // xoá array
   for (let i = 0; i < arrChooseItem.length; i++) {
@@ -323,21 +323,13 @@ function Delete2(x) {
   let modal_tbodyjs = modal_tablejs.querySelector("tbody");
   let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
   for (let i = 0; i < modal_rowjs.length; i++) {
-    let get22tdjs1 = modal_rowjs[i].querySelector(".check");
-    if (get22tdjs1.checked == true) {
-      var get22tdjs = modal_rowjs[i].querySelector(".name").value;
-    }
-  }
-  console.log(nameItem);
-  console.log(get22tdjs);
-  if (nameItem == get22tdjs) {
-    var modal_hang = document.querySelector(".modal_hanghoa");
-    var modal_table = modal_hang.querySelector("table");
-    var modal_tbody = modal_table.querySelector("tbody");
-    var modal_row = modal_tbody.getElementsByTagName("tr");
-    for (let i = 0; i < modal_row.length; i++) {
-      var checkbox = modal_row[i].querySelector(".check");
-      checkbox.checked = false;
+    let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    console.log(get22tdjs);
+    if (get22tdjs == nameItem) {
+      let checkbox22 = modal_rowjs[i].querySelector(".check");
+      console.log(checkbox22);
+      checkbox22.checked = false;
+      break;
     }
   }
 }
@@ -443,6 +435,20 @@ function Delete3(x) {
     }
   }
   TotalItem1();
+  let modal_hangjs = document.querySelector(".modal_hanghoa1");
+  let modal_tablejs = modal_hangjs.querySelector("table");
+  let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+  let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+  for (let i = 0; i < modal_rowjs.length; i++) {
+    let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    console.log(get22tdjs);
+    if (get22tdjs == nameItem) {
+      let checkbox22 = modal_rowjs[i].querySelector(".check");
+      console.log(checkbox22);
+      checkbox22.checked = false;
+      break;
+    }
+  }
 }
 function TotalItem1() {
   var up = document.querySelectorAll(".txt_invoer2");
@@ -578,6 +584,19 @@ function Delete4(x) {
     }
   }
   TotalItem2();
+  let modal_hangjs = document.querySelector(".modal_hanghoa2");
+  let modal_tablejs = modal_hangjs.querySelector("table");
+  let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+  let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+  for (let i = 0; i < modal_rowjs.length; i++) {
+    let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+    if (get22tdjs == nameItem2) {
+      let checkbox22 = modal_rowjs[i].querySelector(".check");
+      console.log(checkbox22);
+      checkbox22.checked = false;
+      break;
+    }
+  }
 }
 function TotalItem2() {
   var up = document.querySelectorAll(".txt_invoer3");
