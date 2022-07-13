@@ -170,29 +170,6 @@ function InputChange() {
   }
 }
 
-// ẨN HIỆN POPUP SẢN PHẨM
-document.querySelector("#oneScreen").style.display = "none";
-document.querySelector("#oneScreen2").style.display = "none";
-document.getElementById("btntanghang1").onclick = function () {
-  document.querySelector("#oneScreen").style.display = "none";
-};
-document.querySelector("#btntanghang2").onclick = function () {
-  document.querySelector("#oneScreen").style.display = "none";
-};
-
-document.getElementById("btngiamgia1").onclick = function () {
-  document.querySelector("#oneScreen2").style.display = "none";
-};
-document.querySelector("#btngiamgia2").onclick = function () {
-  document.querySelector("#oneScreen2").style.display = "none";
-};
-document.querySelector(".modalSearch").onclick = function () {
-  document.querySelector("#oneScreen").style.display = "block";
-};
-document.querySelector(".modalSearch2").onclick = function () {
-  document.querySelector("#oneScreen2").style.display = "block";
-};
-
 // modal
 var modal = document.getElementById("myModal");
 var table = document.getElementById("showItem");
@@ -223,8 +200,7 @@ window.onclick = function (event) {
   }
 };
 
-// tăng giảm số lượng
-//                                    -------------------Hàng Tặng----------------------
+// -------------- Hàng giảm giá 2.2 -----------------
 // gọi dữ liệu từ json
 
 fetch("hangtang.json")
@@ -317,6 +293,19 @@ function NumberItem() {
   document.querySelector("#sp2").innerHTML = sumAmout;
 }
 
+// hiện popup 2.2
+document.querySelector("#oneScreen").style.display = "none";
+document.querySelector(".modalSearch").onclick = function () {
+  document.querySelector("#oneScreen").style.display = "block";
+  checkedPopupChild();
+};
+document.getElementById("btntanghang1").onclick = function () {
+  document.querySelector("#oneScreen").style.display = "none";
+};
+document.querySelector("#btntanghang2").onclick = function () {
+  document.querySelector("#oneScreen").style.display = "none";
+};
+// Xoá 2.2
 function Delete2(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -335,15 +324,38 @@ function Delete2(x) {
   let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
   for (let i = 0; i < modal_rowjs.length; i++) {
     let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-    console.log(get22tdjs);
     if (get22tdjs == nameItem) {
       let checkbox22 = modal_rowjs[i].querySelector(".check");
-      console.log(checkbox22);
       checkbox22.checked = false;
       break;
     }
   }
 }
+// Xử lý đánh dấu checked khi mở popup 2.2
+let checkedPopupChild = () => {
+  let getName22modal = document.querySelector("#table_item_hh");
+  let getName22modaltr = getName22modal.querySelectorAll("tr");
+  console.log(getName22modaltr);
+  for (let i = 0; i < getName22modaltr.length; i++) {
+    let getName22modalTd =
+      getName22modaltr[i].querySelector(".nameItem1").value;
+    console.log(getName22modalTd);
+    let modal_hangjs = document.querySelector(".modal_hanghoa");
+    let modal_tablejs = modal_hangjs.querySelector("table");
+    let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+    let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+    for (let i = 0; i < modal_rowjs.length; i++) {
+      let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+      console.log(get22tdjs);
+      if (get22tdjs == getName22modalTd) {
+        let checkbox22 = modal_rowjs[i].querySelector(".check");
+        console.log(checkbox22);
+        checkbox22.checked = true;
+        break;
+      }
+    }
+  }
+};
 function countUp(x) {
   let up = x.parentElement.querySelector(".txt_invoer");
   var i = parseInt(up.value, 10);
@@ -359,7 +371,7 @@ function countDown(x) {
   NumberItem();
 }
 
-// -------------- Hàng giảm giá-----------------
+// -------------- Hàng giảm giá 2.3  -----------------
 fetch("hanggiamgia.json")
   .then(function (response) {
     return response.json();
@@ -392,8 +404,6 @@ btnShow3.addEventListener("click", () => {
   var modal_tbody1 = modal_table1.querySelector("tbody");
   var modal_row1 = modal_tbody1.getElementsByTagName("tr");
   for (let i = 0; i < modal_row1.length; i++) {
-    var td = modal_row1[i].getElementsByClassName("inputcheck");
-    // var input =  td.getElementsByClassName('check');
     var checkbox1 = modal_row1[i].querySelector('input[type="checkbox"]');
 
     if (checkbox1.checked == true) {
@@ -436,6 +446,21 @@ btnShow3.addEventListener("click", () => {
   alert("Thêm sản phẩm khuyến mãi thành công");
   TotalItem1();
 });
+
+// hiện popup 2.3
+document.querySelector("#oneScreen2").style.display = "none";
+document.querySelector(".modalSearch2").onclick = function () {
+  document.querySelector("#oneScreen2").style.display = "block";
+  checkedPopupChild3();
+};
+document.getElementById("btngiamgia1").onclick = function () {
+  document.querySelector("#oneScreen2").style.display = "none";
+};
+document.querySelector("#btngiamgia2").onclick = function () {
+  document.querySelector("#oneScreen2").style.display = "none";
+};
+
+// xoá 2.3
 function Delete3(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -454,15 +479,40 @@ function Delete3(x) {
   let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
   for (let i = 0; i < modal_rowjs.length; i++) {
     let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-    console.log(get22tdjs);
+
     if (get22tdjs == nameItem) {
       let checkbox22 = modal_rowjs[i].querySelector(".check");
-      console.log(checkbox22);
+
       checkbox22.checked = false;
       break;
     }
   }
 }
+// Xử lý checked khi mở popup 2.3
+let checkedPopupChild3 = () => {
+  let getName22modal = document.querySelector("#hh_item2_3");
+  let getName22modaltr = getName22modal.querySelectorAll("tr");
+  console.log(getName22modaltr);
+  for (let i = 0; i < getName22modaltr.length; i++) {
+    let getName22modalTd =
+      getName22modaltr[i].querySelector(".nameItem2").value;
+    console.log(getName22modalTd);
+    let modal_hangjs = document.querySelector(".modal_hanghoa1");
+    let modal_tablejs = modal_hangjs.querySelector("table");
+    let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+    let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+    for (let i = 0; i < modal_rowjs.length; i++) {
+      let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+      console.log(get22tdjs);
+      if (get22tdjs == getName22modalTd) {
+        let checkbox22 = modal_rowjs[i].querySelector(".check");
+        console.log(checkbox22);
+        checkbox22.checked = true;
+        break;
+      }
+    }
+  }
+};
 function TotalItem1() {
   var up = document.querySelectorAll(".txt_invoer2");
   var tongtai1 = 0;
@@ -498,20 +548,8 @@ function countDown1(x) {
   up.value = --i;
   TotalItem1();
 }
-// ----------------- Tặng hàng promax -------------------------
+// ----------------- Tặng hàng promax 2.2  -------------------------
 
-// js hàng tặng 2.2 promax
-// modal hàng tặng 2
-document.querySelector("#oneScreen1").style.display = "none";
-document.querySelector("#btn22").onclick = function () {
-  document.querySelector("#oneScreen1").style.display = "none";
-};
-document.querySelector(".modalSearch1").onclick = function () {
-  document.querySelector("#oneScreen1").style.display = "block";
-};
-document.querySelector("#btn12").onclick = function () {
-  document.querySelector("#oneScreen1").style.display = "none";
-};
 // gọi dữ liệu từ json
 fetch("hangtangpro.json")
   .then(function (response) {
@@ -585,6 +623,46 @@ btnShow4.addEventListener("click", () => {
   alert("Thêm sản phẩm khuyến mãi thành công");
   TotalItem2();
 });
+
+// modal hàng tặng 2.2 promax
+document.querySelector("#oneScreen1").style.display = "none";
+document.querySelector("#btn22").onclick = function () {
+  document.querySelector("#oneScreen1").style.display = "none";
+};
+document.querySelector(".modalSearch1").onclick = function () {
+  document.querySelector("#oneScreen1").style.display = "block";
+  checkedPopupChild2();
+};
+document.querySelector("#btn12").onclick = function () {
+  document.querySelector("#oneScreen1").style.display = "none";
+};
+//  Xử lý checked khi mở popup 2.2 promax
+let checkedPopupChild2 = () => {
+  let getName22modal = document.querySelector("#table_item_hh1");
+  let getName22modaltr = getName22modal.querySelectorAll("tr");
+  console.log(getName22modaltr);
+  for (let i = 0; i < getName22modaltr.length; i++) {
+    let getName22modalTd =
+      getName22modaltr[i].querySelector(".nameItem3").value;
+    console.log(getName22modalTd);
+    let modal_hangjs = document.querySelector(".modal_hanghoa2");
+    let modal_tablejs = modal_hangjs.querySelector("table");
+    let modal_tbodyjs = modal_tablejs.querySelector("tbody");
+    let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
+    for (let i = 0; i < modal_rowjs.length; i++) {
+      let get22tdjs = modal_rowjs[i].querySelector(".name").value;
+      console.log(get22tdjs);
+      if (get22tdjs == getName22modalTd) {
+        let checkbox22 = modal_rowjs[i].querySelector(".check");
+        console.log(checkbox22);
+        checkbox22.checked = true;
+        break;
+      }
+    }
+  }
+};
+
+// Xoá Popup 2.2 promax
 function Delete4(x) {
   // xoá html
   let tr = x.parentElement.parentElement;
@@ -605,7 +683,7 @@ function Delete4(x) {
     let get22tdjs = modal_rowjs[i].querySelector(".name").value;
     if (get22tdjs == nameItem2) {
       let checkbox22 = modal_rowjs[i].querySelector(".check");
-      console.log(checkbox22);
+
       checkbox22.checked = false;
       break;
     }
