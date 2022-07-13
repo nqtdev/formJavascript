@@ -168,6 +168,7 @@
               >
                 <div style="width: 40%" ;>
                   <p style="margin: 0px">Giảm giá đơn hàng</p>
+
                 </div>
                 <div style="width: 60%">
                   <input
@@ -199,12 +200,9 @@
                   <span>
                     <p style="margin: 0px">Tặng hàng</p>
                     <p style="margin: 0px; color: #333333; font-weight: 500">
-                      Tối đa 10 sản phẩm
+                      10 sản phẩm
                     </p>
                   </span>
-                  <div id="number-total">
-                    <span>Bạn đã chọn : <span id="sp2"></span> Sản Phẩm</span>
-                  </div>
                   <div id="price-total">
                     <span>Giảm Giá Tặng Hàng: <span id="tt2">0</span> VND</span>
                   </div>
@@ -221,6 +219,7 @@
                     <tbody id="table_item_hh"></tbody>
                   </table>
                 </div>
+
               </td>
             </tr>
             <!-- tặng hàng 2.2 promax  -->
@@ -242,7 +241,7 @@
                   <span>
                     <p style="margin: 0px">Tặng hàng</p>
                     <p style="margin: 0px; color: #333333; font-weight: 500">
-                      Tối đa 5 sản phẩm
+                      5 sản phẩm
                     </p>
                   </span>
                   <div id="price-total">
@@ -283,7 +282,7 @@
                   <span>
                     <p style="margin: 0px">Giảm giá hàng</p>
                     <p style="margin: 0px; color: #333333; font-weight: 500">
-                      Tối đa 1 sản phẩm
+                      1 sản phẩm
                     </p>
                   </span>
                   <div id="price-total">
@@ -329,7 +328,7 @@
                   </div>
                 </div>
                 <div id="table_item1" style="width: 60%">
-                  <input
+                  <!-- <input
                     class="input-modal"
                     id="input-voucher"
                     type="text"
@@ -337,14 +336,22 @@
                   />
                   <table class="showItem2">
                     <tbody id="table_item_voucher"></tbody>
-                  </table>
+                  </table> -->
+                  <div class="container">
+                    <div class="tag-container">
+
+                      <input />
+                    </div>
+                  </div>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
         <div style="margin-top: 15px">
-          <button style="width: 100px" id="btn-main">áp dụng main</button>
+          <button style="width: 100px" id="btn-main">
+            áp dụng main
+          </button>
           <button style="width: 100px" class="close">bỏ qua main</button>
         </div>
       </div>
@@ -369,26 +376,6 @@
           </div>
         </div>
       </div>
-      <!-- tặng hàng hoá 2.2 pro max  -->
-      <div id="oneScreen1">
-        <div class="modal_hanghoa2">
-          <p>Chọn Hàng Hoá</p>
-          <div>
-            <input
-              type="search"
-              style="width: 100%; margin-bottom: 10px"
-              placeholder="tìm hàng hoá"
-            />
-          </div>
-          <table style="width: 100%">
-            <tbody id="hh_item1"></tbody>
-          </table>
-          <div style="margin-top: 15px">
-            <button style="width: 100px" id="btn12">áp dụng 2.2</button>
-            <button style="width: 100px" id="btn22">bỏ qua 2.2</button>
-          </div>
-        </div>
-      </div>
       <!-- tặng hàng hoá 2.3  -->
       <div id="oneScreen2">
         <div class="modal_hanghoa1">
@@ -406,6 +393,26 @@
           <div style="margin-top: 15px">
             <button style="width: 100px" id="btngiamgia1">áp dụng</button>
             <button style="width: 100px" id="btngiamgia2">bỏ qua</button>
+          </div>
+        </div>
+      </div>
+      <!-- tặng hàng hoá 2.2 pro max  -->
+      <div id="oneScreen1">
+        <div class="modal_hanghoa2">
+          <p>Chọn Hàng Hoá</p>
+          <div>
+            <input
+              type="search"
+              style="width: 100%; margin-bottom: 10px"
+              placeholder="tìm hàng hoá"
+            />
+          </div>
+          <table style="width: 100%">
+            <tbody id="hh_item1"></tbody>
+          </table>
+          <div style="margin-top: 15px">
+            <button style="width: 100px" id="btn12">áp dụng 2.2</button>
+            <button style="width: 100px" id="btn22">bỏ qua 2.2</button>
           </div>
         </div>
       </div>
