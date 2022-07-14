@@ -715,51 +715,6 @@ function countDown2(x) {
   up.value = --i;
   TotalItem2();
 }
-
-// ----------- Giảm giá voucher------------------\
-// var inputVoucher = document.querySelector("#input-voucher");
-// var outputVoucher = document.querySelector("#table_item_voucher");
-
-// inputVoucher.addEventListener("keypress", (e) => {
-//   if (e.keyCode == 13) {
-//     var valueVoucher = inputVoucher.value;
-//     for (let i = 0; i < arrVoucher.length; i++) {
-//       if (valueVoucher == arrVoucher[i].name3) {
-//         alert("mã voucher trùng");
-//         return;
-//       }
-//     }
-//     arrVoucher.push({
-//       name3: valueVoucher,
-//     });
-//     var voucher = "";
-//     for (let i = 0; i < arrVoucher.length; i++) {
-//       voucher += `
-//     <tr>
-//     <td style='width:100px'><button onclick="DeleteVoucher(this)">xoá</button></td>
-//     <td> <p style="font-weight: 500; margin-bottom: 0" class="itemlist">${arrVoucher[i].name3} </p>
-//     </td>
-//   </tr>
-//     `;
-//     }
-
-//     outputVoucher.innerHTML = voucher;
-//   }
-// });
-// function DeleteVoucher(x) {
-//   // xoá html
-//   let tr = x.parentElement.parentElement;
-//   let nameItem = tr.children[1].querySelector(".itemlist").innerText;
-//   tr.remove();
-//   // xoá array
-//   for (let i = 0; i < arrVoucher.length; i++) {
-//     if (arrVoucher[i].name3 == nameItem) {
-//       arrVoucher.splice(i, 1);
-//     }
-//   }
-//   TotalItem();
-// }
-
 // Check / Uncheck All Checkboxes
 var checkboxes = document.querySelectorAll("input[type = 'checkbox']");
 function checkAll(myCheckbox) {
@@ -867,9 +822,6 @@ btnShowMain.addEventListener("click", () => {
       }
     }
   }
-  // console.log(arrTotalHangTang);
-  // console.log(arrTotalHangGiamGia);
-  // console.log(arrTotalHangTangPro);
   checkAmoutItem(arrTotalHangTang, arrTotalHangGiamGia, arrTotalHangTangPro);
 });
 
@@ -1049,7 +1001,7 @@ checkChecked.addEventListener("click", () => {
 });
 
 // Voucher 2.5
-var inputVoucher = document.querySelector(".tag-container input");
+let inputVoucher = document.querySelector(".tag-container input");
 const tagContainer = document.querySelector(".tag-container");
 const input = document.querySelector(".tag-container input");
 
