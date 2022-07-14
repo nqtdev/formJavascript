@@ -3,7 +3,12 @@ let arrTable = []; // mảng chứa item đã chọn từ form select
 let arrChooseItem = []; // mảng chứa item đã chọn từ popup tặng hàng
 let arrChooseItem1 = []; // mảng chứa item đã chọn từ popup giảm giá hàng 2.3
 let arrChooseItem2 = []; // mảng chứa item đã chọn từ popup tặng hàng 2.2 promax
-let arrVoucher = []; //mảng chứa item đã nhập từ voucher
+let arrVoucher = [
+  { id: 1, hhName: "code1", hhSale: 100 },
+  { id: 2, hhName: "code2", hhSale: 200 },
+  { id: 3, hhName: "code3", hhSale: 300 },
+  { id: 4, hhName: "code4", hhSale: 400 },
+]; //mảng chứa item đã nhập từ voucher
 let arrTotalHangTang = []; // mảng chứa item lấy từ hàng tặng
 let arrTotalHangTangPro = []; // mảng chứa item lấy từ hàng tặng pro
 let arrTotalHangGiamGia = []; // mảng chứa item lấy từ hàng giảm giá
@@ -1040,5 +1045,69 @@ checkChecked.addEventListener("click", () => {
         checkbox.checked = false;
       });
     }
+  }
+});
+
+// Voucher 2.5
+var inputVoucher = document.querySelector(".tag-container input");
+const tagContainer = document.querySelector(".tag-container");
+const input = document.querySelector(".tag-container input");
+
+let tags = [];
+input.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    for (let i = 0; i < arrVoucher.length; i++) {
+      if (e.target.value == arrVoucher[i].hhName && e.target.value != tags[i]) {
+        e.target.value.split(",").forEach((tag) => {
+          tags.push(tag);
+          console.log(tags);
+        });
+        addTags();
+        input.value = "";
+        return;
+      }
+    }
+    alert("Mã voucher không đúng");
+    input.value = "";
+    return;
+  }
+});
+function createTag(label) {
+  const div = document.createElement("div");
+  div.setAttribute("class", "tag");
+  const span = document.createElement("span");
+  span.innerHTML = label;
+  const closeIcon = document.createElement("i");
+  closeIcon.innerHTML = "x";
+  closeIcon.setAttribute("class", "material-icons");
+  closeIcon.setAttribute("data-item", label);
+  div.appendChild(span);
+  div.appendChild(closeIcon);
+  return div;
+}
+
+function clearTags() {
+  document.querySelectorAll(".tag").forEach((tag) => {
+    tag.parentElement.removeChild(tag);
+  });
+}
+
+function addTags() {
+  clearTags();
+  tags
+    .slice()
+    .reverse()
+    .forEach((tag) => {
+      tagContainer.prepend(createTag(tag));
+    });
+}
+
+document.addEventListener("click", (e) => {
+  console.log(e.target.tagName);
+  if (e.target.tagName === "I") {
+    const tagLabel = e.target.getAttribute("data-item");
+    const index = tags.indexOf(tagLabel);
+    tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+    addTags();
   }
 });
