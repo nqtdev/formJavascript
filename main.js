@@ -921,16 +921,21 @@ input.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
     for(let i=0; i< arrVoucher.length;i++)
     {
-      if(e.target.value == arrVoucher[i].hhName){
+      if(e.target.value == arrVoucher[i].hhName && e.target.value != tags[i]){
         e.target.value.split(',').forEach(tag => {
           tags.push(tag);  
-          console.log(tag);
+          console.log(tags);
         });
         addTags();
         input.value = '';
+        return;
       }
-
     }
+      alert('Mã voucher không đúng');
+      input.value = '';
+      return;
+    
+
   }
 });
 function createTag(label) {
