@@ -340,21 +340,17 @@ function Delete2(x) {
 let checkedPopupChild = () => {
   let getName22modal = document.querySelector("#table_item_hh");
   let getName22modaltr = getName22modal.querySelectorAll("tr");
-  console.log(getName22modaltr);
   for (let i = 0; i < getName22modaltr.length; i++) {
     let getName22modalTd =
       getName22modaltr[i].querySelector(".nameItem1").value;
-    console.log(getName22modalTd);
     let modal_hangjs = document.querySelector(".modal_hanghoa");
     let modal_tablejs = modal_hangjs.querySelector("table");
     let modal_tbodyjs = modal_tablejs.querySelector("tbody");
     let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
     for (let i = 0; i < modal_rowjs.length; i++) {
       let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-      console.log(get22tdjs);
       if (get22tdjs == getName22modalTd) {
         let checkbox22 = modal_rowjs[i].querySelector(".check");
-        console.log(checkbox22);
         checkbox22.checked = true;
         break;
       }
@@ -497,21 +493,17 @@ function Delete3(x) {
 let checkedPopupChild3 = () => {
   let getName22modal = document.querySelector("#hh_item2_3");
   let getName22modaltr = getName22modal.querySelectorAll("tr");
-  console.log(getName22modaltr);
   for (let i = 0; i < getName22modaltr.length; i++) {
     let getName22modalTd =
       getName22modaltr[i].querySelector(".nameItem2").value;
-    console.log(getName22modalTd);
     let modal_hangjs = document.querySelector(".modal_hanghoa1");
     let modal_tablejs = modal_hangjs.querySelector("table");
     let modal_tbodyjs = modal_tablejs.querySelector("tbody");
     let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
     for (let i = 0; i < modal_rowjs.length; i++) {
       let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-      console.log(get22tdjs);
       if (get22tdjs == getName22modalTd) {
         let checkbox22 = modal_rowjs[i].querySelector(".check");
-        console.log(checkbox22);
         checkbox22.checked = true;
         break;
       }
@@ -645,21 +637,17 @@ document.querySelector("#btn12").onclick = function () {
 let checkedPopupChild2 = () => {
   let getName22modal = document.querySelector("#table_item_hh1");
   let getName22modaltr = getName22modal.querySelectorAll("tr");
-  console.log(getName22modaltr);
   for (let i = 0; i < getName22modaltr.length; i++) {
     let getName22modalTd =
       getName22modaltr[i].querySelector(".nameItem3").value;
-    console.log(getName22modalTd);
     let modal_hangjs = document.querySelector(".modal_hanghoa2");
     let modal_tablejs = modal_hangjs.querySelector("table");
     let modal_tbodyjs = modal_tablejs.querySelector("tbody");
     let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
     for (let i = 0; i < modal_rowjs.length; i++) {
       let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-      console.log(get22tdjs);
       if (get22tdjs == getName22modalTd) {
         let checkbox22 = modal_rowjs[i].querySelector(".check");
-        console.log(checkbox22);
         checkbox22.checked = true;
         break;
       }
@@ -1012,9 +1000,9 @@ input.addEventListener("keyup", (e) => {
       if (e.target.value == arrVoucher[i].hhName && e.target.value != tags[i]) {
         e.target.value.split(",").forEach((tag) => {
           tags.push(tag);
-          console.log(tags);
         });
         addTags();
+        getNameVoucher();
         input.value = "";
         return;
       }
@@ -1055,7 +1043,6 @@ function addTags() {
 }
 
 document.addEventListener("click", (e) => {
-  console.log(e.target.tagName);
   if (e.target.tagName === "I") {
     const tagLabel = e.target.getAttribute("data-item");
     const index = tags.indexOf(tagLabel);
@@ -1063,3 +1050,16 @@ document.addEventListener("click", (e) => {
     addTags();
   }
 });
+let getNameVoucher = () => {
+  let modalMain = document.querySelector("#modal-contentTable");
+  let modalMainTr = modalMain.querySelector(".tr-modal1");
+  console.log(modalMainTr);
+  let voucherTableItem2 = modalMainTr.querySelector("#table_item2");
+  let voucherSpan = voucherTableItem2.querySelector("Span").innerHTML;
+  for (let i = 0; i < arrVoucher.length; i++) {
+    if (voucherSpan == arrVoucher[i].hhName) {
+      var priceVoucher = arrVoucher[i].hhSale;
+      console.log(priceVoucher);
+    }
+  }
+};
