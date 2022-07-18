@@ -950,6 +950,7 @@ function renderDataKhuyenMai() {
   }
 
   popup2.innerHTML = hangGiam;
+  if (document.querySelector("#option-d").checked == true) {
   var popupVoucher = document.querySelector('#tablePopupRenderVoucher');
 voucher = "";
 for (let i = 0; i < arrVoucherChoose.length; i++) {
@@ -967,6 +968,7 @@ for (let i = 0; i < arrVoucherChoose.length; i++) {
           </tr>`;
 }
 popupVoucher.innerHTML = voucher;
+  }
   hello();
   arrTotalHangTang = [];
   arrTotalHangGiamGia = [];
@@ -989,7 +991,14 @@ function hello() {
   var tongtienhang1 = document.querySelector("#tongtienhang1");
   var tongtienhang = document.querySelector("#tongtienhang").innerText;
   var tongphaithu = document.querySelector("#tongphaithu");
-  tongphaithu.innerHTML = parseInt(tongtienhang) + ValueGiaGiam - he1 - totalVoucher;
+  let tongphaithu01 = parseInt(tongtienhang) + ValueGiaGiam - he1 - totalVoucher;
+  if(tongphaithu01 > 0){
+    tongphaithu.innerHTML = tongphaithu01;
+  }
+  else{
+    tongphaithu.innerHTML = 0;
+  }
+
   tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
 }
 let checkChecked = document.querySelector("#btn-main");
@@ -1077,6 +1086,7 @@ let getNameVoucher = () => {
   let voucherSpan = voucherTableItem2.querySelectorAll("Span");
   arrVoucherChoose = [];
   totalVoucher = 0;
+ 
   for (let i = 0; i < voucherSpan.length; i++) {
     let voucherSpan2 = voucherSpan[i].innerHTML;
     for (let i = 0; i < arrVoucher.length; i++) {
@@ -1094,4 +1104,5 @@ let getNameVoucher = () => {
   }
   document.querySelector("#tt5").innerHTML = totalVoucher;
   document.querySelector('#SumVoucher').innerHTML = totalVoucher;
-};
+}
+;
