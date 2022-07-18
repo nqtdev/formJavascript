@@ -950,11 +950,11 @@ function renderDataKhuyenMai() {
   }
 
   popup2.innerHTML = hangGiam;
-  if (document.querySelector("#option-d").checked == true) {
-  var popupVoucher = document.querySelector('#tablePopupRenderVoucher');
-voucher = "";
-for (let i = 0; i < arrVoucherChoose.length; i++) {
-  voucher += `
+  var popupVoucher = document.querySelector("#tablePopupRenderVoucher");
+  voucher = "";
+  for (let i = 0; i < arrVoucherChoose.length; i++) {
+    voucher += `
+
           <tr>
           <td style='text-align:start'> 
           <span class='name'>
@@ -966,9 +966,9 @@ for (let i = 0; i < arrVoucherChoose.length; i++) {
           </span>
           </td>
           </tr>`;
-}
-popupVoucher.innerHTML = voucher;
   }
+  popupVoucher.innerHTML = voucher;
+
   hello();
   arrTotalHangTang = [];
   arrTotalHangGiamGia = [];
@@ -982,6 +982,14 @@ function hello() {
     he.innerHTML = valueGiamGiaDon.value;
     he1 = valueGiamGiaDon.value;
   }
+
+  if (document.querySelector("#option-d").checked == true) {
+    let valueVoucher = document.querySelector("#tt5").innerHTML;
+    console.log(valueVoucher);
+    let he1 = document.querySelector("#SumVoucher");
+    he1.innerHTML = valueVoucher;
+    he1 = valueVoucher;
+  }
   var giaphaitra = document.querySelectorAll(".giaphaitra");
   var ValueGiaGiam = 0;
   for (let i = 0; i < giaphaitra.length; i++) {
@@ -991,11 +999,12 @@ function hello() {
   var tongtienhang1 = document.querySelector("#tongtienhang1");
   var tongtienhang = document.querySelector("#tongtienhang").innerText;
   var tongphaithu = document.querySelector("#tongphaithu");
-  let tongphaithu01 = parseInt(tongtienhang) + ValueGiaGiam - he1 - totalVoucher;
-  if(tongphaithu01 > 0){
+  let tongphaithu01 =
+    parseInt(tongtienhang) + ValueGiaGiam - he1 - totalVoucher;
+  if (tongphaithu01 > 0) {
     tongphaithu.innerHTML = tongphaithu01;
-  }
-  else{
+  } else {
+
     tongphaithu.innerHTML = 0;
   }
 
@@ -1103,6 +1112,4 @@ let getNameVoucher = () => {
     }
   }
   document.querySelector("#tt5").innerHTML = totalVoucher;
-  document.querySelector('#SumVoucher').innerHTML = totalVoucher;
-}
-;
+};
