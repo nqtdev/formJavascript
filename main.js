@@ -13,7 +13,9 @@ let arrTotalHangTang = []; // mảng chứa item lấy từ hàng tặng
 let arrTotalHangTangPro = []; // mảng chứa item lấy từ hàng tặng pro
 let arrTotalHangGiamGia = []; // mảng chứa item lấy từ hàng giảm giá
 let arrGiamGiaDonHang = []; // mảng chứa giảm giá đơn hàng
+let arrVoucherChoose = []; // mảng chứa voucher đã chọn
 var totalC = 0;
+let totalVoucher = 0;
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
 //Xử lý validate form
 function validateInput() {
@@ -1055,13 +1057,24 @@ let getNameVoucher = () => {
   let modalMainTr = modalMain.querySelector(".tr-modal1");
   let voucherTableItem2 = modalMainTr.querySelector("#table_item2");
   let voucherSpan = voucherTableItem2.querySelectorAll("Span");
+  arrVoucherChoose = [];
   for (let i = 0; i < voucherSpan.length; i++) {
     let voucherSpan2 = voucherSpan[i].innerHTML;
     for (let i = 0; i < arrVoucher.length; i++) {
+
       if (voucherSpan2 == arrVoucher[i].hhName) {
         var priceVoucher = arrVoucher[i].hhSale;
-        console.log(priceVoucher);
+        if(arrVoucherChoose){        
+ 
+          arrVoucherChoose.push({
+            name: voucherSpan2,
+            price: priceVoucher
+          })}
+
+
       }
+     
     }
   }
+  console.log(arrVoucherChoose);
 };
