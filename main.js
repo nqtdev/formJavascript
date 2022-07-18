@@ -1061,19 +1061,14 @@ let getNameVoucher = () => {
   for (let i = 0; i < voucherSpan.length; i++) {
     let voucherSpan2 = voucherSpan[i].innerHTML;
     for (let i = 0; i < arrVoucher.length; i++) {
-
       if (voucherSpan2 == arrVoucher[i].hhName) {
         var priceVoucher = arrVoucher[i].hhSale;
-        if(arrVoucherChoose){        
- 
+        if (arrVoucherChoose) {
           arrVoucherChoose.push({
-            name: voucherSpan2,
-            price: priceVoucher
-          })}
-
-
+            price: priceVoucher,
+          });
+        }
       }
-     
     }
   }
   console.log(arrVoucherChoose);
