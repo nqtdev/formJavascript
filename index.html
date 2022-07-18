@@ -84,6 +84,9 @@
       <div id="tdownPayment">
         <p>Giảm giá đơn hàng: <span id="Valuegiamgiadonhang">0</span> VND</p>
       </div>
+      <div id="voucherGiamGia">
+        <p>Giảm giá Voucher: <span id="SumVoucher">0</span> VND</p>
+      </div>
       <div id="price-total">
         <p>Tiền hàng đã chọn: <span id="tongtienhang">0</span> VND</p>
       </div>
@@ -130,12 +133,34 @@
     >
       <thead>
         <tr>
-          <td colspan="4" style="text-align: left">Khuyến mại</td>
+          <td colspan="4" style="text-align: center">Khuyến mại</td>
+        </tr>
+        <tr>
+          <td>Hàng Hóa</td>
+          <td>Số Lượng</td>
+          <td>
+            Đơn Giá
+            <p><i style="font-weight: 300">giảm giá</i></p>
+          </td>
+          <td>
+            Thành Tiền
+            <p><i style="font-weight: 300">tiền giảm</i></p>
+          </td>
         </tr>
       </thead>
       <tbody id="tablePopupRender"></tbody>
       <tbody id="tablePopupRender1"></tbody>
       <tbody id="tablePopupRender2"></tbody>
+
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <td>Mã Voucher</td>
+          <td>Giá Giảm</td>
+        </tr>
+      </thead>
+      <tbody id="tablePopupRenderVoucher"></tbody>
     </table>
     <div id="myModal" class="modal">
       <div class="modal-content">
