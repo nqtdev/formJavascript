@@ -1004,7 +1004,6 @@ function hello() {
   if (tongphaithu01 > 0) {
     tongphaithu.innerHTML = tongphaithu01;
   } else {
-
     tongphaithu.innerHTML = 0;
   }
 
@@ -1095,7 +1094,7 @@ let getNameVoucher = () => {
   let voucherSpan = voucherTableItem2.querySelectorAll("Span");
   arrVoucherChoose = [];
   totalVoucher = 0;
- 
+
   for (let i = 0; i < voucherSpan.length; i++) {
     let voucherSpan2 = voucherSpan[i].innerHTML;
     for (let i = 0; i < arrVoucher.length; i++) {
