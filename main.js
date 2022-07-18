@@ -950,6 +950,23 @@ function renderDataKhuyenMai() {
   }
 
   popup2.innerHTML = hangGiam;
+  var popupVoucher = document.querySelector('#tablePopupRenderVoucher');
+voucher = "";
+for (let i = 0; i < arrVoucherChoose.length; i++) {
+  voucher += `
+          <tr>
+          <td style='text-align:start'> 
+          <span class='name'>
+          <p>${arrVoucherChoose[i].name}</p>
+          </span>
+          </td>
+          <td style='width:110px;text-align:end'> <span class='tt'>
+          <p style="color:red;font-weight:700">${arrVoucherChoose[i].price}</p>
+          </span>
+          </td>
+          </tr>`;
+}
+popupVoucher.innerHTML = voucher;
   hello();
   arrTotalHangTang = [];
   arrTotalHangGiamGia = [];
@@ -957,7 +974,7 @@ function renderDataKhuyenMai() {
 }
 function hello() {
   var he1 = 0;
-  if (document.querySelector("#option-b").checked == true) {
+  if (document.querySelector("#option-a").checked == true) {
     let valueGiamGiaDon = document.querySelector(".khuyenmaigiamdon");
     var he = document.querySelector("#Valuegiamgiadonhang");
     he.innerHTML = valueGiamGiaDon.value;
@@ -972,7 +989,7 @@ function hello() {
   var tongtienhang1 = document.querySelector("#tongtienhang1");
   var tongtienhang = document.querySelector("#tongtienhang").innerText;
   var tongphaithu = document.querySelector("#tongphaithu");
-  tongphaithu.innerHTML = parseInt(tongtienhang) + ValueGiaGiam - he1;
+  tongphaithu.innerHTML = parseInt(tongtienhang) + ValueGiaGiam - he1 - totalVoucher;
   tongtienhang1.innerHTML = parseInt(tongtienhang) + ValueGiaGiam;
 }
 let checkChecked = document.querySelector("#btn-main");
@@ -1076,4 +1093,5 @@ let getNameVoucher = () => {
     }
   }
   document.querySelector("#tt5").innerHTML = totalVoucher;
+  document.querySelector('#SumVoucher').innerHTML = totalVoucher;
 };
