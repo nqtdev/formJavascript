@@ -13,7 +13,9 @@ let arrTotalHangTang = []; // mảng chứa item lấy từ hàng tặng
 let arrTotalHangTangPro = []; // mảng chứa item lấy từ hàng tặng pro
 let arrTotalHangGiamGia = []; // mảng chứa item lấy từ hàng giảm giá
 let arrGiamGiaDonHang = []; // mảng chứa giảm giá đơn hàng
+let arrVoucherChoose = []; // mảng chứa voucher đã chọn
 var totalC = 0;
+let totalVoucher = 0;
 let ListItem = JSON.parse(localStorage.getItem("hangtang"));
 //Xử lý validate form
 function validateInput() {
@@ -340,21 +342,17 @@ function Delete2(x) {
 let checkedPopupChild = () => {
   let getName22modal = document.querySelector("#table_item_hh");
   let getName22modaltr = getName22modal.querySelectorAll("tr");
-  console.log(getName22modaltr);
   for (let i = 0; i < getName22modaltr.length; i++) {
     let getName22modalTd =
       getName22modaltr[i].querySelector(".nameItem1").value;
-    console.log(getName22modalTd);
     let modal_hangjs = document.querySelector(".modal_hanghoa");
     let modal_tablejs = modal_hangjs.querySelector("table");
     let modal_tbodyjs = modal_tablejs.querySelector("tbody");
     let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
     for (let i = 0; i < modal_rowjs.length; i++) {
       let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-      console.log(get22tdjs);
       if (get22tdjs == getName22modalTd) {
         let checkbox22 = modal_rowjs[i].querySelector(".check");
-        console.log(checkbox22);
         checkbox22.checked = true;
         break;
       }
@@ -497,21 +495,17 @@ function Delete3(x) {
 let checkedPopupChild3 = () => {
   let getName22modal = document.querySelector("#hh_item2_3");
   let getName22modaltr = getName22modal.querySelectorAll("tr");
-  console.log(getName22modaltr);
   for (let i = 0; i < getName22modaltr.length; i++) {
     let getName22modalTd =
       getName22modaltr[i].querySelector(".nameItem2").value;
-    console.log(getName22modalTd);
     let modal_hangjs = document.querySelector(".modal_hanghoa1");
     let modal_tablejs = modal_hangjs.querySelector("table");
     let modal_tbodyjs = modal_tablejs.querySelector("tbody");
     let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
     for (let i = 0; i < modal_rowjs.length; i++) {
       let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-      console.log(get22tdjs);
       if (get22tdjs == getName22modalTd) {
         let checkbox22 = modal_rowjs[i].querySelector(".check");
-        console.log(checkbox22);
         checkbox22.checked = true;
         break;
       }
@@ -645,21 +639,17 @@ document.querySelector("#btn12").onclick = function () {
 let checkedPopupChild2 = () => {
   let getName22modal = document.querySelector("#table_item_hh1");
   let getName22modaltr = getName22modal.querySelectorAll("tr");
-  console.log(getName22modaltr);
   for (let i = 0; i < getName22modaltr.length; i++) {
     let getName22modalTd =
       getName22modaltr[i].querySelector(".nameItem3").value;
-    console.log(getName22modalTd);
     let modal_hangjs = document.querySelector(".modal_hanghoa2");
     let modal_tablejs = modal_hangjs.querySelector("table");
     let modal_tbodyjs = modal_tablejs.querySelector("tbody");
     let modal_rowjs = modal_tbodyjs.getElementsByTagName("tr");
     for (let i = 0; i < modal_rowjs.length; i++) {
       let get22tdjs = modal_rowjs[i].querySelector(".name").value;
-      console.log(get22tdjs);
       if (get22tdjs == getName22modalTd) {
         let checkbox22 = modal_rowjs[i].querySelector(".check");
-        console.log(checkbox22);
         checkbox22.checked = true;
         break;
       }
@@ -1012,9 +1002,9 @@ input.addEventListener("keyup", (e) => {
       if (e.target.value == arrVoucher[i].hhName && e.target.value != tags[i]) {
         e.target.value.split(",").forEach((tag) => {
           tags.push(tag);
-          console.log(tags);
         });
         addTags();
+        getNameVoucher();
         input.value = "";
         return;
       }
@@ -1055,7 +1045,6 @@ function addTags() {
 }
 
 document.addEventListener("click", (e) => {
-  console.log(e.target.tagName);
   if (e.target.tagName === "I") {
     const tagLabel = e.target.getAttribute("data-item");
     const index = tags.indexOf(tagLabel);
@@ -1063,3 +1052,30 @@ document.addEventListener("click", (e) => {
     addTags();
   }
 });
+let getNameVoucher = () => {
+  let modalMain = document.querySelector("#modal-contentTable");
+  let modalMainTr = modalMain.querySelector(".tr-modal1");
+  let voucherTableItem2 = modalMainTr.querySelector("#table_item2");
+  let voucherSpan = voucherTableItem2.querySelectorAll("Span");
+  arrVoucherChoose = [];
+  totalVoucher = 0;
+  for (let i = 0; i < voucherSpan.length; i++) {
+    let voucherSpan2 = voucherSpan[i].innerHTML;
+    for (let i = 0; i < arrVoucher.length; i++) {
+      if (voucherSpan2 == arrVoucher[i].hhName) {
+        var priceVoucher = arrVoucher[i].hhSale;
+        if (arrVoucherChoose) {
+          arrVoucherChoose.push({
+            name: voucherSpan2,
+            price: priceVoucher,
+          });
+        }
+        totalVoucher += priceVoucher;
+      }
+    }
+  }
+  document.querySelector("#tt5").innerHTML = totalVoucher;
+
+  console.log(arrVoucherChoose);
+  console.log(totalVoucher);
+};
