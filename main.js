@@ -1058,6 +1058,7 @@ let getNameVoucher = () => {
   let voucherTableItem2 = modalMainTr.querySelector("#table_item2");
   let voucherSpan = voucherTableItem2.querySelectorAll("Span");
   arrVoucherChoose = [];
+  totalVoucher = 0;
   for (let i = 0; i < voucherSpan.length; i++) {
     let voucherSpan2 = voucherSpan[i].innerHTML;
     for (let i = 0; i < arrVoucher.length; i++) {
@@ -1071,10 +1072,11 @@ let getNameVoucher = () => {
             price: priceVoucher
           })}
 
-
+          totalVoucher += priceVoucher;
       }
      
     }
   }
   console.log(arrVoucherChoose);
+  console.log(totalVoucher)
 };
