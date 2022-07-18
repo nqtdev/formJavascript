@@ -1050,6 +1050,7 @@ document.addEventListener("click", (e) => {
     const index = tags.indexOf(tagLabel);
     tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
     addTags();
+    getNameVoucher();
   }
 });
 let getNameVoucher = () => {
@@ -1075,7 +1076,4 @@ let getNameVoucher = () => {
     }
   }
   document.querySelector("#tt5").innerHTML = totalVoucher;
-
-  console.log(arrVoucherChoose);
-  console.log(totalVoucher);
 };
