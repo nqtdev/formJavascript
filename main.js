@@ -1035,47 +1035,46 @@ checkChecked.addEventListener("click", () => {
 // Voucher 2.5
 const tagContainer = document.querySelector(".tag-container");
 const input = document.querySelector(".tag-container input");
-let tags = []
-function createTag(){
-  tagContainer.innerHTML='';
-  for(let i=0; i <tags.length;i++){
+let tags = [];
+function createTag() {
+  tagContainer.innerHTML = "";
+  for (let i = 0; i < tags.length; i++) {
     const tag = tags[i];
     tagContainer.innerHTML += `<li> <span>${tag} </span>
                               <i class="fa-solid fa-xmark" onclick="RemoveTag(${i})"></i>
-                              </li>`
-
+                              </li>`;
   }
-  tagContainer.appendChild(input)
+  tagContainer.appendChild(input);
   input.focus();
 }
 createTag();
-input.addEventListener('keyup',function(event){
-  if(event.key == "Enter")
-  {
-    for(let i=0; i < arrVoucher.length;i++){
-      if(event.target.value == arrVoucher[i].hhName && event.target.value != tags[i]) 
-      {
+input.addEventListener("keyup", function (event) {
+  if (event.key == "Enter") {
+    for (let i = 0; i < arrVoucher.length; i++) {
+      if (
+        event.target.value == arrVoucher[i].hhName &&
+        event.target.value != tags[i]
+      ) {
         tags.push(input.value.trim());
-        input.value = '';
+        input.value = "";
         createTag();
         getNameVoucher();
         return;
       }
     }
-    input.value="";
-    alert("Voucher lỗi")
+    input.value = "";
+    alert("Voucher lỗi");
     return;
   }
-})
-function RemoveTag(index){
-  tags.splice(index,1);
+});
+function RemoveTag(index) {
+  tags.splice(index, 1);
   createTag();
   getNameVoucher();
-
 }
 let getNameVoucher = () => {
-  let  voucherTableItem2 = document.querySelector(".tag-container");
-  let voucherSpan = voucherTableItem2.querySelectorAll('span')
+  let voucherTableItem2 = document.querySelector(".tag-container");
+  let voucherSpan = voucherTableItem2.querySelectorAll("span");
   arrVoucherChoose = [];
   totalVoucher = 0;
   for (let i = 0; i < voucherSpan.length; i++) {
@@ -1094,6 +1093,5 @@ let getNameVoucher = () => {
     }
   }
   document.querySelector("#tt5").innerHTML = totalVoucher;
-  document.querySelector('#SumVoucher').innerHTML = totalVoucher;
-  
+  document.querySelector("#SumVoucher").innerHTML = totalVoucher;
 };
