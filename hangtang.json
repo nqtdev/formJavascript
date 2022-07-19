@@ -1,6 +1,6 @@
 [
-  { "id": "CLO", "hhName": "Clotilda", "hhPrice": 2000 },
-  { "id": "ERM", "hhName": "Ermina", "hhPrice": 1000 },
-  { "id": "KER", "hhName": "Kerstin", "hhPrice": 2500 },
-  { "id": "WIL", "hhName": "Wilmer", "hhPrice": 3000 }
+  { "id": "CLO", "hhName": "Clotilda", "hhPrice": 18 },
+  { "id": "ERM", "hhName": "Ermina", "hhPrice": 93 },
+  { "id": "KER", "hhName": "Kerstin", "hhPrice": 77 },
+  { "id": "WIL", "hhName": "Wilmer", "hhPrice": 57 }
 ]

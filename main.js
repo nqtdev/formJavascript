@@ -975,20 +975,28 @@ function renderDataKhuyenMai() {
   arrTotalHangTangPro = [];
 }
 function hello() {
-  var he1 = 0;
+  let valueGiamGiaDon = document.querySelector(".khuyenmaigiamdon");
+  let he = document.querySelector("#Valuegiamgiadonhang");
+  he.innerHTML = valueGiamGiaDon.value;
   if (document.querySelector("#option-a").checked == true) {
-    let valueGiamGiaDon = document.querySelector(".khuyenmaigiamdon");
-    var he = document.querySelector("#Valuegiamgiadonhang");
-    he.innerHTML = valueGiamGiaDon.value;
     he1 = valueGiamGiaDon.value;
+  } else if (document.querySelector("#option-a").checked == false) {
+    let valueGiamGiaDon1 = document.querySelector(".khuyenmaigiamdon1");
+    let he = document.querySelector("#Valuegiamgiadonhang");
+    he.innerHTML = valueGiamGiaDon1.value;
+    he1 = valueGiamGiaDon1.value;
   }
 
   if (document.querySelector("#option-d").checked == true) {
     let valueVoucher = document.querySelector("#tt5").innerHTML;
-    console.log(valueVoucher);
-    let he1 = document.querySelector("#SumVoucher");
-    he1.innerHTML = valueVoucher;
-    he1 = valueVoucher;
+    let he2 = document.querySelector("#SumVoucher");
+    he2.innerHTML = valueVoucher;
+    he2 = valueVoucher;
+  } else if (document.querySelector("#option-d").checked == false) {
+    let valueVoucher = document.querySelector(".khuyenmaivoucher").value;
+    let he2 = document.querySelector("#SumVoucher");
+    he2.innerHTML = valueVoucher;
+    he2 = valueVoucher;
   }
   var giaphaitra = document.querySelectorAll(".giaphaitra");
   var ValueGiaGiam = 0;
@@ -1004,7 +1012,6 @@ function hello() {
   if (tongphaithu01 > 0) {
     tongphaithu.innerHTML = tongphaithu01;
   } else {
-
     tongphaithu.innerHTML = 0;
   }
 
@@ -1071,7 +1078,6 @@ let getNameVoucher = () => {
   let voucherSpan = voucherTableItem2.querySelectorAll('span')
   arrVoucherChoose = [];
   totalVoucher = 0;
- 
   for (let i = 0; i < voucherSpan.length; i++) {
     let voucherSpan2 = voucherSpan[i].innerText.trim();
     for (let i = 0; i < arrVoucher.length; i++) {
