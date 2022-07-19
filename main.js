@@ -4,10 +4,10 @@ let arrChooseItem = []; // mảng chứa item đã chọn từ popup tặng hàn
 let arrChooseItem1 = []; // mảng chứa item đã chọn từ popup giảm giá hàng 2.3
 let arrChooseItem2 = []; // mảng chứa item đã chọn từ popup tặng hàng 2.2 promax
 let arrVoucher = [
-  { id: 1, hhName: "code1", hhSale: 100 },
-  { id: 2, hhName: "code2", hhSale: 200 },
-  { id: 3, hhName: "code3", hhSale: 300 },
-  { id: 4, hhName: "code4", hhSale: 400 },
+  { id: 1, hhName: "code1", hhSale: 10 },
+  { id: 2, hhName: "code2", hhSale: 20 },
+  { id: 3, hhName: "code3", hhSale: 30 },
+  { id: 4, hhName: "code4", hhSale: 40 },
 ]; //mảng chứa item đã nhập từ voucher
 let arrTotalHangTang = []; // mảng chứa item lấy từ hàng tặng
 let arrTotalHangTangPro = []; // mảng chứa item lấy từ hàng tặng pro
@@ -951,23 +951,31 @@ function renderDataKhuyenMai() {
 
   popup2.innerHTML = hangGiam;
   var popupVoucher = document.querySelector("#tablePopupRenderVoucher");
-  voucher = "";
-  for (let i = 0; i < arrVoucherChoose.length; i++) {
-    voucher += `
-
-          <tr>
-          <td style='text-align:start'> 
-          <span class='name'>
-          <p>${arrVoucherChoose[i].name}</p>
-          </span>
-          </td>
-          <td style='width:110px;text-align:end'> <span class='tt'>
-          <p style="color:red;font-weight:700">${arrVoucherChoose[i].price}</p>
-          </span>
-          </td>
-          </tr>`;
+  if (document.querySelector("#option-d").checked == true) {
+    voucher = "";
+    for (let i = 0; i < arrVoucherChoose.length; i++) {
+      voucher += `
+            <tr>
+            <td style='text-align:start'> 
+            <span class='name'>
+            <p>${arrVoucherChoose[i].name}</p>
+            </span>
+            </td>
+            <td style='width:110px;text-align:end'> <span class='tt'>
+            <p style="color:red;font-weight:700">${arrVoucherChoose[i].price}</p>
+            </span>
+            </td>
+            </tr>`;
+    }
+    popupVoucher.innerHTML = voucher;
+  } else {
+    voucher = "";
+    for (let i = 0; i < arrVoucherChoose.length; i++) {
+      voucher += `
+            `;
+    }
+    popupVoucher.innerHTML = voucher;
   }
-  popupVoucher.innerHTML = voucher;
 
   hello();
   arrTotalHangTang = [];
@@ -989,12 +997,12 @@ function hello() {
 
   if (document.querySelector("#option-d").checked == true) {
     let valueVoucher = document.querySelector("#tt5").innerHTML;
-    let he2 = document.querySelector("#SumVoucher");
+    let he2 = document.querySelector("#SumVoucher1");
     he2.innerHTML = valueVoucher;
     he2 = valueVoucher;
   } else if (document.querySelector("#option-d").checked == false) {
     let valueVoucher = document.querySelector(".khuyenmaivoucher").value;
-    let he2 = document.querySelector("#SumVoucher");
+    let he2 = document.querySelector("#SumVoucher1");
     he2.innerHTML = valueVoucher;
     he2 = valueVoucher;
   }
@@ -1093,5 +1101,5 @@ let getNameVoucher = () => {
     }
   }
   document.querySelector("#tt5").innerHTML = totalVoucher;
-  document.querySelector("#SumVoucher").innerHTML = totalVoucher;
+  // document.querySelector("#SumVoucher").innerHTML = totalVoucher;
 };
