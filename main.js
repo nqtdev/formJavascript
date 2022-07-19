@@ -846,7 +846,7 @@ function checkAmoutItem(
         return;
       }
     } else {
-      confirm("Sản phẩm Hàng giảm giá 2.3 chọn đã vượt quá số lượng");
+      confirm("Sản phẩm Hàng pro 2.3 chọn đã vượt quá số lượng");
       const numbers23 = arrTotalHangTangPro;
       numbers23.length = 0;
       arrTotalHangTang = [];
