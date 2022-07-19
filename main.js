@@ -4,10 +4,10 @@ let arrChooseItem = []; // mảng chứa item đã chọn từ popup tặng hàn
 let arrChooseItem1 = []; // mảng chứa item đã chọn từ popup giảm giá hàng 2.3
 let arrChooseItem2 = []; // mảng chứa item đã chọn từ popup tặng hàng 2.2 promax
 let arrVoucher = [
-  { id: 1, hhName: "code1", hhSale: 100 },
-  { id: 2, hhName: "code2", hhSale: 200 },
-  { id: 3, hhName: "code3", hhSale: 300 },
-  { id: 4, hhName: "code4", hhSale: 400 },
+  { id: 1, hhName: "code1", hhSale: 10 },
+  { id: 2, hhName: "code2", hhSale: 20 },
+  { id: 3, hhName: "code3", hhSale: 30 },
+  { id: 4, hhName: "code4", hhSale: 40 },
 ]; //mảng chứa item đã nhập từ voucher
 let arrTotalHangTang = []; // mảng chứa item lấy từ hàng tặng
 let arrTotalHangTangPro = []; // mảng chứa item lấy từ hàng tặng pro
@@ -951,23 +951,31 @@ function renderDataKhuyenMai() {
 
   popup2.innerHTML = hangGiam;
   var popupVoucher = document.querySelector("#tablePopupRenderVoucher");
-  voucher = "";
-  for (let i = 0; i < arrVoucherChoose.length; i++) {
-    voucher += `
-
-          <tr>
-          <td style='text-align:start'> 
-          <span class='name'>
-          <p>${arrVoucherChoose[i].name}</p>
-          </span>
-          </td>
-          <td style='width:110px;text-align:end'> <span class='tt'>
-          <p style="color:red;font-weight:700">${arrVoucherChoose[i].price}</p>
-          </span>
-          </td>
-          </tr>`;
+  if (document.querySelector("#option-d").checked == true) {
+    voucher = "";
+    for (let i = 0; i < arrVoucherChoose.length; i++) {
+      voucher += `
+            <tr>
+            <td style='text-align:start'> 
+            <span class='name'>
+            <p>${arrVoucherChoose[i].name}</p>
+            </span>
+            </td>
+            <td style='width:110px;text-align:end'> <span class='tt'>
+            <p style="color:red;font-weight:700">${arrVoucherChoose[i].price}</p>
+            </span>
+            </td>
+            </tr>`;
+    }
+    popupVoucher.innerHTML = voucher;
+  } else {
+    voucher = "";
+    for (let i = 0; i < arrVoucherChoose.length; i++) {
+      voucher += `
+            `;
+    }
+    popupVoucher.innerHTML = voucher;
   }
-  popupVoucher.innerHTML = voucher;
 
   hello();
   arrTotalHangTang = [];
@@ -989,12 +997,12 @@ function hello() {
 
   if (document.querySelector("#option-d").checked == true) {
     let valueVoucher = document.querySelector("#tt5").innerHTML;
-    let he2 = document.querySelector("#SumVoucher");
+    var he2 = document.querySelector("#SumVoucher1");
     he2.innerHTML = valueVoucher;
     he2 = valueVoucher;
   } else if (document.querySelector("#option-d").checked == false) {
     let valueVoucher = document.querySelector(".khuyenmaivoucher").value;
-    let he2 = document.querySelector("#SumVoucher");
+    var he2 = document.querySelector("#SumVoucher1");
     he2.innerHTML = valueVoucher;
     he2 = valueVoucher;
   }
@@ -1007,8 +1015,7 @@ function hello() {
   var tongtienhang1 = document.querySelector("#tongtienhang1");
   var tongtienhang = document.querySelector("#tongtienhang").innerText;
   var tongphaithu = document.querySelector("#tongphaithu");
-  let tongphaithu01 =
-    parseInt(tongtienhang) + ValueGiaGiam - he1 - totalVoucher;
+  let tongphaithu01 = parseInt(tongtienhang) + ValueGiaGiam - he1 - he2;
   if (tongphaithu01 > 0) {
     tongphaithu.innerHTML = tongphaithu01;
   } else {
@@ -1035,47 +1042,46 @@ checkChecked.addEventListener("click", () => {
 // Voucher 2.5
 const tagContainer = document.querySelector(".tag-container");
 const input = document.querySelector(".tag-container input");
-let tags = []
-function createTag(){
-  tagContainer.innerHTML='';
-  for(let i=0; i <tags.length;i++){
+let tags = [];
+function createTag() {
+  tagContainer.innerHTML = "";
+  for (let i = 0; i < tags.length; i++) {
     const tag = tags[i];
     tagContainer.innerHTML += `<li> <span>${tag} </span>
                               <i class="fa-solid fa-xmark" onclick="RemoveTag(${i})"></i>
-                              </li>`
-
+                              </li>`;
   }
-  tagContainer.appendChild(input)
+  tagContainer.appendChild(input);
   input.focus();
 }
 createTag();
-input.addEventListener('keyup',function(event){
-  if(event.key == "Enter")
-  {
-    for(let i=0; i < arrVoucher.length;i++){
-      if(event.target.value == arrVoucher[i].hhName && event.target.value != tags[i]) 
-      {
+input.addEventListener("keyup", function (event) {
+  if (event.key == "Enter") {
+    for (let i = 0; i < arrVoucher.length; i++) {
+      if (
+        event.target.value == arrVoucher[i].hhName &&
+        event.target.value != tags[i]
+      ) {
         tags.push(input.value.trim());
-        input.value = '';
+        input.value = "";
         createTag();
         getNameVoucher();
         return;
       }
     }
-    input.value="";
-    alert("Voucher lỗi")
+    input.value = "";
+    alert("Voucher lỗi");
     return;
   }
-})
-function RemoveTag(index){
-  tags.splice(index,1);
+});
+function RemoveTag(index) {
+  tags.splice(index, 1);
   createTag();
   getNameVoucher();
-
 }
 let getNameVoucher = () => {
-  let  voucherTableItem2 = document.querySelector(".tag-container");
-  let voucherSpan = voucherTableItem2.querySelectorAll('span')
+  let voucherTableItem2 = document.querySelector(".tag-container");
+  let voucherSpan = voucherTableItem2.querySelectorAll("span");
   arrVoucherChoose = [];
   totalVoucher = 0;
   for (let i = 0; i < voucherSpan.length; i++) {
@@ -1094,6 +1100,5 @@ let getNameVoucher = () => {
     }
   }
   document.querySelector("#tt5").innerHTML = totalVoucher;
-  document.querySelector('#SumVoucher').innerHTML = totalVoucher;
-  
+  // document.querySelector("#SumVoucher").innerHTML = totalVoucher;
 };
