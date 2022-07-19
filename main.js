@@ -997,12 +997,12 @@ function hello() {
 
   if (document.querySelector("#option-d").checked == true) {
     let valueVoucher = document.querySelector("#tt5").innerHTML;
-    let he2 = document.querySelector("#SumVoucher1");
+    var he2 = document.querySelector("#SumVoucher1");
     he2.innerHTML = valueVoucher;
     he2 = valueVoucher;
   } else if (document.querySelector("#option-d").checked == false) {
     let valueVoucher = document.querySelector(".khuyenmaivoucher").value;
-    let he2 = document.querySelector("#SumVoucher1");
+    var he2 = document.querySelector("#SumVoucher1");
     he2.innerHTML = valueVoucher;
     he2 = valueVoucher;
   }
@@ -1015,8 +1015,7 @@ function hello() {
   var tongtienhang1 = document.querySelector("#tongtienhang1");
   var tongtienhang = document.querySelector("#tongtienhang").innerText;
   var tongphaithu = document.querySelector("#tongphaithu");
-  let tongphaithu01 =
-    parseInt(tongtienhang) + ValueGiaGiam - he1 - totalVoucher;
+  let tongphaithu01 = parseInt(tongtienhang) + ValueGiaGiam - he1 - he2;
   if (tongphaithu01 > 0) {
     tongphaithu.innerHTML = tongphaithu01;
   } else {
