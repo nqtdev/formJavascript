@@ -1033,8 +1033,8 @@ function createTag(){
   tagContainer.innerHTML='';
   for(let i=0; i <tags.length;i++){
     const tag = tags[i];
-    tagContainer.innerHTML += `<li> ${tag} 
-                              <i onclick="RemoveTag(${i})">x</i>
+    tagContainer.innerHTML += `<li> <span>${tag} </span>
+                              <i class="fa-solid fa-xmark" onclick="RemoveTag(${i})"></i>
                               </li>`
 
   }
@@ -1045,11 +1045,19 @@ createTag();
 input.addEventListener('keyup',function(event){
   if(event.key == "Enter")
   {
-
-    tags.push(input.value.trim());
-    input.value = '';
-    createTag();
-    getNameVoucher();
+    for(let i=0; i < arrVoucher.length;i++){
+      if(event.target.value == arrVoucher[i].hhName && event.target.value != tags[i]) 
+      {
+        tags.push(input.value.trim());
+        input.value = '';
+        createTag();
+        getNameVoucher();
+        return;
+      }
+    }
+    input.value="";
+    alert("Voucher lỗi")
+    return;
   }
 })
 function RemoveTag(index){
@@ -1059,13 +1067,13 @@ function RemoveTag(index){
 
 }
 let getNameVoucher = () => {
-  let voucherTableItem2 = document.querySelector(".tag-container");
-  let voucherSpan = voucherTableItem2.querySelectorAll("li");
+  let  voucherTableItem2 = document.querySelector(".tag-container");
+  let voucherSpan = voucherTableItem2.querySelectorAll('span')
   arrVoucherChoose = [];
   totalVoucher = 0;
  
   for (let i = 0; i < voucherSpan.length; i++) {
-    let voucherSpan2 = voucherSpan[i].innerHTML;
+    let voucherSpan2 = voucherSpan[i].innerText.trim();
     for (let i = 0; i < arrVoucher.length; i++) {
       if (voucherSpan2 == arrVoucher[i].hhName) {
         var priceVoucher = arrVoucher[i].hhSale;
